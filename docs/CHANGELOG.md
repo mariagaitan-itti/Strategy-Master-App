@@ -5,11 +5,12 @@ Todos los cambios notables de Strategy Master App.
 ## [Unreleased]
 
 ### Added
-- Logos oficiales (o marcas SVG) por producto en `PRODUCTS_DATA` / `LOGO_URLS` + `assets/logos/`.
-- `docs/ANALISIS_DOCUMENTO_MAESTRO.md` — gaps PDF vs app y recomendaciones UX.
+- Gaps Documento Maestro: baseline completo Parte I, CAP-DATA (3 batches), métricas con columna Actual, flywheel Parte VIII.
+- Logos de productos + `docs/ANALISIS_DOCUMENTO_MAESTRO.md`.
 
 ### Changed
-- `ProductLogo` usa URLs oficiales / data-URI con fallback.
+- Tracker Olas: CAP-DATA expandido, Afluente/Otros separados, badge bloqueante.
+- Global métricas → link a Transversal; sidebar “OKRs por producto (BU)”.
 
 ### Changed
 - Retema v2 según screenshots DS: look **Ads Admin** (navy `#192E3F` + canvas `#F1F0EC` + brand `#2BD98E`), menos purple/mauve.

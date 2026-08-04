@@ -1,0 +1,5 @@
+# Solo se sube lo necesario a Apps Script
+**/*
+!Code.gs
+!Index.html
+!.clasp.json

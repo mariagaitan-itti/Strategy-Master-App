@@ -5,16 +5,15 @@ Todos los cambios notables de Strategy Master App.
 ## [Unreleased]
 
 ### Added
-- Carpeta `docs/` con CHANGELOG, guía Apps Script y resumen del Documento Maestro.
-- Wrapper `apps-script/Code.gs` + `scripts/sync-apps-script.sh`.
-- Objeto `STRATEGY_MASTER` **dentro de `index.html`** (no es un archivo separado).
-- Tracker Ola 1 / Ola 2, ecosistema completo, métricas ampliadas.
-- Badge visible en sidebar: `PDF · Mayo 2026` (para verificar deploy).
+- Tema visual alineado al Design System ueno (tokens en `index.html` + `docs/DESIGN_SYSTEM.md`).
+- Tipografía Inter (placeholder DS), sidebar inverse navy, canvas claro, brand `#2AD88A`.
+- Badge visible en sidebar: `PDF · Mayo 2026`.
 
 ### Changed
-- Un solo `AGENTS.md` en la raíz (se eliminó el duplicado en `docs/`).
-- `docs/STRATEGY_SOURCE.md` renombrado/reemplazado por `docs/DOCUMENTO_MAESTRO.md`.
-- Vista Transversal data-driven; Blog → Documento; Roadmap → Tracker Olas.
+- Un solo `AGENTS.md` en la raíz.
+- `docs/DOCUMENTO_MAESTRO.md` (reemplaza STRATEGY_SOURCE).
+- UI Transversal data-driven (`STRATEGY_MASTER`).
+- Paleta genérica slate/indigo → tokens `ueno-*`.
 
 ### Fixed
 - `)}` extra que rompía Babel en Apps Script.

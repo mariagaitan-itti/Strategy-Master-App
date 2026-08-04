@@ -30,9 +30,9 @@ Documento maestro de referencia: *Estrategia de Producto — SuperApp | Grupo V�
 No es un archivo `.md`. Es un **objeto JavaScript** dentro de `index.html` (`const STRATEGY_MASTER = { ... }`) con pilares, ecosistema, olas y métricas del PDF. Las vistas de Estrategia Transversal lo leen desde ahí.
 
 ## Cómo verificar que desplegaste la versión nueva
-En el sidebar debe verse el badge **`PDF · Mayo 2026`**.  
-En Estrategia Transversal, el 6º tab debe decir **`Tracker Olas`** (antes: "Roadmap").  
-El ítem del menú debe decir **`Documento`** (antes: "Blog").
+En el sidebar (navy): wordmark **`ueno.`** + badge **`PDF · Mayo 2026`**.  
+Fondo de contenido **beige canvas** (`#F1F0EC`), no dark slate.  
+Ver tokens en `docs/DESIGN_SYSTEM.md`.
 
 ## Secciones de la UI
 | Sección | Contenido |

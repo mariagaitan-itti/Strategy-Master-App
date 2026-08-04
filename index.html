@@ -164,23 +164,39 @@
       Globe: () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
     };
 
-    // 2. COMPONENTE DE LOGO
-    const ProductLogo = ({ logoUrl, alt, className }) => {
-      const [imgError, setImgError] = useState(false);
+    // 2. LOGOS OFICIALES / FALLBACKS POR PRODUCTO
+    const LOGO_URLS = {
+          "ueno-bank": "https://www.ueno.com.py/wp-content/uploads/2024/07/Favicon-1.svg",
+          "upay": "https://upay.com.py/wp-content/uploads/sites/4/2025/11/new-favicon-upay.svg",
+          "muv": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjEyOCIgaGVpZ2h0PSIxMjgiPgogIDxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgcng9IjE2IiBmaWxsPSIjRkY1QTAwIi8+CiAgPHRleHQgeD0iMzIiIHk9IjQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjcwMCIgZm9udC1zaXplPSIyOCIgZmlsbD0iI0ZGRkZGRiI+TTwvdGV4dD4KPC9zdmc+",
+          "monchis": "https://monchis.com.py/wp-content/uploads/fbrfg/apple-touch-icon.png",
+          "conto": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjEyOCIgaGVpZ2h0PSIxMjgiPgogIDxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgcng9IjE2IiBmaWxsPSIjMkJEOThFIi8+CiAgPHRleHQgeD0iMzIiIHk9IjQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjcwMCIgZm9udC1zaXplPSIyOCIgZmlsbD0iIzE5MkUzRiI+QzwvdGV4dD4KPC9zdmc+",
+          "bims": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjEyOCIgaGVpZ2h0PSIxMjgiPgogIDxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgcng9IjE2IiBmaWxsPSIjMTkyRTNGIi8+CiAgPHRleHQgeD0iMzIiIHk9IjQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjcwMCIgZm9udC1zaXplPSIyOCIgZmlsbD0iIzJCRDk4RSI+QjwvdGV4dD4KPC9zdmc+",
+          "umarket": "https://umarket.com.py/assets/favicon/favicon.svg",
+          "tuti": "https://www.tuti.com.py/favicon.ico",
+          "uela": "https://cdn.travelconline.com/images/fit-in/512x512/filters:quality(90)/https%3A%2F%2Ftr2storage.blob.core.windows.net%2Fagencylogos%2FtH3CyiGSAd4h1hK2tE-qmLaYBfGiuaMeSP.png",
+          "g5": "https://www.g5pro.com/wp-content/uploads/2021/09/cropped-G5_PRO.ico-192x192.png",
+          "humanitti": "https://www.google.com/s2/favicons?domain=humanitti.com.py&sz=256",
+          "itti": "https://www.itti.digital/wp-content/uploads/2022/08/itti_logo.svg"
+    };
 
-      if (logoUrl && !imgError) {
+    const ProductLogo = ({ logoUrl, alt, className, productId }) => {
+      const [imgError, setImgError] = useState(false);
+      const src = (!imgError && (logoUrl || (productId && LOGO_URLS[productId]))) || null;
+
+      if (src) {
         return (
           <img 
-            src={logoUrl} 
-            alt={alt} 
-            className={`object-contain bg-white rounded-full ${className}`} 
+            src={src} 
+            alt={alt || productId || 'logo'} 
+            className={`object-contain bg-white rounded-full p-0.5 ${className}`} 
             onError={() => setImgError(true)}
           />
         );
       }
       return (
         <div className={`bg-ueno-inverse text-white rounded-full flex items-center justify-center font-bold ${className}`}>
-          {alt ? alt.charAt(0) : '?'}
+          {alt ? alt.charAt(0).toUpperCase() : '?'}
         </div>
       );
     };
@@ -190,7 +206,7 @@
       {
         id: "ueno-bank",
         name: "ueno bank",
-        logoUrl: "https://www.google.com/s2/favicons?domain=ueno.com.py&sz=128", 
+        logoUrl: "https://www.ueno.com.py/wp-content/uploads/2024/07/Favicon-1.svg", 
         description: "Banco digital líder en Paraguay enfocado en la inclusión masiva financiera y orquestador del ecosistema como Hub Financiero.",
         boardUrl: "",
         objectives: [
@@ -214,7 +230,7 @@
       {
         id: "upay",
         name: "uPay",
-        logoUrl: "https://www.google.com/s2/favicons?domain=upay.com.py&sz=128",
+        logoUrl: "https://upay.com.py/wp-content/uploads/sites/4/2025/11/new-favicon-upay.svg",
         description: "Soluciones de pagos, adquirencia y cobros omnicanal para comercios (POS, QR, E-commerce, Link de pago).",
         boardUrl: "",
         objectives: [
@@ -238,7 +254,7 @@
       {
         id: "muv",
         name: "MUV",
-        logoUrl: "https://www.google.com/s2/favicons?domain=muvapp.com&sz=128",
+        logoUrl: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjEyOCIgaGVpZ2h0PSIxMjgiPgogIDxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgcng9IjE2IiBmaWxsPSIjRkY1QTAwIi8+CiAgPHRleHQgeD0iMzIiIHk9IjQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjcwMCIgZm9udC1zaXplPSIyOCIgZmlsbD0iI0ZGRkZGRiI+TTwvdGV4dD4KPC9zdmc+",
         description: "Plataforma de movilidad compartida y logística, conectando pasajeros, conductores y empresas.",
         boardUrl: "https://sites.google.com/itti.digital/roadmap-muv-q2-2026/muv-2026",
         objectives: [
@@ -261,7 +277,7 @@
       {
         id: "monchis",
         name: "Monchis",
-        logoUrl: "https://www.google.com/s2/favicons?domain=monchis.com.py&sz=128",
+        logoUrl: "https://monchis.com.py/wp-content/uploads/fbrfg/apple-touch-icon.png",
         description: "Marketplace líder de food delivery y quick commerce en Paraguay.",
         boardUrl: "",
         objectives: [
@@ -284,7 +300,7 @@
       {
         id: "conto",
         name: "Conto",
-        logoUrl: "https://www.google.com/s2/favicons?domain=conto.com.py&sz=128",
+        logoUrl: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjEyOCIgaGVpZ2h0PSIxMjgiPgogIDxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgcng9IjE2IiBmaWxsPSIjMkJEOThFIi8+CiAgPHRleHQgeD0iMzIiIHk9IjQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjcwMCIgZm9udC1zaXplPSIyOCIgZmlsbD0iIzE5MkUzRiI+QzwvdGV4dD4KPC9zdmc+",
         description: "El contador digital. Automatización de impuestos, presentación de DDJJ y facturación para empresas y unipersonales.",
         boardUrl: "",
         objectives: [
@@ -306,7 +322,7 @@
       {
         id: "bims",
         name: "BIMS",
-        logoUrl: "https://www.google.com/s2/favicons?domain=bims.com.py&sz=128",
+        logoUrl: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjEyOCIgaGVpZ2h0PSIxMjgiPgogIDxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgcng9IjE2IiBmaWxsPSIjMTkyRTNGIi8+CiAgPHRleHQgeD0iMzIiIHk9IjQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjcwMCIgZm9udC1zaXplPSIyOCIgZmlsbD0iIzJCRDk4RSI+QjwvdGV4dD4KPC9zdmc+",
         description: "Software ERP en la nube para la gestión administrativa, facturación y finanzas de pequeñas y medianas empresas.",
         boardUrl: "",
         objectives: [
@@ -327,7 +343,7 @@
       {
         id: "umarket",
         name: "uMarket / Place",
-        logoUrl: "https://www.google.com/s2/favicons?domain=umarket.com.py&sz=128",
+        logoUrl: "https://umarket.com.py/assets/favicon/favicon.svg",
         description: "Vertical de e-commerce del Grupo Vázquez con foco en retail y servicios del ecosistema.",
         boardUrl: "",
         objectives: [
@@ -349,7 +365,7 @@
       {
         id: "tuti",
         name: "Tuti",
-        logoUrl: "https://www.google.com/s2/favicons?domain=tuti.com.py&sz=128",
+        logoUrl: "https://www.tuti.com.py/favicon.ico",
         description: "Solución integral para la venta de entradas, acreditaciones y gestión de grandes eventos.",
         boardUrl: "",
         objectives: [
@@ -371,7 +387,7 @@
       {
         id: "uela",
         name: "Uela / ALULA",
-        logoUrl: "https://www.google.com/s2/favicons?domain=uela.com.py&sz=128",
+        logoUrl: "https://cdn.travelconline.com/images/fit-in/512x512/filters:quality(90)/https%3A%2F%2Ftr2storage.blob.core.windows.net%2Fagencylogos%2FtH3CyiGSAd4h1hK2tE-qmLaYBfGiuaMeSP.png",
         description: "Plataforma de viajes (Uela) y gestión de activos hoteleros destino urbano premium (ALULA).",
         boardUrl: "",
         objectives: [
@@ -393,7 +409,7 @@
       {
         id: "g5",
         name: "G5 / Terravaz",
-        logoUrl: "https://www.google.com/s2/favicons?domain=g5pro.com&sz=128",
+        logoUrl: "https://www.g5pro.com/wp-content/uploads/2021/09/cropped-G5_PRO.ico-192x192.png",
         description: "Ecosistema de entretenimiento, gastronomía, eventos masivos y gestión inmobiliaria de centros de experiencia.",
         boardUrl: "",
         objectives: [
@@ -416,7 +432,7 @@
       {
         id: "humanitti",
         name: "Humanitti",
-        logoUrl: "https://www.google.com/s2/favicons?domain=humanitti.com&sz=128",
+        logoUrl: "https://www.google.com/s2/favicons?domain=humanitti.com.py&sz=256",
         description: "SaaS integral para la gestión de nóminas y ciclo de vida del colaborador de recursos humanos.",
         boardUrl: "",
         objectives: [
@@ -436,7 +452,7 @@
       {
         id: "itti",
         name: "itti / Technoma",
-        logoUrl: "https://www.google.com/s2/favicons?domain=itti.digital&sz=128",
+        logoUrl: "https://www.itti.digital/wp-content/uploads/2022/08/itti_logo.svg",
         description: "Brazo tecnológico del Grupo Vázquez, ofreciendo soluciones de software, hardware y transformación digital corporativa.",
         boardUrl: "",
         objectives: [
@@ -462,7 +478,7 @@
     const ECOSYSTEM_MAP_DATA = [
       {
         label: "Gestión del Dinero",
-        logoUrl: "https://www.google.com/s2/favicons?domain=ueno.com.py&sz=128", 
+        logoUrl: "https://www.ueno.com.py/wp-content/uploads/2024/07/Favicon-1.svg", 
         color: "text-green-400 border-green-500/50 bg-green-500/10",
         lineColor: "bg-green-500/50",
         children: [
@@ -504,7 +520,7 @@
       },
       {
         label: "Ecosistema de Servicios",
-        logoUrl: "https://www.google.com/s2/favicons?domain=g5pro.com&sz=128",
+        logoUrl: "https://www.g5pro.com/wp-content/uploads/2021/09/cropped-G5_PRO.ico-192x192.png",
         color: "text-ueno-brand border-ueno-brand/50 bg-ueno-brand/10",
         lineColor: "bg-ueno-brand/50",
         children: [
@@ -560,7 +576,7 @@
       },
       {
         label: "Servicios a Empresas",
-        logoUrl: "https://www.google.com/s2/favicons?domain=bims.com.py&sz=128",
+        logoUrl: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjEyOCIgaGVpZ2h0PSIxMjgiPgogIDxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgcng9IjE2IiBmaWxsPSIjMTkyRTNGIi8+CiAgPHRleHQgeD0iMzIiIHk9IjQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjcwMCIgZm9udC1zaXplPSIyOCIgZmlsbD0iIzJCRDk4RSI+QjwvdGV4dD4KPC9zdmc+",
         color: "text-ueno-orange border-orange-500/50 bg-orange-500/10",
         lineColor: "bg-orange-500/50",
         children: [
@@ -584,7 +600,7 @@
       },
       {
         label: "Infraestructura Digital",
-        logoUrl: "https://www.google.com/s2/favicons?domain=itti.digital&sz=128",
+        logoUrl: "https://www.itti.digital/wp-content/uploads/2022/08/itti_logo.svg",
         color: "text-rose-400 border-rose-500/50 bg-rose-500/10",
         lineColor: "bg-rose-500/50",
         children: [
@@ -600,7 +616,7 @@
       },
       {
         label: "Deportes y Entretenimiento",
-        logoUrl: "https://www.google.com/s2/favicons?domain=tuti.com.py&sz=128",
+        logoUrl: "https://www.tuti.com.py/favicon.ico",
         color: "text-amber-400 border-amber-500/50 bg-amber-500/10",
         lineColor: "bg-amber-500/50",
         children: [
@@ -628,6 +644,29 @@
     const STRATEGY_MASTER = {
       promise: "No es una app. Es donde pasa mi vida financiera.",
       version: "Mayo 2026",
+      baseline: [
+        { val: "2.8M", label: "Clientes (1.7 de cada 3 paraguayos activos)" },
+        { val: "1.5M", label: "DAUs (>2 aperturas/día)" },
+        { val: "+100M", label: "Interacciones digitales/mes" },
+        { val: "40M", label: "Transferencias/mes" },
+        { val: "28%", label: "Market share transferencias" },
+        { val: "+65M", label: "Transacciones totales/mes" },
+        { val: "73%", label: "Adopción digital (+33pp vs 2024)" },
+        { val: "34%", label: "Adopción NFC (#1 región)" },
+        { val: "2.8M", label: "Enrolados ueno+" },
+        { val: "89M", label: "Tx beneficios ueno+" },
+        { val: "76", label: "Centros ueno X" },
+        { val: "500k+", label: "Visitantes ueno X / mes" },
+        { val: "190k+", label: "Conversaciones Uendi/mes" },
+        { val: "#1", label: "Tarjetas, clientes y transferencias" }
+      ],
+      rankingNote: "Producto de everyday banking más completo de Paraguay — comparable con Nubank y Revolut.",
+      capData: [
+        { id: "CAP-DATA-Batch-clasificarTransacciones", unlocks: "Clasificación de gastos + inputs del motor predictivo", status: "todo", blocking: true },
+        { id: "CAP-DATA-Batch-calcularCapacidadAhorro", unlocks: "Auto-ahorro, metas y capacidad de ahorro", status: "todo", blocking: true },
+        { id: "CAP-DATA-Batch-calcularFlujoCaja", unlocks: "Predicción de saldo a 5 días / liquidez contextual", status: "todo", blocking: true }
+      ],
+      flywheel: "Claridad sobre el dinero genera confianza. La confianza genera uso. El uso genera datos. Los datos mejoran el scoring. El scoring habilita crédito. El crédito genera lealtad. La lealtad genera más uso del ecosistema — y más datos que vuelven a mejorar la propuesta.",
       gaps: [
         { title: "Brecha de integración", text: "Las empresas del grupo operan como silos con apps separadas. Monchis, TUTI, Uela y ueno se sienten como productos distintos, no como un ecosistema." },
         { title: "Brecha de anticipación", text: "La app reacciona cuando el usuario la abre. Hay que pasar de REACCIONAR a PROPONER y EJECUTAR ante intenciones — antes de que las exprese." },
@@ -756,10 +795,11 @@
       ],
       architecture: [
         { title: "UNID — Identidad que unifica", text: "Un usuario, una identidad. Biometría, KYC reutilizable, SSO. Estado: ~80% en ueno bank y uMarket. Meta 2026: 100% del grupo.", tone: "indigo" },
-        { title: "Uendi — Sistema nervioso conversacional", text: "Orquestador de agentes (coaching, hunter, service). +190k conversaciones/mes. Meta: canal principal de interacción en 2027.", tone: "emerald" },
+        { title: "Uendi — Sistema nervioso conversacional", text: "Orquestador de agentes (coaching, hunter, service). +190k conversaciones/mes; videollamada 24/7 desde feb 2026. Meta: canal principal en 2027.", tone: "emerald" },
         { title: "Motor de Scoring Ecosistémico", text: "Usa data del ecosistema (Monchis, Conto, Upay, uMarket) para expandir frontera crediticia más allá del historial bancario tradicional.", tone: "blue" },
-        { title: "Data Lake del Grupo", text: "Activo más valioso a largo plazo. Gobernanza y privacidad no negociables.", tone: "purple" },
-        { title: "Upay Hub — Switch transaccional propio", text: "Procesar pagos directo con Visa/Mastercard. Independencia de intermediarios y mejor margen. En desarrollo activo.", tone: "orange" }
+        { title: "Data Lake del Grupo", text: "Activo más valioso a largo plazo. Alimenta CAP-DATA y el scoring. Gobernanza y privacidad no negociables.", tone: "purple" },
+        { title: "Upay Hub — Switch transaccional propio", text: "Procesar pagos directo con Visa/Mastercard. Independencia de intermediarios y mejor margen. En desarrollo activo.", tone: "orange" },
+        { title: "CAP-DATA (bloqueante Ola 1)", text: "Tres batches críticos que desbloquean Anticipación: clasificarTransacciones, calcularCapacidadAhorro, calcularFlujoCaja. Sin ellos no hay motor predictivo de saldo.", tone: "orange" }
       ],
       waves: [
         {
@@ -802,18 +842,26 @@
               items: [
                 { label: "UNID al 100% del grupo", status: "in_progress" },
                 { label: "Uendi coach + hunter + service en producción", status: "in_progress" },
-                { label: "Motor predictivo saldo (CAP-DATA-Batch) — bloqueante", status: "todo" },
+                { label: "CAP-DATA-Batch-clasificarTransacciones — bloqueante", status: "todo", blocking: true },
+                { label: "CAP-DATA-Batch-calcularCapacidadAhorro — bloqueante", status: "todo", blocking: true },
+                { label: "CAP-DATA-Batch-calcularFlujoCaja — bloqueante", status: "todo", blocking: true },
+                { label: "Motor predictivo saldo a fin de mes", status: "todo", blocking: true },
                 { label: "Hiperpersonalización predictiva en tarjetas", status: "todo" },
                 { label: "QR Interoperable (normativa BCP)", status: "todo" },
                 { label: "Tap to Phone (POS digital en smartphone)", status: "todo" }
               ]
             },
             {
-              name: "Afluente & Otros negocios",
+              name: "Afluente",
               items: [
                 { label: "Lounge ueno en producción", status: "todo" },
                 { label: "Salesforce 360 hot leads + SLAs", status: "todo" },
-                { label: "Pricing diferenciado / preaprobado hasta Gs 100M", status: "todo" },
+                { label: "Pricing diferenciado / preaprobado hasta Gs 100M", status: "todo" }
+              ]
+            },
+            {
+              name: "Otros negocios",
+              items: [
                 { label: "ueno Ads POC marca blanca", status: "todo" },
                 { label: "Estabilidad operacional ueno Seguros", status: "todo" },
                 { label: "Casa de Bolsa en canales digitales (FFMM)", status: "todo" }
@@ -842,8 +890,10 @@
                 { label: "Home dinámico por segmento", status: "todo" },
                 { label: "Bundles Modo viaje / ahorro / fin de semana", status: "todo" },
                 { label: "Familia: subcuentas avanzadas + educación gamificada", status: "todo" },
+                { label: "Integración de cuentas externas (hub financiero total)", status: "todo" },
                 { label: "Monchis y MUV como flujos nativos (sin redirect)", status: "todo" },
                 { label: "La Tribu + Ucel integrados en home", status: "todo" },
+                { label: "uMarket Empresas y Emprendedores", status: "todo" },
                 { label: "ueno Ads escala con CLO", status: "todo" }
               ]
             },
@@ -852,6 +902,7 @@
               items: [
                 { label: "Upay Hub en producción", status: "todo" },
                 { label: "Integración financiera total (hub open banking)", status: "todo" },
+                { label: "Modelo NBC (principalidad + propensión + look-a-like)", status: "todo" },
                 { label: "Scoring 100% automatizado con data ecosistémica", status: "todo" }
               ]
             }
@@ -863,70 +914,71 @@
           name: "Adopción y Frecuencia",
           tone: "indigo",
           rows: [
-            { metric: "DAU / MAU ratio", definition: "Proxy de hábito diario", target: ">60%" },
-            { metric: "Sesiones por usuario activo/día", definition: "Aperturas promedio por día", target: ">2.5" },
-            { metric: "Time in app por sesión", definition: "Duración promedio de sesión", target: ">3 min" },
-            { metric: "% usuarios con interacción diaria", definition: "Abren al menos 1 vez/día / MAUs", target: ">50%" },
-            { metric: "Retención D30 / D90", definition: "Nuevos activos a 30 / 90 días", target: ">65% / >50%" }
+            { metric: "DAU / MAU ratio", definition: "Proxy de hábito diario", actual: "—", target: ">60%" },
+            { metric: "Sesiones por usuario activo/día", definition: "Aperturas promedio por día", actual: ">2 (baseline DAU)", target: ">2.5" },
+            { metric: "Time in app por sesión", definition: "Duración promedio de sesión", actual: "—", target: ">3 min" },
+            { metric: "% usuarios con interacción diaria", definition: "Abren al menos 1 vez/día / MAUs", actual: "—", target: ">50%" },
+            { metric: "Retención D30 / D90", definition: "Nuevos activos a 30 / 90 días", actual: "—", target: ">65% / >50%" }
           ]
         },
         {
           name: "Cross-sell y Ecosistema",
           tone: "emerald",
           rows: [
-            { metric: "Índice productos por cliente", definition: "Productos activos promedio en el grupo", target: ">3.5" },
-            { metric: "Tasa cross-sell ecosistema", definition: "% clientes ueno con ≥1 empresa fuera del banco", target: ">30%" },
-            { metric: "Transacciones inter-empresa", definition: "Tx que involucran 2+ empresas del grupo", target: "Línea base +40%" },
-            { metric: "Activación ueno+", definition: "Enrolados con ≥1 tx de beneficio", target: ">70%" },
-            { metric: "Adopción uMarket", definition: "≥1 compra uMarket in-app", target: ">15% Q4" }
+            { metric: "Índice productos por cliente", definition: "Productos activos promedio en el grupo", actual: "—", target: ">3.5" },
+            { metric: "Tasa cross-sell ecosistema", definition: "% clientes ueno con ≥1 empresa fuera del banco", actual: "—", target: ">30%" },
+            { metric: "Transacciones inter-empresa", definition: "Tx que involucran 2+ empresas del grupo", actual: "Línea base pend.", target: "Línea base +40%" },
+            { metric: "Activación ueno+", definition: "Enrolados con ≥1 tx de beneficio", actual: "2.8M enrolados / 89M tx", target: ">70%" },
+            { metric: "Adopción uMarket", definition: "≥1 compra uMarket in-app", actual: "—", target: ">15% Q4" }
           ]
         },
         {
           name: "Inteligencia y Automatización",
           tone: "blue",
           rows: [
-            { metric: "% interacciones con IA perceptible", definition: "Sesiones con propuesta/acción proactiva", target: ">40%" },
-            { metric: "Resolución Uendi sin escalado", definition: "Conversaciones sin humano", target: ">80%" },
-            { metric: "Aceptación propuestas proactivas", definition: "% propuestas del motor aceptadas", target: ">25%" },
-            { metric: "Tiempo de respuesta Uendi", definition: "Latencia conversacional", target: "<3 seg" },
-            { metric: "NPS Uendi", definition: "NPS del asistente", target: ">50" },
-            { metric: "Madurez IA (OKR)", definition: "Score compuesto 0-100", target: "Baseline Q2 2026" }
+            { metric: "% interacciones con IA perceptible", definition: "Sesiones con propuesta/acción proactiva", actual: "—", target: ">40%" },
+            { metric: "Resolución Uendi sin escalado", definition: "Conversaciones sin humano", actual: "—", target: ">80%" },
+            { metric: "Aceptación propuestas proactivas", definition: "% propuestas del motor aceptadas", actual: "—", target: ">25%" },
+            { metric: "Tiempo de respuesta Uendi", definition: "Latencia conversacional", actual: "—", target: "<3 seg" },
+            { metric: "NPS Uendi", definition: "NPS del asistente", actual: "—", target: ">50" },
+            { metric: "Madurez IA (OKR)", definition: "Score compuesto 0-100", actual: "Definir Q2 2026", target: "Baseline Q2 2026" },
+            { metric: "Volumen Uendi", definition: "Conversaciones mensuales", actual: "+190k", target: "Canal principal 2027" }
           ]
         },
         {
           name: "Onboarding y Activación",
           tone: "orange",
           rows: [
-            { metric: "Onboarding personas", definition: "Minutos hasta cuenta activa", target: "<5 min" },
-            { metric: "Onboarding empresas", definition: "Días hasta cuenta operativa digital", target: "<24 h" },
-            { metric: "Completación onboarding", definition: "% sin abandono", target: ">75%" },
-            { metric: "Time to first transaction", definition: "Onboarding → 1ª tx", target: "<48 h" },
-            { metric: "Activación primeros 7 días", definition: "≥3 tx en 7 días", target: ">55%" },
-            { metric: "Adopción UNID en nuevas apps", definition: "Login UNID vs registro nuevo", target: ">80%" }
+            { metric: "Onboarding personas", definition: "Minutos hasta cuenta activa", actual: "—", target: "<5 min" },
+            { metric: "Onboarding empresas", definition: "Días hasta cuenta operativa digital", actual: "—", target: "<24 h" },
+            { metric: "Completación onboarding", definition: "% sin abandono", actual: "—", target: ">75%" },
+            { metric: "Time to first transaction", definition: "Onboarding → 1ª tx", actual: "—", target: "<48 h" },
+            { metric: "Activación primeros 7 días", definition: "≥3 tx en 7 días", actual: "—", target: ">55%" },
+            { metric: "Adopción UNID en nuevas apps", definition: "Login UNID vs registro nuevo", actual: "80% ueno/uMarket", target: ">80% grupo" }
           ]
         },
         {
           name: "Experiencia y Calidad",
           tone: "purple",
           rows: [
-            { metric: "App store rating", definition: "Promedio App Store + Play", target: ">4.6" },
-            { metric: "Crash rate", definition: "% sesiones con error", target: "<0.5%" },
-            { metric: "NPS por segmento", definition: "Masivo, MiPyME, Afluente", target: ">50 todos" },
-            { metric: "CSAT post Uendi", definition: "Satisfacción post conversación", target: ">4.2/5" },
-            { metric: "Churn mensual", definition: "% activos que dejan de serlo", target: "<2%" },
-            { metric: "Disponibilidad plataforma", definition: "Uptime", target: ">99.9%" }
+            { metric: "App store rating", definition: "Promedio App Store + Play", actual: "—", target: ">4.6" },
+            { metric: "Crash rate", definition: "% sesiones con error", actual: "—", target: "<0.5%" },
+            { metric: "NPS por segmento", definition: "Masivo, MiPyME, Afluente", actual: "—", target: ">50 todos" },
+            { metric: "CSAT post Uendi", definition: "Satisfacción post conversación", actual: "—", target: ">4.2/5" },
+            { metric: "Churn mensual", definition: "% activos que dejan de serlo", actual: "—", target: "<2%" },
+            { metric: "Disponibilidad plataforma", definition: "Uptime", actual: "—", target: ">99.9%" }
           ]
         },
         {
           name: "Everyday Banking",
           tone: "rose",
           rows: [
-            { metric: "% pagan servicios in-app", definition: "≥1 pago de servicio/mes", target: ">60%" },
-            { metric: "Frecuencia pagos de servicios", definition: "Pagos/usuario activo/mes", target: ">5" },
-            { metric: "Adopción NFC", definition: "% con tarjeta que usa NFC (hoy 34%)", target: ">45%" },
-            { metric: "QR ueno activo", definition: "≥1 pago QR últimos 30 días", target: ">40%" },
-            { metric: "Domiciliación de sueldo", definition: "Sueldo en ueno / formales", target: ">30%" },
-            { metric: "Usuarios con metas activas", definition: "% MAUs con ≥1 meta", target: ">20%" }
+            { metric: "% pagan servicios in-app", definition: "≥1 pago de servicio/mes", actual: "—", target: ">60%" },
+            { metric: "Frecuencia pagos de servicios", definition: "Pagos/usuario activo/mes", actual: "—", target: ">5" },
+            { metric: "Adopción NFC", definition: "% con tarjeta que usa NFC", actual: "34%", target: ">45%" },
+            { metric: "QR ueno activo", definition: "≥1 pago QR últimos 30 días", actual: "—", target: ">40%" },
+            { metric: "Domiciliación de sueldo", definition: "Sueldo en ueno / formales", actual: "—", target: ">30%" },
+            { metric: "Usuarios con metas activas", definition: "% MAUs con ≥1 meta", actual: "—", target: ">20%" }
           ]
         }
       ],
@@ -1183,7 +1235,7 @@
                 <div className="flex-shrink-0 z-10 relative">
                   <div className="bg-gradient-to-br from-ueno-brand to-ueno-forest-700 text-ueno-inverse px-6 py-5 rounded-ueno-xl shadow-ueno-2 border border-ueno-brand/50 flex flex-col items-center">
                     <div className="flex items-center gap-2 mb-1">
-                      <ProductLogo logoUrl="https://www.google.com/s2/favicons?domain=ueno.com.py&sz=128" alt="ueno" className="w-6 h-6 mr-2" />
+                      <ProductLogo logoUrl="https://www.ueno.com.py/wp-content/uploads/2024/07/Favicon-1.svg" alt="ueno" className="w-6 h-6 mr-2" />
                       <span className="font-extrabold text-xl tracking-tight">Super App</span>
                     </div>
                     <span className="text-xs font-bold uppercase tracking-widest opacity-80">Life Partner</span>
@@ -1477,7 +1529,11 @@
 
               {activeTab === 5 && (
                 <div className="animate-fade-in">
-                  <h3 className="text-2xl font-bold text-ueno-text mb-6">Métricas Clave a Seguir (KPIs 2026)</h3>
+                  <h3 className="text-2xl font-bold text-ueno-text mb-4">Métricas Clave a Seguir (KPIs 2026)</h3>
+                  <div className="mb-6 p-4 rounded-ueno-lg border border-ueno-brand/30 bg-ueno-brand-subtle/40 text-sm text-ueno-muted">
+                    Vista corporativa resumida. La fuente operativa del Documento Maestro (definición + <strong className="text-ueno-text">Actual</strong> + Meta) está en{' '}
+                    <strong className="text-ueno-text">Estrategia Transversal → Métricas</strong>.
+                  </div>
                   
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div className="bg-ueno-surface p-5 rounded-ueno-lg border border-ueno-border">
@@ -1615,18 +1671,10 @@
                   <h3 className="text-2xl font-bold text-ueno-text mb-6">El punto de partida real ({STRATEGY_MASTER.version})</h3>
                   
                   <h4 className="text-lg font-bold text-ueno-brand mb-4">Lo que ya tenemos (y es extraordinario)</h4>
+                  <p className="text-sm text-ueno-muted mb-4">{STRATEGY_MASTER.rankingNote}</p>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-                    {[
-                      { val: "2.8M", label: "Clientes (1.7 de cada 3 paraguayos)" },
-                      { val: "1.5M", label: "DAUs (>2 aperturas/día)" },
-                      { val: "+100M", label: "Interacciones digitales/mes" },
-                      { val: "28%", label: "Market share transferencias" },
-                      { val: "73%", label: "Adopción digital (+33pp vs 2024)" },
-                      { val: "34%", label: "Adopción NFC (#1 región)" },
-                      { val: "2.8M", label: "Enrolados en ueno+" },
-                      { val: "190k+", label: "Conversaciones Uendi/mes" }
-                    ].map((stat, i) => (
-                      <div key={i} className="bg-ueno-surface p-4 rounded-ueno-lg border border-ueno-border flex flex-col justify-center items-center text-center">
+                    {STRATEGY_MASTER.baseline.map((stat, i) => (
+                      <div key={i} className="bg-ueno-canvas p-4 rounded-ueno-lg border border-ueno-border flex flex-col justify-center items-center text-center shadow-ueno-1">
                         <span className="text-2xl font-bold text-ueno-text">{stat.val}</span>
                         <span className="text-xs text-ueno-muted mt-1">{stat.label}</span>
                       </div>
@@ -1767,16 +1815,38 @@
                 <div className="animate-fade-in">
                   <h3 className="text-2xl font-bold text-ueno-text mb-6">Arquitectura Tecnológica que lo hace posible</h3>
                   <p className="text-ueno-muted mb-8">Infraestructura propia que genera ventajas competitivas difíciles de replicar.</p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
                     {STRATEGY_MASTER.architecture.map((block, i) => (
                       <div
                         key={block.title}
-                        className={`bg-ueno-surface p-5 rounded-ueno-lg border-l-4 ${accentBorder[block.tone] || 'border-ueno-brand'} ${i === STRATEGY_MASTER.architecture.length - 1 ? 'md:col-span-2' : ''}`}
+                        className={`bg-ueno-canvas p-5 rounded-ueno-lg border-l-4 ${accentBorder[block.tone] || 'border-ueno-brand'} shadow-ueno-1`}
                       >
                         <h4 className="font-bold text-ueno-text mb-2">{block.title}</h4>
                         <p className="text-sm text-ueno-muted">{block.text}</p>
                       </div>
                     ))}
+                  </div>
+
+                  <h4 className="text-lg font-bold text-ueno-orange mb-2">CAP-DATA — entregables bloqueantes</h4>
+                  <p className="text-sm text-ueno-muted mb-4">Desbloquean el Pilar 2 (Anticipación) y el motor predictivo de saldo. Sin estos batches, Ola 1 no cierra inteligencia.</p>
+                  <div className="space-y-3">
+                    {STRATEGY_MASTER.capData.map((cap) => {
+                      const st = waveItemStatus(cap.status);
+                      return (
+                        <div key={cap.id} className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-ueno-canvas border border-ueno-gold/40 rounded-ueno-lg p-4">
+                          <div>
+                            <p className="font-mono text-sm font-bold text-ueno-text">{cap.id}</p>
+                            <p className="text-xs text-ueno-muted mt-1">Desbloquea: {cap.unlocks}</p>
+                          </div>
+                          <div className="flex items-center gap-2 flex-shrink-0">
+                            {cap.blocking && (
+                              <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-ueno-orange/15 text-ueno-orange border border-ueno-orange/30">Bloqueante</span>
+                            )}
+                            <span className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded-full border ${st.cls}`}>{st.label}</span>
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               )}
@@ -1822,7 +1892,10 @@
                                     const st = waveItemStatus(item.status);
                                     return (
                                       <li key={item.label} className="flex items-start justify-between gap-3 text-sm text-ueno-muted">
-                                        <span className="flex-1">{item.label}</span>
+                                        <span className="flex-1">
+                                          {item.label}
+                                          {item.blocking && <span className="ml-2 text-[9px] uppercase font-bold text-ueno-orange">bloqueante</span>}
+                                        </span>
                                         <span className={`flex-shrink-0 text-[10px] uppercase font-bold px-2 py-0.5 rounded-full border ${st.cls}`}>{st.label}</span>
                                       </li>
                                     );
@@ -1841,11 +1914,13 @@
               {activeTab === 6 && (
                 <div className="animate-fade-in">
                   <h3 className="text-2xl font-bold text-ueno-text mb-2">Métricas de Producto a Seguir</h3>
-                  <p className="text-ueno-muted text-sm mb-6">Definición + meta 2026 según Documento Maestro. Valores actuales: conectar con data real en una próxima iteración.</p>
+                  <p className="text-ueno-muted text-sm mb-6">
+                    Meta 2026 del Documento Maestro. <strong className="text-ueno-text">Actual</strong> = baseline mayo 2026 cuando el PDF lo declara; "—" pendiente de data operativa.
+                  </p>
                   
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     {STRATEGY_MASTER.metrics.map((group) => (
-                      <div key={group.name} className={group.name === 'Everyday Banking' || group.name === 'Experiencia y Calidad' ? '' : ''}>
+                      <div key={group.name}>
                         <h4 className={`font-bold ${accentText[group.tone] || 'text-ueno-brand'} mb-2`}>{group.name}</h4>
                         <div className="overflow-x-auto rounded-lg border border-ueno-border">
                           <table className="w-full text-left text-xs text-ueno-muted">
@@ -1853,6 +1928,7 @@
                               <tr>
                                 <th className="p-2 border-b border-ueno-border">Métrica</th>
                                 <th className="p-2 border-b border-ueno-border">Definición</th>
+                                <th className="p-2 border-b border-ueno-border">Actual</th>
                                 <th className="p-2 border-b border-ueno-border">Meta 2026</th>
                               </tr>
                             </thead>
@@ -1861,7 +1937,8 @@
                                 <tr key={row.metric}>
                                   <td className="p-2 font-medium text-ueno-text">{row.metric}</td>
                                   <td className="p-2 text-ueno-muted">{row.definition}</td>
-                                  <td className="p-2 font-bold text-ueno-text whitespace-nowrap">{row.target}</td>
+                                  <td className="p-2 text-ueno-text whitespace-nowrap">{row.actual || '—'}</td>
+                                  <td className="p-2 font-bold text-ueno-brand whitespace-nowrap">{row.target}</td>
                                 </tr>
                               ))}
                             </tbody>
@@ -1874,17 +1951,25 @@
               )}
 
               {activeTab === 7 && (
-                <div className="animate-fade-in text-center py-8">
-                  <h3 className="text-3xl font-extrabold text-ueno-text mb-6">Cómo se conecta todo</h3>
-                  <p className="text-ueno-muted text-lg mb-10 max-w-3xl mx-auto">
-                    La SuperApp no es un proyecto de tecnología. Es un cambio de paradigma en la relación entre el Grupo Vázquez y el paraguayo. <b>No ser el banco que usan. Ser la plataforma donde viven.</b>
-                  </p>
+                <div className="animate-fade-in py-4">
+                  <div className="text-center mb-10">
+                    <h3 className="text-3xl font-extrabold text-ueno-text mb-4">Cómo se conecta todo</h3>
+                    <p className="text-ueno-muted text-lg max-w-3xl mx-auto">
+                      La SuperApp no es un proyecto de tecnología. Es un cambio de paradigma. <b className="text-ueno-text">No ser el banco que usan. Ser la plataforma donde viven.</b>
+                    </p>
+                  </div>
+
+                  <div className="max-w-3xl mx-auto mb-12 p-6 rounded-ueno-xl bg-ueno-inverse text-white shadow-ueno-2">
+                    <p className="text-xs font-bold uppercase tracking-widest text-ueno-brand mb-3">Flywheel del ecosistema</p>
+                    <p className="text-sm leading-relaxed text-white/85">{STRATEGY_MASTER.flywheel}</p>
+                  </div>
                   
                   <div className="flex flex-col items-center justify-center space-y-4">
+                    <p className="text-xs font-bold uppercase tracking-widest text-ueno-muted mb-2">Prioridades en orden de urgencia</p>
                     {STRATEGY_MASTER.priorities.map((p, idx) => (
                       <React.Fragment key={p.n}>
                         {idx > 0 && <div className="w-0.5 h-6 bg-ueno-border"></div>}
-                        <div className={`w-full max-w-2xl bg-ueno-surface p-4 rounded-ueno-lg border ${accentBorder[p.tone] || 'border-ueno-brand'} flex items-center justify-between text-left`}>
+                        <div className={`w-full max-w-2xl bg-ueno-canvas p-4 rounded-ueno-lg border ${accentBorder[p.tone] || 'border-ueno-brand'} flex items-center justify-between text-left shadow-ueno-1`}>
                           <span className={`font-bold text-xl ${accentText[p.tone] || 'text-ueno-brand'} px-4`}>{p.n}</span>
                           <p className="flex-1 text-ueno-muted">
                             <strong className="text-ueno-text">{p.title}:</strong> {p.text}
@@ -1919,7 +2004,7 @@
           
           <div className="mb-12 text-center max-w-4xl mx-auto">
             <div className="inline-flex items-center justify-center p-4 bg-ueno-brand/15 rounded-ueno-xl mb-6">
-              <ProductLogo logoUrl="https://www.google.com/s2/favicons?domain=ueno.com.py&sz=128" alt="ueno" className="w-8 h-8" />
+              <ProductLogo logoUrl="https://www.ueno.com.py/wp-content/uploads/2024/07/Favicon-1.svg" alt="ueno" className="w-8 h-8" />
               <span className="ml-3 text-2xl font-bold text-ueno-brand tracking-wide">Super App ueno bank</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-extrabold text-ueno-text mb-6 leading-tight">
@@ -2244,7 +2329,7 @@
                       onClick={() => setIsMetricsSectionOpen(!isMetricsSectionOpen)}
                       className="w-full flex items-center justify-between px-3 py-2 text-xs font-semibold text-white/40 uppercase tracking-wider hover:text-white/70 transition-colors group"
                     >
-                      <span>Métricas por producto</span>
+                      <span>OKRs por producto (BU)</span>
                       <span className={`transform transition-transform duration-200 text-white/40 group-hover:text-white/70 ${isMetricsSectionOpen ? 'rotate-180' : ''}`}>
                         <Icons.ChevronDown />
                       </span>
@@ -2265,7 +2350,7 @@
                                   : 'text-white/55 hover:bg-white/10 hover:text-white'}
                               `}
                             >
-                              <ProductLogo logoUrl={product.logoUrl} alt={product.name} className="w-5 h-5 mr-3" />
+                              <ProductLogo logoUrl={product.logoUrl} productId={product.id} alt={product.name} className="w-5 h-5 mr-3" />
                               <span className="whitespace-nowrap overflow-hidden text-ellipsis">{product.name}</span>
                             </button>
                           );
@@ -2292,7 +2377,7 @@
                               : 'text-white/55 hover:bg-white/10 hover:text-white'}
                           `}
                         >
-                          <ProductLogo logoUrl={product.logoUrl} alt={product.name} className={`w-6 h-6 ${!isActive ? 'opacity-70' : ''}`} />
+                          <ProductLogo logoUrl={product.logoUrl} productId={product.id} alt={product.name} className={`w-6 h-6 ${!isActive ? 'opacity-70' : ''}`} />
                         </button>
                       );
                     })}
@@ -2307,7 +2392,7 @@
             <header className="md:hidden flex items-center justify-between p-4 bg-ueno-inverse text-white border-b border-white/10">
               <div className="flex items-center space-x-3">
                 <span className="text-xl flex items-center justify-center w-6 h-6">
-                   {activeSection === 'global' ? '🎯' : activeSection === 'transversal' ? '📖' : activeSection === 'superapp' ? '🗺️' : activeSection === 'blog' ? '📄' : <ProductLogo logoUrl={activeProduct?.logoUrl} alt={activeProduct?.name} className="w-6 h-6" />}
+                   {activeSection === 'global' ? '🎯' : activeSection === 'transversal' ? '📖' : activeSection === 'superapp' ? '🗺️' : activeSection === 'blog' ? '📄' : <ProductLogo logoUrl={activeProduct?.logoUrl} productId={activeProduct?.id} alt={activeProduct?.name} className="w-6 h-6" />}
                 </span>
                 <h2 className="text-lg font-bold">
                   {activeSection === 'global' ? 'Estrategia Ecosistema' : activeSection === 'transversal' ? 'Estr. Transversal' : activeSection === 'superapp' ? 'Super App' : activeSection === 'blog' ? 'Documento' : activeProduct?.name}
@@ -2333,11 +2418,11 @@
                   <div className="hidden md:flex items-center justify-between mb-4">
                     <div className="flex items-center space-x-4">
                       <div className="p-3 bg-ueno-brand/15 rounded-ueno-lg w-14 h-14 flex items-center justify-center">
-                        <ProductLogo logoUrl={activeProduct?.logoUrl} alt={activeProduct?.name} className="w-8 h-8" />
+                        <ProductLogo logoUrl={activeProduct?.logoUrl} productId={activeProduct?.id} alt={activeProduct?.name} className="w-8 h-8" />
                       </div>
                       <div>
                         <h2 className="text-3xl font-bold text-ueno-text">{activeProduct?.name}</h2>
-                        <p className="text-ueno-muted mt-1">Dashboard de Control Estratégico 2026</p>
+                        <p className="text-ueno-muted mt-1">OKRs de unidad de negocio 2026 <span className="text-xs">(distinto del Documento Maestro SuperApp)</span></p>
                       </div>
                     </div>
                     

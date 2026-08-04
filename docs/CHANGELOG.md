@@ -5,9 +5,12 @@ Todos los cambios notables de Strategy Master App.
 ## [Unreleased]
 
 ### Added
-- Tema visual alineado al Design System ueno (tokens en `index.html` + `docs/DESIGN_SYSTEM.md`).
-- Tipografía Inter (placeholder DS), sidebar inverse navy, canvas claro, brand `#2AD88A`.
-- Badge visible en sidebar: `PDF · Mayo 2026`.
+- Gaps Documento Maestro: baseline completo Parte I, CAP-DATA (3 batches), métricas con columna Actual, flywheel Parte VIII.
+- Logos de productos + `docs/ANALISIS_DOCUMENTO_MAESTRO.md`.
+
+### Changed
+- Tracker Olas: CAP-DATA expandido, Afluente/Otros separados, badge bloqueante.
+- Global métricas → link a Transversal; sidebar “OKRs por producto (BU)”.
 
 ### Changed
 - Retema v2 según screenshots DS: look **Ads Admin** (navy `#192E3F` + canvas `#F1F0EC` + brand `#2BD98E`), menos purple/mauve.

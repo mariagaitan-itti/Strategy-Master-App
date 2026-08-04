@@ -12,6 +12,7 @@ python3 -m http.server 8080
 Despliegue en **Google Apps Script**. Ver [`docs/DEPLOY_APPS_SCRIPT.md`](docs/DEPLOY_APPS_SCRIPT.md).
 
 ## Documentación
-- [`docs/AGENTS.md`](docs/AGENTS.md) — contexto para IAs / agentes
+- [`AGENTS.md`](AGENTS.md) — contexto para IAs / agentes
 - [`docs/CHANGELOG.md`](docs/CHANGELOG.md) — historial de cambios
-- [`docs/STRATEGY_SOURCE.md`](docs/STRATEGY_SOURCE.md) — alineación con el PDF maestro
+- [`docs/DOCUMENTO_MAESTRO.md`](docs/DOCUMENTO_MAESTRO.md) — resumen del PDF (el objeto `STRATEGY_MASTER` vive en `index.html`)
+- [`docs/DEPLOY_APPS_SCRIPT.md`](docs/DEPLOY_APPS_SCRIPT.md) — publicación

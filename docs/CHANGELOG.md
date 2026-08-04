@@ -5,18 +5,19 @@ Todos los cambios notables de Strategy Master App.
 ## [Unreleased]
 
 ### Added
-- Carpeta `docs/` con contexto para agentes (`AGENTS.md`), guía de deploy Apps Script y resumen del documento maestro.
-- Wrapper `apps-script/Code.gs` para servir el HTML con `HtmlService`.
-- Modelo de datos `STRATEGY_MASTER` alineado al PDF *Estrategia de Producto — SuperApp (Mayo 2026)*.
-- Tracker interactivo Ola 1 / Ola 2 con estados de avance.
-- Ecosistema completo (3 verticales, 30+ empresas) renderizado desde datos.
-- Métricas ampliadas (definición + meta) según el documento maestro.
-- Sección de prioridades estratégicas (1–5) y evolución Cliente → Director más visible.
-- Mapa del ecosistema enriquecido (empresas del PDF faltantes).
+- Carpeta `docs/` con CHANGELOG, guía Apps Script y resumen del Documento Maestro.
+- Wrapper `apps-script/Code.gs` + `scripts/sync-apps-script.sh`.
+- Objeto `STRATEGY_MASTER` **dentro de `index.html`** (no es un archivo separado).
+- Tracker Ola 1 / Ola 2, ecosistema completo, métricas ampliadas.
+- Badge visible en sidebar: `PDF · Mayo 2026` (para verificar deploy).
 
 ### Changed
-- Vista **Estrategia Transversal** pasa a consumir `STRATEGY_MASTER` en lugar de tablas hardcodeadas parciales.
-- Recomendación de arquitectura: se mantiene HTML único por compatibilidad con Apps Script.
+- Un solo `AGENTS.md` en la raíz (se eliminó el duplicado en `docs/`).
+- `docs/STRATEGY_SOURCE.md` renombrado/reemplazado por `docs/DOCUMENTO_MAESTRO.md`.
+- Vista Transversal data-driven; Blog → Documento; Roadmap → Tracker Olas.
+
+### Fixed
+- `)}` extra que rompía Babel en Apps Script.
 
 ## [2026-08-03]
 ### Changed

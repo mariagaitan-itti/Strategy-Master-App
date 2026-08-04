@@ -2022,10 +2022,16 @@
                 <div className="hidden md:block overflow-hidden whitespace-nowrap">
                   <h1 className="text-2xl font-bold tracking-tight text-white">Grupo Vázquez</h1>
                   <p className="text-sm text-[#00E58F] font-medium tracking-wide mt-1">ESTRATEGIA 2026</p>
+                  <p className="text-[10px] text-indigo-300 mt-2 font-semibold tracking-wide uppercase border border-indigo-500/40 bg-indigo-500/10 rounded px-2 py-0.5 inline-block">
+                    PDF · {STRATEGY_MASTER.version}
+                  </p>
                 </div>
               )}
               {isSidebarCollapsed && (
-                 <div className="hidden md:block text-2xl font-bold text-[#00E58F]">GV</div>
+                 <div className="hidden md:flex flex-col items-center gap-1">
+                   <div className="text-2xl font-bold text-[#00E58F]">GV</div>
+                   <span className="text-[8px] text-indigo-300 font-bold">PDF</span>
+                 </div>
               )}
               
               <div className="flex items-center">

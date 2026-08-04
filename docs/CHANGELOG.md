@@ -10,11 +10,8 @@ Todos los cambios notables de Strategy Master App.
 - Badge visible en sidebar: `PDF · Mayo 2026`.
 
 ### Changed
-- Un solo `AGENTS.md` en la raíz.
-- `docs/DOCUMENTO_MAESTRO.md` (reemplaza STRATEGY_SOURCE).
-- UI Transversal data-driven (`STRATEGY_MASTER`).
-- Paleta genérica slate/indigo → tokens `ueno-*`.
-
+- Retema v2 según screenshots DS: look **Ads Admin** (navy `#192E3F` + canvas `#F1F0EC` + brand `#2BD98E`), menos purple/mauve.
+- Badges estilo “Disponible”; tipografía Inter; bordes neutros.
 ### Fixed
 - `)}` extra que rompía Babel en Apps Script.
 

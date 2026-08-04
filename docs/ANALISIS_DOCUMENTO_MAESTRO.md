@@ -46,5 +46,14 @@ La sección **Estrategia Transversal** (`STRATEGY_MASTER`) es el espejo del PDF.
 
 ---
 
-## D) ¿Global duplica Transversal?
-**No.** Son documentos distintos con solape parcial (ecosistema + KPIs). Fuente operativa del PDF maestro debe ser solo `STRATEGY_MASTER` / Transversal.
+## E) Estado de implementación de gaps (2026-08-04)
+| Gap | Estado |
+|-----|--------|
+| KPIs Parte I completos | Hecho (`STRATEGY_MASTER.baseline`) |
+| CAP-DATA ficha + olas | Hecho |
+| Métricas con Actual | Hecho (baseline PDF o "—") |
+| Flywheel Parte VIII | Hecho |
+| Global → link Transversal | Hecho |
+| Label OKRs BU vs Maestro | Hecho |
+| Estados Olas validados con Producto | Pendiente (negocio) |
+| Mapa 3 verticales / kanban olas | Pendiente UX |

@@ -4,6 +4,11 @@ Todos los cambios notables de Strategy Master App.
 
 ## [Unreleased]
 
+<<<<<<< HEAD
+### Removed
+- Carpeta `apps-script/` y `scripts/sync-apps-script.sh` (el deploy es solo copy/paste de `index.html`).
+- README duplicado en `apps-script/` — queda un solo `README.md` en la raíz.
+=======
 ### Added
 - Gaps Documento Maestro: baseline completo Parte I, CAP-DATA (3 batches), métricas con columna Actual, flywheel Parte VIII.
 - Logos de productos + `docs/ANALISIS_DOCUMENTO_MAESTRO.md`.
@@ -11,10 +16,17 @@ Todos los cambios notables de Strategy Master App.
 ### Changed
 - Tracker Olas: CAP-DATA expandido, Afluente/Otros separados, badge bloqueante.
 - Global métricas → link a Transversal; sidebar “OKRs por producto (BU)”.
+>>>>>>> origin/main
 
 ### Changed
-- Retema v2 según screenshots DS: look **Ads Admin** (navy `#192E3F` + canvas `#F1F0EC` + brand `#2BD98E`), menos purple/mauve.
-- Badges estilo “Disponible”; tipografía Inter; bordes neutros.
+- `docs/DEPLOY_APPS_SCRIPT.md` documenta únicamente el flujo copy/paste.
+
+## [2026-08-04]
+### Added
+- `STRATEGY_MASTER` en `index.html`, docs (`AGENTS.md`, Documento Maestro, Design System).
+- Tema visual DS ueno (Ads Admin): navy `#192E3F`, canvas `#F1F0EC`, brand `#2BD98E`.
+- Tracker Olas, ecosistema completo, métricas ampliadas.
+
 ### Fixed
 - `)}` extra que rompía Babel en Apps Script.
 

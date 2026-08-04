@@ -21,3 +21,11 @@ Este archivo es un **resumen en Markdown** del PDF
 8. 5 prioridades estratégicas  
 
 Cuando el PDF cambie: actualizar `STRATEGY_MASTER` en `index.html` y anotar en `CHANGELOG.md`.
+
+## Pendientes (negocio / UX)
+- **Estados del Tracker Olas** — hoy son sugeridos por la app; falta validarlos con Producto.
+- **Mapa SuperApp** — agregar vista/filtro por las 3 verticales del Documento Maestro (hoy usa taxonomía propia); sumar estados de avance.
+
+## Notas de alcance
+- **Estrategia Ecosistema (Global)** es un documento distinto (corporate 2026–2030); no fusionar con este resumen — en la UI, Global linkea a Transversal en vez de repetir métricas/ecosistema.
+- **`PRODUCTS_DATA`** (métricas por producto en la UI) puede no calzar 1:1 con este documento — son OKRs por BU, no el Documento Maestro. Si un número difiere (ej. clientes totales), es la BU la fuente, no un error de transcripción.

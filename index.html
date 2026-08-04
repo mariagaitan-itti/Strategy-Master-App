@@ -164,23 +164,39 @@
       Globe: () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
     };
 
-    // 2. COMPONENTE DE LOGO
-    const ProductLogo = ({ logoUrl, alt, className }) => {
-      const [imgError, setImgError] = useState(false);
+    // 2. LOGOS OFICIALES / FALLBACKS POR PRODUCTO
+    const LOGO_URLS = {
+          "ueno-bank": "https://www.ueno.com.py/wp-content/uploads/2024/07/Favicon-1.svg",
+          "upay": "https://upay.com.py/wp-content/uploads/sites/4/2025/11/new-favicon-upay.svg",
+          "muv": "https://www.google.com/s2/favicons?domain=muvapp.com&sz=128",
+          "monchis": "https://monchis.com.py/wp-content/uploads/fbrfg/apple-touch-icon.png",
+          "conto": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjEyOCIgaGVpZ2h0PSIxMjgiPgogIDxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgcng9IjE2IiBmaWxsPSIjMkJEOThFIi8+CiAgPHRleHQgeD0iMzIiIHk9IjQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjcwMCIgZm9udC1zaXplPSIyOCIgZmlsbD0iIzE5MkUzRiI+QzwvdGV4dD4KPC9zdmc+",
+          "bims": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjEyOCIgaGVpZ2h0PSIxMjgiPgogIDxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgcng9IjE2IiBmaWxsPSIjMTkyRTNGIi8+CiAgPHRleHQgeD0iMzIiIHk9IjQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjcwMCIgZm9udC1zaXplPSIyOCIgZmlsbD0iIzJCRDk4RSI+QjwvdGV4dD4KPC9zdmc+",
+          "umarket": "https://umarket.com.py/assets/favicon/favicon.svg",
+          "tuti": "https://www.tuti.com.py/favicon.ico",
+          "uela": "https://cdn.travelconline.com/images/fit-in/512x512/filters:quality(90)/https%3A%2F%2Ftr2storage.blob.core.windows.net%2Fagencylogos%2FtH3CyiGSAd4h1hK2tE-qmLaYBfGiuaMeSP.png",
+          "g5": "https://www.g5pro.com/wp-content/uploads/2021/09/cropped-G5_PRO.ico-192x192.png",
+          "humanitti": "https://www.google.com/s2/favicons?domain=humanitti.com.py&sz=256",
+          "itti": "https://www.itti.digital/wp-content/uploads/2022/08/itti_logo.svg"
+    };
 
-      if (logoUrl && !imgError) {
+    const ProductLogo = ({ logoUrl, alt, className, productId }) => {
+      const [imgError, setImgError] = useState(false);
+      const src = (!imgError && (logoUrl || (productId && LOGO_URLS[productId]))) || null;
+
+      if (src) {
         return (
           <img 
-            src={logoUrl} 
-            alt={alt} 
-            className={`object-contain bg-white rounded-full ${className}`} 
+            src={src} 
+            alt={alt || productId || 'logo'} 
+            className={`object-contain bg-white rounded-full p-0.5 ${className}`} 
             onError={() => setImgError(true)}
           />
         );
       }
       return (
         <div className={`bg-ueno-inverse text-white rounded-full flex items-center justify-center font-bold ${className}`}>
-          {alt ? alt.charAt(0) : '?'}
+          {alt ? alt.charAt(0).toUpperCase() : '?'}
         </div>
       );
     };
@@ -190,7 +206,7 @@
       {
         id: "ueno-bank",
         name: "ueno bank",
-        logoUrl: "https://www.google.com/s2/favicons?domain=ueno.com.py&sz=128", 
+        logoUrl: "https://www.ueno.com.py/wp-content/uploads/2024/07/Favicon-1.svg", 
         description: "Banco digital líder en Paraguay enfocado en la inclusión masiva financiera y orquestador del ecosistema como Hub Financiero.",
         boardUrl: "",
         objectives: [
@@ -214,7 +230,7 @@
       {
         id: "upay",
         name: "uPay",
-        logoUrl: "https://www.google.com/s2/favicons?domain=upay.com.py&sz=128",
+        logoUrl: "https://upay.com.py/wp-content/uploads/sites/4/2025/11/new-favicon-upay.svg",
         description: "Soluciones de pagos, adquirencia y cobros omnicanal para comercios (POS, QR, E-commerce, Link de pago).",
         boardUrl: "",
         objectives: [
@@ -261,7 +277,7 @@
       {
         id: "monchis",
         name: "Monchis",
-        logoUrl: "https://www.google.com/s2/favicons?domain=monchis.com.py&sz=128",
+        logoUrl: "https://monchis.com.py/wp-content/uploads/fbrfg/apple-touch-icon.png",
         description: "Marketplace líder de food delivery y quick commerce en Paraguay.",
         boardUrl: "",
         objectives: [
@@ -284,7 +300,7 @@
       {
         id: "conto",
         name: "Conto",
-        logoUrl: "https://www.google.com/s2/favicons?domain=conto.com.py&sz=128",
+        logoUrl: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjEyOCIgaGVpZ2h0PSIxMjgiPgogIDxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgcng9IjE2IiBmaWxsPSIjMkJEOThFIi8+CiAgPHRleHQgeD0iMzIiIHk9IjQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjcwMCIgZm9udC1zaXplPSIyOCIgZmlsbD0iIzE5MkUzRiI+QzwvdGV4dD4KPC9zdmc+",
         description: "El contador digital. Automatización de impuestos, presentación de DDJJ y facturación para empresas y unipersonales.",
         boardUrl: "",
         objectives: [
@@ -306,7 +322,7 @@
       {
         id: "bims",
         name: "BIMS",
-        logoUrl: "https://www.google.com/s2/favicons?domain=bims.com.py&sz=128",
+        logoUrl: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjEyOCIgaGVpZ2h0PSIxMjgiPgogIDxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgcng9IjE2IiBmaWxsPSIjMTkyRTNGIi8+CiAgPHRleHQgeD0iMzIiIHk9IjQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjcwMCIgZm9udC1zaXplPSIyOCIgZmlsbD0iIzJCRDk4RSI+QjwvdGV4dD4KPC9zdmc+",
         description: "Software ERP en la nube para la gestión administrativa, facturación y finanzas de pequeñas y medianas empresas.",
         boardUrl: "",
         objectives: [
@@ -327,7 +343,7 @@
       {
         id: "umarket",
         name: "uMarket / Place",
-        logoUrl: "https://www.google.com/s2/favicons?domain=umarket.com.py&sz=128",
+        logoUrl: "https://umarket.com.py/assets/favicon/favicon.svg",
         description: "Vertical de e-commerce del Grupo Vázquez con foco en retail y servicios del ecosistema.",
         boardUrl: "",
         objectives: [
@@ -349,7 +365,7 @@
       {
         id: "tuti",
         name: "Tuti",
-        logoUrl: "https://www.google.com/s2/favicons?domain=tuti.com.py&sz=128",
+        logoUrl: "https://www.tuti.com.py/favicon.ico",
         description: "Solución integral para la venta de entradas, acreditaciones y gestión de grandes eventos.",
         boardUrl: "",
         objectives: [
@@ -371,7 +387,7 @@
       {
         id: "uela",
         name: "Uela / ALULA",
-        logoUrl: "https://www.google.com/s2/favicons?domain=uela.com.py&sz=128",
+        logoUrl: "https://cdn.travelconline.com/images/fit-in/512x512/filters:quality(90)/https%3A%2F%2Ftr2storage.blob.core.windows.net%2Fagencylogos%2FtH3CyiGSAd4h1hK2tE-qmLaYBfGiuaMeSP.png",
         description: "Plataforma de viajes (Uela) y gestión de activos hoteleros destino urbano premium (ALULA).",
         boardUrl: "",
         objectives: [
@@ -393,7 +409,7 @@
       {
         id: "g5",
         name: "G5 / Terravaz",
-        logoUrl: "https://www.google.com/s2/favicons?domain=g5pro.com&sz=128",
+        logoUrl: "https://www.g5pro.com/wp-content/uploads/2021/09/cropped-G5_PRO.ico-192x192.png",
         description: "Ecosistema de entretenimiento, gastronomía, eventos masivos y gestión inmobiliaria de centros de experiencia.",
         boardUrl: "",
         objectives: [
@@ -416,7 +432,7 @@
       {
         id: "humanitti",
         name: "Humanitti",
-        logoUrl: "https://www.google.com/s2/favicons?domain=humanitti.com&sz=128",
+        logoUrl: "https://www.google.com/s2/favicons?domain=humanitti.com.py&sz=256",
         description: "SaaS integral para la gestión de nóminas y ciclo de vida del colaborador de recursos humanos.",
         boardUrl: "",
         objectives: [
@@ -436,7 +452,7 @@
       {
         id: "itti",
         name: "itti / Technoma",
-        logoUrl: "https://www.google.com/s2/favicons?domain=itti.digital&sz=128",
+        logoUrl: "https://www.itti.digital/wp-content/uploads/2022/08/itti_logo.svg",
         description: "Brazo tecnológico del Grupo Vázquez, ofreciendo soluciones de software, hardware y transformación digital corporativa.",
         boardUrl: "",
         objectives: [
@@ -462,7 +478,7 @@
     const ECOSYSTEM_MAP_DATA = [
       {
         label: "Gestión del Dinero",
-        logoUrl: "https://www.google.com/s2/favicons?domain=ueno.com.py&sz=128", 
+        logoUrl: "https://www.ueno.com.py/wp-content/uploads/2024/07/Favicon-1.svg", 
         color: "text-green-400 border-green-500/50 bg-green-500/10",
         lineColor: "bg-green-500/50",
         children: [
@@ -504,7 +520,7 @@
       },
       {
         label: "Ecosistema de Servicios",
-        logoUrl: "https://www.google.com/s2/favicons?domain=g5pro.com&sz=128",
+        logoUrl: "https://www.g5pro.com/wp-content/uploads/2021/09/cropped-G5_PRO.ico-192x192.png",
         color: "text-ueno-brand border-ueno-brand/50 bg-ueno-brand/10",
         lineColor: "bg-ueno-brand/50",
         children: [
@@ -560,7 +576,7 @@
       },
       {
         label: "Servicios a Empresas",
-        logoUrl: "https://www.google.com/s2/favicons?domain=bims.com.py&sz=128",
+        logoUrl: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjEyOCIgaGVpZ2h0PSIxMjgiPgogIDxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgcng9IjE2IiBmaWxsPSIjMTkyRTNGIi8+CiAgPHRleHQgeD0iMzIiIHk9IjQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjcwMCIgZm9udC1zaXplPSIyOCIgZmlsbD0iIzJCRDk4RSI+QjwvdGV4dD4KPC9zdmc+",
         color: "text-ueno-orange border-orange-500/50 bg-orange-500/10",
         lineColor: "bg-orange-500/50",
         children: [
@@ -584,7 +600,7 @@
       },
       {
         label: "Infraestructura Digital",
-        logoUrl: "https://www.google.com/s2/favicons?domain=itti.digital&sz=128",
+        logoUrl: "https://www.itti.digital/wp-content/uploads/2022/08/itti_logo.svg",
         color: "text-rose-400 border-rose-500/50 bg-rose-500/10",
         lineColor: "bg-rose-500/50",
         children: [
@@ -600,7 +616,7 @@
       },
       {
         label: "Deportes y Entretenimiento",
-        logoUrl: "https://www.google.com/s2/favicons?domain=tuti.com.py&sz=128",
+        logoUrl: "https://www.tuti.com.py/favicon.ico",
         color: "text-amber-400 border-amber-500/50 bg-amber-500/10",
         lineColor: "bg-amber-500/50",
         children: [
@@ -1183,7 +1199,7 @@
                 <div className="flex-shrink-0 z-10 relative">
                   <div className="bg-gradient-to-br from-ueno-brand to-ueno-forest-700 text-ueno-inverse px-6 py-5 rounded-ueno-xl shadow-ueno-2 border border-ueno-brand/50 flex flex-col items-center">
                     <div className="flex items-center gap-2 mb-1">
-                      <ProductLogo logoUrl="https://www.google.com/s2/favicons?domain=ueno.com.py&sz=128" alt="ueno" className="w-6 h-6 mr-2" />
+                      <ProductLogo logoUrl="https://www.ueno.com.py/wp-content/uploads/2024/07/Favicon-1.svg" alt="ueno" className="w-6 h-6 mr-2" />
                       <span className="font-extrabold text-xl tracking-tight">Super App</span>
                     </div>
                     <span className="text-xs font-bold uppercase tracking-widest opacity-80">Life Partner</span>
@@ -1919,7 +1935,7 @@
           
           <div className="mb-12 text-center max-w-4xl mx-auto">
             <div className="inline-flex items-center justify-center p-4 bg-ueno-brand/15 rounded-ueno-xl mb-6">
-              <ProductLogo logoUrl="https://www.google.com/s2/favicons?domain=ueno.com.py&sz=128" alt="ueno" className="w-8 h-8" />
+              <ProductLogo logoUrl="https://www.ueno.com.py/wp-content/uploads/2024/07/Favicon-1.svg" alt="ueno" className="w-8 h-8" />
               <span className="ml-3 text-2xl font-bold text-ueno-brand tracking-wide">Super App ueno bank</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-extrabold text-ueno-text mb-6 leading-tight">
@@ -2265,7 +2281,7 @@
                                   : 'text-white/55 hover:bg-white/10 hover:text-white'}
                               `}
                             >
-                              <ProductLogo logoUrl={product.logoUrl} alt={product.name} className="w-5 h-5 mr-3" />
+                              <ProductLogo logoUrl={product.logoUrl} productId={product.id} alt={product.name} className="w-5 h-5 mr-3" />
                               <span className="whitespace-nowrap overflow-hidden text-ellipsis">{product.name}</span>
                             </button>
                           );
@@ -2292,7 +2308,7 @@
                               : 'text-white/55 hover:bg-white/10 hover:text-white'}
                           `}
                         >
-                          <ProductLogo logoUrl={product.logoUrl} alt={product.name} className={`w-6 h-6 ${!isActive ? 'opacity-70' : ''}`} />
+                          <ProductLogo logoUrl={product.logoUrl} productId={product.id} alt={product.name} className={`w-6 h-6 ${!isActive ? 'opacity-70' : ''}`} />
                         </button>
                       );
                     })}
@@ -2307,7 +2323,7 @@
             <header className="md:hidden flex items-center justify-between p-4 bg-ueno-inverse text-white border-b border-white/10">
               <div className="flex items-center space-x-3">
                 <span className="text-xl flex items-center justify-center w-6 h-6">
-                   {activeSection === 'global' ? '🎯' : activeSection === 'transversal' ? '📖' : activeSection === 'superapp' ? '🗺️' : activeSection === 'blog' ? '📄' : <ProductLogo logoUrl={activeProduct?.logoUrl} alt={activeProduct?.name} className="w-6 h-6" />}
+                   {activeSection === 'global' ? '🎯' : activeSection === 'transversal' ? '📖' : activeSection === 'superapp' ? '🗺️' : activeSection === 'blog' ? '📄' : <ProductLogo logoUrl={activeProduct?.logoUrl} productId={activeProduct?.id} alt={activeProduct?.name} className="w-6 h-6" />}
                 </span>
                 <h2 className="text-lg font-bold">
                   {activeSection === 'global' ? 'Estrategia Ecosistema' : activeSection === 'transversal' ? 'Estr. Transversal' : activeSection === 'superapp' ? 'Super App' : activeSection === 'blog' ? 'Documento' : activeProduct?.name}
@@ -2333,7 +2349,7 @@
                   <div className="hidden md:flex items-center justify-between mb-4">
                     <div className="flex items-center space-x-4">
                       <div className="p-3 bg-ueno-brand/15 rounded-ueno-lg w-14 h-14 flex items-center justify-center">
-                        <ProductLogo logoUrl={activeProduct?.logoUrl} alt={activeProduct?.name} className="w-8 h-8" />
+                        <ProductLogo logoUrl={activeProduct?.logoUrl} productId={activeProduct?.id} alt={activeProduct?.name} className="w-8 h-8" />
                       </div>
                       <div>
                         <h2 className="text-3xl font-bold text-ueno-text">{activeProduct?.name}</h2>

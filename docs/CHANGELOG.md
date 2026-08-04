@@ -5,9 +5,11 @@ Todos los cambios notables de Strategy Master App.
 ## [Unreleased]
 
 ### Added
-- Tema visual alineado al Design System ueno (tokens en `index.html` + `docs/DESIGN_SYSTEM.md`).
-- Tipografía Inter (placeholder DS), sidebar inverse navy, canvas claro, brand `#2AD88A`.
-- Badge visible en sidebar: `PDF · Mayo 2026`.
+- Logos oficiales (o marcas SVG) por producto en `PRODUCTS_DATA` / `LOGO_URLS` + `assets/logos/`.
+- `docs/ANALISIS_DOCUMENTO_MAESTRO.md` — gaps PDF vs app y recomendaciones UX.
+
+### Changed
+- `ProductLogo` usa URLs oficiales / data-URI con fallback.
 
 ### Changed
 - Retema v2 según screenshots DS: look **Ads Admin** (navy `#192E3F` + canvas `#F1F0EC` + brand `#2BD98E`), menos purple/mauve.

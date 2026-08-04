@@ -6,7 +6,60 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard Estratégico 2026 - Grupo Vázquez</title>
   
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            ueno: {
+              canvas: '#F1F0EC',
+              surface: '#FCFCFC',
+              'surface-alt': '#BAFCCC',
+              inverse: '#182A3C',
+              'inverse-hover': '#203442',
+              'inverse-muted': '#30424E',
+              assistant: '#064242',
+              brand: '#2AD88A',
+              'brand-hover': '#1ED2A2',
+              'brand-subtle': '#BAFCCC',
+              text: '#182A3C',
+              muted: '#30424E',
+              border: '#D8C6DE',
+              purple: '#7284E4',
+              'purple-subtle': '#A2AEF0',
+              plum: '#12002A',
+              mauve: '#AE8ABA',
+              gold: '#FCC05A',
+              orange: '#FC6C00',
+              peach: '#F6D89C',
+              cream: '#FCEAC6',
+              forest: '#1E5A5A',
+              teal: '#5ABA9C',
+            }
+          },
+          borderRadius: {
+            'ueno-sm': '4px',
+            'ueno-md': '8px',
+            'ueno-lg': '12px',
+            'ueno-xl': '16px',
+          },
+          boxShadow: {
+            'ueno-1': '0 1px 2px rgba(24,42,60,0.06)',
+            'ueno-2': '0 4px 12px rgba(24,42,60,0.08)',
+            'ueno-3': '0 12px 28px rgba(24,42,60,0.12)',
+          }
+        }
+      }
+    }
+  </script>
   
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -14,27 +67,52 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   
   <style>
+    :root {
+      --ueno-canvas: #F1F0EC;
+      --ueno-surface: #FCFCFC;
+      --ueno-inverse: #182A3C;
+      --ueno-brand: #2AD88A;
+      --ueno-text: #182A3C;
+      --ueno-muted: #30424E;
+      --ueno-border: #E8DFEC;
+      --ueno-purple: #7284E4;
+      --ueno-radius-lg: 12px;
+      --ueno-radius-xl: 16px;
+    }
+
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--ueno-canvas);
+      color: var(--ueno-text);
+    }
+
     .scrollbar-hide::-webkit-scrollbar { display: none; }
     .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
     
-    /* Scrollbars para el área del MindMap y Tabs */
     .drag-area::-webkit-scrollbar, .custom-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
     .drag-area::-webkit-scrollbar-track, .custom-scroll::-webkit-scrollbar-track { background: transparent; }
-    .drag-area::-webkit-scrollbar-thumb, .custom-scroll::-webkit-scrollbar-thumb { background: #334155; border-radius: 8px; border: 2px solid #0F172A; }
-    .drag-area::-webkit-scrollbar-thumb:hover, .custom-scroll::-webkit-scrollbar-thumb:hover { background: #475569; }
+    .custom-scroll::-webkit-scrollbar-thumb { background: #AEB4BA; border-radius: 8px; border: 2px solid transparent; }
+    .sidebar-scroll::-webkit-scrollbar-thumb { background: #30424E; border-radius: 8px; }
+    .drag-area::-webkit-scrollbar-thumb { background: #30424E; border-radius: 8px; }
     
-    /* Transición suave para el zoom */
     .zoom-content { transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
 
-    /* Animaciones */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
     .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
+
+    /* Glass (DS): white 15% + stroke 30% + blur 20px — solo sobre gradiente */
+    .ueno-glass {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.30);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
   </style>
 </head>
-<body class="bg-[#0F172A] text-gray-100 select-none">
+<body class="bg-ueno-canvas text-ueno-text select-none font-sans antialiased">
   
   <div id="root"></div>
 
@@ -89,7 +167,7 @@
         );
       }
       return (
-        <div className={`bg-gray-700 text-white rounded-full flex items-center justify-center font-bold ${className}`}>
+        <div className={`bg-ueno-inverse text-white rounded-full flex items-center justify-center font-bold ${className}`}>
           {alt ? alt.charAt(0) : '?'}
         </div>
       );
@@ -415,8 +493,8 @@
       {
         label: "Ecosistema de Servicios",
         logoUrl: "https://www.google.com/s2/favicons?domain=g5pro.com&sz=128",
-        color: "text-blue-400 border-blue-500/50 bg-blue-500/10",
-        lineColor: "bg-blue-500/50",
+        color: "text-ueno-purple border-ueno-purple/50 bg-ueno-purple/10",
+        lineColor: "bg-ueno-purple/50",
         children: [
           {
             label: "Movilidad y Viajes",
@@ -471,7 +549,7 @@
       {
         label: "Servicios a Empresas",
         logoUrl: "https://www.google.com/s2/favicons?domain=bims.com.py&sz=128",
-        color: "text-orange-400 border-orange-500/50 bg-orange-500/10",
+        color: "text-ueno-orange border-orange-500/50 bg-orange-500/10",
         lineColor: "bg-orange-500/50",
         children: [
           {
@@ -850,34 +928,34 @@
     };
 
     const statusToneClass = (tone) => {
-      if (tone === 'ok') return 'text-emerald-400';
-      if (tone === 'wip') return 'text-yellow-400';
-      if (tone === 'plan') return 'text-blue-400';
-      return 'text-gray-400';
+      if (tone === 'ok') return 'text-ueno-brand';
+      if (tone === 'wip') return 'text-ueno-gold';
+      if (tone === 'plan') return 'text-ueno-purple';
+      return 'text-ueno-muted';
     };
 
     const waveItemStatus = (status) => {
-      if (status === 'done') return { label: 'Hecho', cls: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' };
-      if (status === 'in_progress') return { label: 'En curso', cls: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30' };
-      return { label: 'Pendiente', cls: 'bg-gray-500/20 text-gray-400 border-gray-500/30' };
+      if (status === 'done') return { label: 'Hecho', cls: 'bg-ueno-brand/20 text-ueno-brand border-ueno-brand/40' };
+      if (status === 'in_progress') return { label: 'En curso', cls: 'bg-ueno-gold/20 text-ueno-orange border-ueno-gold/40' };
+      return { label: 'Pendiente', cls: 'bg-ueno-canvas text-ueno-muted border-ueno-border' };
     };
 
     const accentBorder = {
-      indigo: 'border-indigo-500', emerald: 'border-emerald-500', blue: 'border-blue-500',
+      indigo: 'border-ueno-brand', emerald: 'border-ueno-brand', blue: 'border-ueno-purple',
       orange: 'border-orange-500', purple: 'border-purple-500', rose: 'border-rose-500'
     };
     const accentText = {
-      indigo: 'text-indigo-400', emerald: 'text-emerald-400', blue: 'text-blue-400',
-      orange: 'text-orange-400', purple: 'text-purple-400', rose: 'text-rose-400'
+      indigo: 'text-ueno-purple', emerald: 'text-ueno-brand', blue: 'text-ueno-purple',
+      orange: 'text-ueno-orange', purple: 'text-purple-400', rose: 'text-rose-400'
     };
 
 
     // 5. COMPONENTES DEL MAPA MENTAL
-    const MindMapBranch = ({ node, onNavigate, parentLineColor = "bg-gray-700", isFirst = true, isLast = true, onToggle, level = 1 }) => {
+    const MindMapBranch = ({ node, onNavigate, parentLineColor = "bg-ueno-border", isFirst = true, isLast = true, onToggle, level = 1 }) => {
       const [isOpen, setIsOpen] = useState(false);
       const hasChildren = node.children && node.children.length > 0;
       const isLeaf = !hasChildren;
-      const nodeColorClass = node.color || "text-gray-300 border-gray-700 bg-[#1E293B]";
+      const nodeColorClass = node.color || "text-ueno-text border-ueno-border bg-ueno-surface";
       const lineColorClass = node.lineColor || parentLineColor;
 
       const handleNodeClick = (e) => {
@@ -914,8 +992,8 @@
             <div 
               onClick={handleNodeClick}
               className={`
-                border rounded-xl px-4 py-2 flex items-center space-x-2 z-10 transition-colors shadow-sm
-                ${isLeaf ? 'bg-[#1E293B] border-gray-700 hover:border-gray-500' : `${nodeColorClass} cursor-pointer hover:brightness-110`}
+                border rounded-ueno-lg px-4 py-2 flex items-center space-x-2 z-10 transition-colors shadow-sm
+                ${isLeaf ? 'bg-ueno-surface border-ueno-border hover:border-gray-500' : `${nodeColorClass} cursor-pointer hover:brightness-110`}
               `}
               title={hasChildren ? (isOpen ? "Ocultar ramas" : "Expandir ramas") : undefined}
             >
@@ -925,7 +1003,7 @@
                 node.icon && <span>{node.icon}</span>
               )}
               
-              <span className={`font-medium whitespace-nowrap ${isLeaf ? 'text-sm text-gray-300' : ''}`}>
+              <span className={`font-medium whitespace-nowrap ${isLeaf ? 'text-sm text-ueno-muted' : ''}`}>
                 {node.label}
               </span>
               
@@ -938,7 +1016,7 @@
               {node.productId && (
                 <button 
                   onClick={handleMetricClick} 
-                  className="ml-3 px-2.5 py-1 bg-[#00E58F]/10 text-[#00E58F] border border-[#00E58F]/20 text-xs font-semibold rounded-lg hover:bg-[#00E58F]/20 transition-all flex items-center gap-1 shadow-sm"
+                  className="ml-3 px-2.5 py-1 bg-ueno-brand/15 text-ueno-brand border border-ueno-brand/30 text-xs font-semibold rounded-lg hover:bg-ueno-brand/20 transition-all flex items-center gap-1 shadow-sm"
                 >
                   <Icons.BarChart2 />
                   <span>Métricas</span>
@@ -1062,16 +1140,16 @@
       };
 
       return (
-        <div className="relative w-full h-[calc(100vh-280px)] min-h-[500px] border border-gray-800 rounded-3xl bg-[#111827] shadow-inner overflow-hidden flex flex-col">
+        <div className="relative w-full h-[calc(100vh-280px)] min-h-[500px] border border-ueno-border rounded-3xl bg-ueno-assistant shadow-inner overflow-hidden flex flex-col">
           
-          <div className="absolute top-4 right-4 z-50 flex items-center space-x-1 bg-[#1E293B]/90 backdrop-blur-sm p-1.5 rounded-xl border border-gray-700 shadow-lg">
-            <button onClick={() => setScale(s => Math.max(s - 0.15, 0.2))} className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg transition-colors" title="Alejar">
+          <div className="absolute top-4 right-4 z-50 flex items-center space-x-1 bg-ueno-surface/90 backdrop-blur-sm p-1.5 rounded-ueno-lg border border-ueno-border shadow-lg">
+            <button onClick={() => setScale(s => Math.max(s - 0.15, 0.2))} className="p-2 text-ueno-muted hover:text-ueno-text hover:bg-ueno-canvas rounded-lg transition-colors" title="Alejar">
               <Icons.ZoomOut />
             </button>
-            <button onClick={fitToScreen} className="px-3 py-1.5 text-xs font-bold text-gray-300 hover:text-white hover:bg-gray-700 rounded-lg transition-colors" title="Ajustar a pantalla">
+            <button onClick={fitToScreen} className="px-3 py-1.5 text-xs font-bold text-ueno-muted hover:text-ueno-text hover:bg-ueno-canvas rounded-lg transition-colors" title="Ajustar a pantalla">
               {Math.round(scale * 100)}%
             </button>
-            <button onClick={() => setScale(s => Math.min(s + 0.15, 3))} className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg transition-colors" title="Acercar">
+            <button onClick={() => setScale(s => Math.min(s + 0.15, 3))} className="p-2 text-ueno-muted hover:text-ueno-text hover:bg-ueno-canvas rounded-lg transition-colors" title="Acercar">
               <Icons.ZoomIn />
             </button>
           </div>
@@ -1091,7 +1169,7 @@
               <div className="flex items-center" ref={contentRef}>
                 
                 <div className="flex-shrink-0 z-10 relative">
-                  <div className="bg-gradient-to-br from-[#00E58F] to-emerald-600 text-gray-900 px-6 py-5 rounded-2xl shadow-[0_0_30px_rgba(0,229,143,0.25)] border border-[#00E58F]/50 flex flex-col items-center">
+                  <div className="bg-gradient-to-br from-ueno-brand to-ueno-forest text-ueno-inverse px-6 py-5 rounded-ueno-xl shadow-ueno-2 border border-ueno-brand/50 flex flex-col items-center">
                     <div className="flex items-center gap-2 mb-1">
                       <ProductLogo logoUrl="https://www.google.com/s2/favicons?domain=ueno.com.py&sz=128" alt="ueno" className="w-6 h-6 mr-2" />
                       <span className="font-extrabold text-xl tracking-tight">Super App</span>
@@ -1141,29 +1219,29 @@
       ];
 
       return (
-         <div className="flex-1 overflow-y-auto p-4 md:p-8 pb-20 bg-[#0B0F19]">
+         <div className="flex-1 overflow-y-auto p-4 md:p-8 pb-20 bg-ueno-canvas">
           <div className="mb-8 max-w-5xl mx-auto">
-            <span className="px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-bold rounded-full mb-3 border border-blue-500/30 uppercase tracking-widest inline-block">
+            <span className="px-3 py-1 bg-ueno-purple/15 text-ueno-purple text-xs font-bold rounded-full mb-3 border border-ueno-purple/30 uppercase tracking-widest inline-block">
               Dirección Estratégica 2026-2030
             </span>
-            <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-4">
-              Estrategia Ecosistema <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Financiero y Producto</span>
+            <h2 className="text-3xl md:text-5xl font-extrabold text-ueno-text mb-4">
+              Estrategia Ecosistema <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-ueno-brand to-ueno-teal">Financiero y Producto</span>
             </h2>
-            <p className="text-gray-400 text-lg border-l-4 border-blue-500 pl-4 italic">
+            <p className="text-ueno-muted text-lg border-l-4 border-ueno-purple pl-4 italic">
               "Construir los pilares del ecosistema universal y regional para crecer disruptivamente a través de soluciones tecnológicas simples con altos estándares de calidad."
             </p>
           </div>
 
           <div className="max-w-5xl mx-auto">
-            <div className="flex overflow-x-auto custom-scroll border-b border-gray-800 mb-6 pb-2">
+            <div className="flex overflow-x-auto custom-scroll border-b border-ueno-border mb-6 pb-2">
               {tabs.map((tab, idx) => (
                 <button
                   key={idx}
                   onClick={() => setActiveTab(idx)}
                   className={`px-4 py-3 text-sm font-semibold whitespace-nowrap transition-colors border-b-2 rounded-t-lg ${
                     activeTab === idx 
-                      ? 'border-blue-500 text-blue-400 bg-blue-500/5' 
-                      : 'border-transparent text-gray-500 hover:text-gray-300 hover:bg-gray-800/30'
+                      ? 'border-ueno-purple text-ueno-purple bg-ueno-purple/5' 
+                      : 'border-transparent text-ueno-muted/80 hover:text-ueno-muted hover:bg-ueno-canvas'
                   }`}
                 >
                   {tab}
@@ -1171,25 +1249,25 @@
               ))}
             </div>
 
-            <div className="bg-[#1E293B]/40 border border-gray-800 rounded-2xl p-6 md:p-8 shadow-lg min-h-[500px]">
+            <div className="bg-ueno-surface border border-ueno-border rounded-ueno-xl p-6 md:p-8 shadow-ueno-2 min-h-[500px]">
               
               {activeTab === 0 && (
                 <div className="animate-fade-in">
-                  <h3 className="text-2xl font-bold text-white mb-6">El momento que estamos construyendo</h3>
-                  <p className="text-gray-300 mb-6 leading-relaxed">
+                  <h3 className="text-2xl font-bold text-ueno-text mb-6">El momento que estamos construyendo</h3>
+                  <p className="text-ueno-muted mb-6 leading-relaxed">
                     El año 2025 marcó un punto de inflexión para ueno bank, consolidándose tras la exitosa conclusión de la fusión con Visión Banco a mediados de 2024. No solo alcanzamos la cifra histórica de 2 millones de clientes, sino que también nos posicionamos como líderes disruptivos en el mercado con un crecimiento promedio superior al 60% en activos y pasivos.
                   </p>
 
-                  <h3 className="text-2xl font-bold text-white mb-4 mt-10">Qué es una Superapp y cómo se traduce en nuestro ecosistema</h3>
-                  <div className="bg-[#0F172A] p-5 rounded-xl border border-gray-800 mb-6">
-                    <p className="text-gray-300 text-sm">
+                  <h3 className="text-2xl font-bold text-ueno-text mb-4 mt-10">Qué es una Superapp y cómo se traduce en nuestro ecosistema</h3>
+                  <div className="bg-ueno-surface p-5 rounded-ueno-lg border border-ueno-border mb-6">
+                    <p className="text-ueno-muted text-sm">
                       La SuperApp no es solo una aplicación transaccional; es la plataforma donde ocurre la vida financiera y diaria del usuario. Es el motor que unifica individuos, comercios y empresas mediante hiper-personalización impulsada por IA, garantizando un ecosistema integrado (Walled Garden) que retiene el valor y maximiza la frecuencia de uso.
                     </p>
                   </div>
 
-                  <h3 className="text-2xl font-bold text-white mb-4 mt-10">El Closed Loop — La narrativa que conecta al cliente con el accionista</h3>
-                  <div className="bg-[#0F172A] p-5 rounded-xl border-l-4 border-emerald-500">
-                    <p className="text-gray-300 text-sm">
+                  <h3 className="text-2xl font-bold text-ueno-text mb-4 mt-10">El Closed Loop — La narrativa que conecta al cliente con el accionista</h3>
+                  <div className="bg-ueno-surface p-5 rounded-ueno-lg border-l-4 border-ueno-brand">
+                    <p className="text-ueno-muted text-sm">
                       La estrategia central es el <b>Closed-Loop Banking</b>. Buscamos que el dinero nunca salga del grupo: el cliente recibe su salario en ueno bank, compra en comercios con uPay, pide delivery por Monchis y recibe beneficios en ueno+. Esto reduce fricciones, disminuye los costos de adquisición (CAC) y aumenta el <i>Lifetime Value</i> del cliente y la rentabilidad del accionista de forma exponencial.
                     </p>
                   </div>
@@ -1199,14 +1277,14 @@
               {activeTab === 1 && (
                 <div className="animate-fade-in">
                   <div className="mb-8">
-                    <h3 className="text-2xl font-bold text-white mb-4">Visión, Misión y ADN Estratégico</h3>
-                    <div className="p-5 bg-gradient-to-r from-blue-900/40 to-indigo-900/40 rounded-xl border border-blue-500/30 mb-6">
-                      <p className="text-blue-200 text-lg font-semibold italic text-center">
+                    <h3 className="text-2xl font-bold text-ueno-text mb-4">Visión, Misión y ADN Estratégico</h3>
+                    <div className="p-5 bg-gradient-to-r from-ueno-brand-subtle to-ueno-purple-subtle rounded-ueno-lg border border-ueno-purple/30 mb-6">
+                      <p className="text-ueno-purple text-lg font-semibold italic text-center">
                         "Construir el mayor ecosistema financiero universal de Paraguay y Latam."
                       </p>
                     </div>
                     
-                    <h4 className="text-lg font-bold text-gray-200 mb-3">Principios del ADN ueno</h4>
+                    <h4 className="text-lg font-bold text-ueno-text mb-3">Principios del ADN ueno</h4>
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-center">
                       {[
                         { title: "Universalidad Ecosistémica", desc: "Sirviendo e interconectando todos los segmentos." },
@@ -1216,37 +1294,37 @@
                         { title: "Creador de Mercados", desc: "Expandiendo la visión de lo posible." },
                         { title: "Calidad & Riesgo", desc: "Desarrollo sostenible con altos estándares." }
                       ].map((item, i) => (
-                        <div key={i} className="bg-[#0F172A] p-4 rounded-xl border border-gray-800">
-                          <h5 className="font-bold text-blue-400 mb-1">{item.title}</h5>
-                          <p className="text-xs text-gray-400">{item.desc}</p>
+                        <div key={i} className="bg-ueno-surface p-4 rounded-ueno-lg border border-ueno-border">
+                          <h5 className="font-bold text-ueno-purple mb-1">{item.title}</h5>
+                          <p className="text-xs text-ueno-muted">{item.desc}</p>
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  <h3 className="text-2xl font-bold text-white mb-6 mt-10">Los Tres Ecosistemas del Grupo</h3>
+                  <h3 className="text-2xl font-bold text-ueno-text mb-6 mt-10">Los Tres Ecosistemas del Grupo</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="bg-[#0F172A] p-5 rounded-xl border-t-4 border-emerald-500">
-                      <h4 className="font-bold text-white mb-3 flex items-center"><Icons.DollarSign /> <span className="ml-2">1. Financiero</span></h4>
-                      <ul className="text-sm text-gray-400 space-y-1 list-disc pl-4">
+                    <div className="bg-ueno-surface p-5 rounded-ueno-lg border-t-4 border-ueno-brand">
+                      <h4 className="font-bold text-ueno-text mb-3 flex items-center"><Icons.DollarSign /> <span className="ml-2">1. Financiero</span></h4>
+                      <ul className="text-sm text-ueno-muted space-y-1 list-disc pl-4">
                         <li>ueno bank (Núcleo)</li>
                         <li>uPay / Pagopar (Adquirencia)</li>
                         <li>Wepa (Corresponsalía)</li>
                         <li>Vinanzas, Casa de Bolsa, Seguros</li>
                       </ul>
                     </div>
-                    <div className="bg-[#0F172A] p-5 rounded-xl border-t-4 border-blue-500">
-                      <h4 className="font-bold text-white mb-3 flex items-center"><Icons.Smartphone /> <span className="ml-2">2. Plataformas & E-com</span></h4>
-                      <ul className="text-sm text-gray-400 space-y-1 list-disc pl-4">
+                    <div className="bg-ueno-surface p-5 rounded-ueno-lg border-t-4 border-ueno-purple">
+                      <h4 className="font-bold text-ueno-text mb-3 flex items-center"><Icons.Smartphone /> <span className="ml-2">2. Plataformas & E-com</span></h4>
+                      <ul className="text-sm text-ueno-muted space-y-1 list-disc pl-4">
                         <li>Conto (Tributación)</li>
                         <li>BIMS (ERP PyMEs)</li>
                         <li>Monchis, MUV, Ubox</li>
                         <li>uMarket, ueno Ads</li>
                       </ul>
                     </div>
-                    <div className="bg-[#0F172A] p-5 rounded-xl border-t-4 border-rose-500">
-                      <h4 className="font-bold text-white mb-3 flex items-center"><Icons.Target /> <span className="ml-2">3. Deportes & Entretenimiento</span></h4>
-                      <ul className="text-sm text-gray-400 space-y-1 list-disc pl-4">
+                    <div className="bg-ueno-surface p-5 rounded-ueno-lg border-t-4 border-rose-500">
+                      <h4 className="font-bold text-ueno-text mb-3 flex items-center"><Icons.Target /> <span className="ml-2">3. Deportes & Entretenimiento</span></h4>
+                      <ul className="text-sm text-ueno-muted space-y-1 list-disc pl-4">
                         <li>TUTI (Ticketera)</li>
                         <li>Uela (Viajes)</li>
                         <li>ueno Sports & Fan Apps</li>
@@ -1259,54 +1337,54 @@
 
               {activeTab === 2 && (
                 <div className="animate-fade-in">
-                  <h3 className="text-2xl font-bold text-white mb-6">Estrategia por Segmento</h3>
+                  <h3 className="text-2xl font-bold text-ueno-text mb-6">Estrategia por Segmento</h3>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="bg-[#0F172A] p-6 rounded-xl border border-gray-800">
+                    <div className="bg-ueno-surface p-6 rounded-ueno-lg border border-ueno-border">
                       <div className="flex items-center gap-3 mb-3">
-                        <div className="p-2 bg-blue-500/20 text-blue-400 rounded-lg"><Icons.Users /></div>
-                        <h4 className="text-xl font-bold text-white">Masivo</h4>
+                        <div className="p-2 bg-ueno-purple/15 text-ueno-purple rounded-lg"><Icons.Users /></div>
+                        <h4 className="text-xl font-bold text-ueno-text">Masivo</h4>
                       </div>
-                      <p className="text-sm text-gray-300 mb-4">Llegar a todos los paraguayos con una propuesta de everyday banking simple y 100% digital.</p>
-                      <ul className="text-sm text-gray-400 space-y-2">
-                        <li><strong className="text-blue-400">Crédito, crédito… y más crédito:</strong> Expandir bancarización al 50% de la población.</li>
-                        <li><strong className="text-blue-400">Closed loop banking:</strong> Alcanzar 80% de la PEA con soluciones de pago y efectos de red.</li>
+                      <p className="text-sm text-ueno-muted mb-4">Llegar a todos los paraguayos con una propuesta de everyday banking simple y 100% digital.</p>
+                      <ul className="text-sm text-ueno-muted space-y-2">
+                        <li><strong className="text-ueno-purple">Crédito, crédito… y más crédito:</strong> Expandir bancarización al 50% de la población.</li>
+                        <li><strong className="text-ueno-purple">Closed loop banking:</strong> Alcanzar 80% de la PEA con soluciones de pago y efectos de red.</li>
                       </ul>
                     </div>
                     
-                    <div className="bg-[#0F172A] p-6 rounded-xl border border-gray-800">
+                    <div className="bg-ueno-surface p-6 rounded-ueno-lg border border-ueno-border">
                       <div className="flex items-center gap-3 mb-3">
-                        <div className="p-2 bg-emerald-500/20 text-emerald-400 rounded-lg"><Icons.Activity /></div>
-                        <h4 className="text-xl font-bold text-white">MiPyME</h4>
+                        <div className="p-2 bg-ueno-brand/20 text-ueno-brand rounded-lg"><Icons.Activity /></div>
+                        <h4 className="text-xl font-bold text-ueno-text">MiPyME</h4>
                       </div>
-                      <p className="text-sm text-gray-300 mb-4">Ser el banco principal de las PyMEs, expandiendo nuestra disrupción en pagos y crédito digital-first.</p>
-                      <ul className="text-sm text-gray-400 space-y-2">
-                        <li><strong className="text-emerald-400">Bundling:</strong> Packs "no-brainer" de pagos + crédito para ganar principalidad.</li>
-                        <li><strong className="text-emerald-400">Modelo de Atención:</strong> +50% preaprobación de crédito digital y modelo híbrido para medianas.</li>
+                      <p className="text-sm text-ueno-muted mb-4">Ser el banco principal de las PyMEs, expandiendo nuestra disrupción en pagos y crédito digital-first.</p>
+                      <ul className="text-sm text-ueno-muted space-y-2">
+                        <li><strong className="text-ueno-brand">Bundling:</strong> Packs "no-brainer" de pagos + crédito para ganar principalidad.</li>
+                        <li><strong className="text-ueno-brand">Modelo de Atención:</strong> +50% preaprobación de crédito digital y modelo híbrido para medianas.</li>
                       </ul>
                     </div>
 
-                    <div className="bg-[#0F172A] p-6 rounded-xl border border-gray-800">
+                    <div className="bg-ueno-surface p-6 rounded-ueno-lg border border-ueno-border">
                       <div className="flex items-center gap-3 mb-3">
                         <div className="p-2 bg-purple-500/20 text-purple-400 rounded-lg"><Icons.Target /></div>
-                        <h4 className="text-xl font-bold text-white">Afluente</h4>
+                        <h4 className="text-xl font-bold text-ueno-text">Afluente</h4>
                       </div>
-                      <p className="text-sm text-gray-300 mb-4">Construir una propuesta de banca local best-in-class y experiencia extraordinaria.</p>
-                      <ul className="text-sm text-gray-400 space-y-2">
+                      <p className="text-sm text-ueno-muted mb-4">Construir una propuesta de banca local best-in-class y experiencia extraordinaria.</p>
+                      <ul className="text-sm text-ueno-muted space-y-2">
                         <li><strong className="text-purple-400">Marca & Beneficios:</strong> Marcas completas (Ultra Black y Ejecutivo) integradas.</li>
                         <li><strong className="text-purple-400">Modelo Relacional:</strong> Ejecutivos empoderados por IA como primera línea de atención.</li>
                       </ul>
                     </div>
 
-                    <div className="bg-[#0F172A] p-6 rounded-xl border border-gray-800">
+                    <div className="bg-ueno-surface p-6 rounded-ueno-lg border border-ueno-border">
                       <div className="flex items-center gap-3 mb-3">
-                        <div className="p-2 bg-orange-500/20 text-orange-400 rounded-lg"><Icons.Cpu /></div>
-                        <h4 className="text-xl font-bold text-white">Corporativo</h4>
+                        <div className="p-2 bg-orange-500/20 text-ueno-orange rounded-lg"><Icons.Cpu /></div>
+                        <h4 className="text-xl font-bold text-ueno-text">Corporativo</h4>
                       </div>
-                      <p className="text-sm text-gray-300 mb-4">Desarrollar capacidades core sostenibles con foco en Mid-Corps, Retail y Agro.</p>
-                      <ul className="text-sm text-gray-400 space-y-2">
-                        <li><strong className="text-orange-400">Producto Core:</strong> Adquirencia, cuenta pagadora y rentabilidad 360.</li>
-                        <li><strong className="text-orange-400">Especialización:</strong> Acompañamiento comercial experto en Retail y Agronegocios.</li>
+                      <p className="text-sm text-ueno-muted mb-4">Desarrollar capacidades core sostenibles con foco en Mid-Corps, Retail y Agro.</p>
+                      <ul className="text-sm text-ueno-muted space-y-2">
+                        <li><strong className="text-ueno-orange">Producto Core:</strong> Adquirencia, cuenta pagadora y rentabilidad 360.</li>
+                        <li><strong className="text-ueno-orange">Especialización:</strong> Acompañamiento comercial experto en Retail y Agronegocios.</li>
                       </ul>
                     </div>
                   </div>
@@ -1315,25 +1393,25 @@
 
               {activeTab === 3 && (
                 <div className="animate-fade-in">
-                  <h3 className="text-2xl font-bold text-white mb-6">Pilares Transversales</h3>
-                  <p className="text-gray-300 mb-8">Estructuras que habilitan la estrategia global y potencian el valor del grupo.</p>
+                  <h3 className="text-2xl font-bold text-ueno-text mb-6">Pilares Transversales</h3>
+                  <p className="text-ueno-muted mb-8">Estructuras que habilitan la estrategia global y potencian el valor del grupo.</p>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="bg-[#0F172A] p-5 rounded-xl border-l-4 border-indigo-500">
-                      <h4 className="font-bold text-white mb-2">1. Gobierno Corporativo</h4>
-                      <p className="text-sm text-gray-400">Consolidar un modelo de gobierno que potencie la implementación estratégica y fortalezca la relación de confianza con los stakeholders externos y entes reguladores.</p>
+                    <div className="bg-ueno-surface p-5 rounded-ueno-lg border-l-4 border-ueno-brand">
+                      <h4 className="font-bold text-ueno-text mb-2">1. Gobierno Corporativo</h4>
+                      <p className="text-sm text-ueno-muted">Consolidar un modelo de gobierno que potencie la implementación estratégica y fortalezca la relación de confianza con los stakeholders externos y entes reguladores.</p>
                     </div>
-                    <div className="bg-[#0F172A] p-5 rounded-xl border-l-4 border-emerald-500">
-                      <h4 className="font-bold text-white mb-2">2. Eficiencia</h4>
-                      <p className="text-sm text-gray-400">Generar una eficiencia operativa del 30% en los procesos core para capitalizar y financiar de manera sostenible el hiper-crecimiento de los próximos años.</p>
+                    <div className="bg-ueno-surface p-5 rounded-ueno-lg border-l-4 border-ueno-brand">
+                      <h4 className="font-bold text-ueno-text mb-2">2. Eficiencia</h4>
+                      <p className="text-sm text-ueno-muted">Generar una eficiencia operativa del 30% en los procesos core para capitalizar y financiar de manera sostenible el hiper-crecimiento de los próximos años.</p>
                     </div>
-                    <div className="bg-[#0F172A] p-5 rounded-xl border-l-4 border-blue-500">
-                      <h4 className="font-bold text-white mb-2">3. Tech & AI</h4>
-                      <p className="text-sm text-gray-400">Transformar definitivamente la organización hacia un modelo AI-first. Integrar la inteligencia artificial de forma transversal para potenciar la productividad comercial y escalabilidad técnica (Uendi).</p>
+                    <div className="bg-ueno-surface p-5 rounded-ueno-lg border-l-4 border-ueno-purple">
+                      <h4 className="font-bold text-ueno-text mb-2">3. Tech & AI</h4>
+                      <p className="text-sm text-ueno-muted">Transformar definitivamente la organización hacia un modelo AI-first. Integrar la inteligencia artificial de forma transversal para potenciar la productividad comercial y escalabilidad técnica (Uendi).</p>
                     </div>
-                    <div className="bg-[#0F172A] p-5 rounded-xl border-l-4 border-rose-500">
-                      <h4 className="font-bold text-white mb-2">4. Regionalización</h4>
-                      <p className="text-sm text-gray-400">Exportar el modelo exitoso de ueno a países vecinos donde podamos convertirnos en un jugador sistémico o en un attacker de nicho. Apuntando al primer cliente internacional en 2026/27.</p>
+                    <div className="bg-ueno-surface p-5 rounded-ueno-lg border-l-4 border-rose-500">
+                      <h4 className="font-bold text-ueno-text mb-2">4. Regionalización</h4>
+                      <p className="text-sm text-ueno-muted">Exportar el modelo exitoso de ueno a países vecinos donde podamos convertirnos en un jugador sistémico o en un attacker de nicho. Apuntando al primer cliente internacional en 2026/27.</p>
                     </div>
                   </div>
                 </div>
@@ -1341,43 +1419,43 @@
 
               {activeTab === 4 && (
                 <div className="animate-fade-in">
-                  <h3 className="text-2xl font-bold text-white mb-6">Impacto Financiero Proyectado — 2026</h3>
-                  <p className="text-gray-400 mb-6">Estimaciones de crecimiento incremental por segmento para consolidar el hiper-crecimiento.</p>
+                  <h3 className="text-2xl font-bold text-ueno-text mb-6">Impacto Financiero Proyectado — 2026</h3>
+                  <p className="text-ueno-muted mb-6">Estimaciones de crecimiento incremental por segmento para consolidar el hiper-crecimiento.</p>
                   
-                  <div className="overflow-x-auto rounded-xl border border-gray-800 shadow-lg">
-                    <table className="w-full text-left text-sm text-gray-300 bg-[#0F172A]">
-                      <thead className="bg-[#1E293B] text-white">
+                  <div className="overflow-x-auto rounded-ueno-lg border border-ueno-border shadow-lg">
+                    <table className="w-full text-left text-sm text-ueno-muted bg-ueno-surface">
+                      <thead className="bg-ueno-canvas text-ueno-muted">
                         <tr>
-                          <th className="px-6 py-4 border-b border-gray-700">Segmento</th>
-                          <th className="px-6 py-4 border-b border-gray-700 text-right">Colocación Incremental</th>
-                          <th className="px-6 py-4 border-b border-gray-700 text-right">Pasivos Incrementales</th>
-                          <th className="px-6 py-4 border-b border-gray-700 text-right">MFN Estimado (a Término)</th>
+                          <th className="px-6 py-4 border-b border-ueno-border">Segmento</th>
+                          <th className="px-6 py-4 border-b border-ueno-border text-right">Colocación Incremental</th>
+                          <th className="px-6 py-4 border-b border-ueno-border text-right">Pasivos Incrementales</th>
+                          <th className="px-6 py-4 border-b border-ueno-border text-right">MFN Estimado (a Término)</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-gray-800">
-                        <tr className="hover:bg-gray-800/30 transition-colors">
-                          <td className="px-6 py-4 font-bold text-blue-400 flex items-center"><Icons.Users /><span className="ml-2">Masivo</span></td>
+                      <tbody className="divide-y divide-ueno-border">
+                        <tr className="hover:bg-ueno-canvas transition-colors">
+                          <td className="px-6 py-4 font-bold text-ueno-purple flex items-center"><Icons.Users /><span className="ml-2">Masivo</span></td>
                           <td className="px-6 py-4 text-right font-medium">USD 150 - 190 M</td>
                           <td className="px-6 py-4 text-right font-medium">USD 40 - 50 M</td>
-                          <td className="px-6 py-4 text-right font-bold text-white">USD 3 - 4 M</td>
+                          <td className="px-6 py-4 text-right font-bold text-ueno-text">USD 3 - 4 M</td>
                         </tr>
-                        <tr className="hover:bg-gray-800/30 transition-colors">
-                          <td className="px-6 py-4 font-bold text-emerald-400 flex items-center"><Icons.Activity /><span className="ml-2">MiPyME</span></td>
+                        <tr className="hover:bg-ueno-canvas transition-colors">
+                          <td className="px-6 py-4 font-bold text-ueno-brand flex items-center"><Icons.Activity /><span className="ml-2">MiPyME</span></td>
                           <td className="px-6 py-4 text-right font-medium">USD 140 - 160 M</td>
                           <td className="px-6 py-4 text-right font-medium">USD 130 - 150 M</td>
-                          <td className="px-6 py-4 text-right font-bold text-white">USD 4 - 6 M</td>
+                          <td className="px-6 py-4 text-right font-bold text-ueno-text">USD 4 - 6 M</td>
                         </tr>
-                        <tr className="hover:bg-gray-800/30 transition-colors">
+                        <tr className="hover:bg-ueno-canvas transition-colors">
                           <td className="px-6 py-4 font-bold text-purple-400 flex items-center"><Icons.Target /><span className="ml-2">Afluente</span></td>
                           <td className="px-6 py-4 text-right font-medium">USD 20 - 30 M</td>
                           <td className="px-6 py-4 text-right font-medium">USD 200 - 220 M</td>
-                          <td className="px-6 py-4 text-right font-bold text-white">USD 28 - 30 M</td>
+                          <td className="px-6 py-4 text-right font-bold text-ueno-text">USD 28 - 30 M</td>
                         </tr>
-                        <tr className="hover:bg-gray-800/30 transition-colors">
-                          <td className="px-6 py-4 font-bold text-orange-400 flex items-center"><Icons.Cpu /><span className="ml-2">Corporativo</span></td>
+                        <tr className="hover:bg-ueno-canvas transition-colors">
+                          <td className="px-6 py-4 font-bold text-ueno-orange flex items-center"><Icons.Cpu /><span className="ml-2">Corporativo</span></td>
                           <td className="px-6 py-4 text-right font-medium">USD 170 - 190 M</td>
                           <td className="px-6 py-4 text-right font-medium">USD 125 - 150 M</td>
-                          <td className="px-6 py-4 text-right font-bold text-white">USD 16 - 18 M</td>
+                          <td className="px-6 py-4 text-right font-bold text-ueno-text">USD 16 - 18 M</td>
                         </tr>
                       </tbody>
                     </table>
@@ -1387,41 +1465,41 @@
 
               {activeTab === 5 && (
                 <div className="animate-fade-in">
-                  <h3 className="text-2xl font-bold text-white mb-6">Métricas Clave a Seguir (KPIs 2026)</h3>
+                  <h3 className="text-2xl font-bold text-ueno-text mb-6">Métricas Clave a Seguir (KPIs 2026)</h3>
                   
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div className="bg-[#0F172A] p-5 rounded-xl border border-gray-800">
-                      <h4 className="font-bold text-blue-400 mb-4 border-b border-gray-700 pb-2">Adopción y Frecuencia</h4>
-                      <ul className="space-y-3 text-sm text-gray-300">
-                        <li className="flex justify-between"><span>DAU/MAU Ratio:</span> <strong className="text-white">&gt; 60%</strong></li>
-                        <li className="flex justify-between"><span>Sesiones / usuario / día:</span> <strong className="text-white">&gt; 2.5</strong></li>
-                        <li className="flex justify-between"><span>Time in app / sesión:</span> <strong className="text-white">&gt; 3 min</strong></li>
-                        <li className="flex justify-between"><span>Tasa retención D30 / D90:</span> <strong className="text-white">&gt; 65% / &gt; 50%</strong></li>
+                    <div className="bg-ueno-surface p-5 rounded-ueno-lg border border-ueno-border">
+                      <h4 className="font-bold text-ueno-purple mb-4 border-b border-ueno-border pb-2">Adopción y Frecuencia</h4>
+                      <ul className="space-y-3 text-sm text-ueno-muted">
+                        <li className="flex justify-between"><span>DAU/MAU Ratio:</span> <strong className="text-ueno-text">&gt; 60%</strong></li>
+                        <li className="flex justify-between"><span>Sesiones / usuario / día:</span> <strong className="text-ueno-text">&gt; 2.5</strong></li>
+                        <li className="flex justify-between"><span>Time in app / sesión:</span> <strong className="text-ueno-text">&gt; 3 min</strong></li>
+                        <li className="flex justify-between"><span>Tasa retención D30 / D90:</span> <strong className="text-ueno-text">&gt; 65% / &gt; 50%</strong></li>
                       </ul>
                     </div>
 
-                    <div className="bg-[#0F172A] p-5 rounded-xl border border-gray-800">
-                      <h4 className="font-bold text-emerald-400 mb-4 border-b border-gray-700 pb-2">Inteligencia y Automatización</h4>
-                      <ul className="space-y-3 text-sm text-gray-300">
-                        <li className="flex justify-between"><span>% Interacciones con IA perceptible:</span> <strong className="text-white">&gt; 40%</strong></li>
-                        <li className="flex justify-between"><span>Resolución Uendi sin escalado humano:</span> <strong className="text-white">&gt; 80%</strong></li>
-                        <li className="flex justify-between"><span>Aceptación de propuestas IA:</span> <strong className="text-white">&gt; 25%</strong></li>
-                        <li className="flex justify-between"><span>NPS de Uendi:</span> <strong className="text-white">&gt; 50 pts</strong></li>
+                    <div className="bg-ueno-surface p-5 rounded-ueno-lg border border-ueno-border">
+                      <h4 className="font-bold text-ueno-brand mb-4 border-b border-ueno-border pb-2">Inteligencia y Automatización</h4>
+                      <ul className="space-y-3 text-sm text-ueno-muted">
+                        <li className="flex justify-between"><span>% Interacciones con IA perceptible:</span> <strong className="text-ueno-text">&gt; 40%</strong></li>
+                        <li className="flex justify-between"><span>Resolución Uendi sin escalado humano:</span> <strong className="text-ueno-text">&gt; 80%</strong></li>
+                        <li className="flex justify-between"><span>Aceptación de propuestas IA:</span> <strong className="text-ueno-text">&gt; 25%</strong></li>
+                        <li className="flex justify-between"><span>NPS de Uendi:</span> <strong className="text-ueno-text">&gt; 50 pts</strong></li>
                       </ul>
                     </div>
 
-                    <div className="bg-[#0F172A] p-5 rounded-xl border border-gray-800 lg:col-span-2">
-                      <h4 className="font-bold text-purple-400 mb-4 border-b border-gray-700 pb-2">Everyday Banking & Ecosistema</h4>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-300">
+                    <div className="bg-ueno-surface p-5 rounded-ueno-lg border border-ueno-border lg:col-span-2">
+                      <h4 className="font-bold text-purple-400 mb-4 border-b border-ueno-border pb-2">Everyday Banking & Ecosistema</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-ueno-muted">
                         <ul className="space-y-3">
-                          <li className="flex justify-between"><span>Pagan servicios in-app:</span> <strong className="text-white">&gt; 60%</strong></li>
-                          <li className="flex justify-between"><span>Tasa adopción NFC:</span> <strong className="text-white">&gt; 45%</strong></li>
-                          <li className="flex justify-between"><span>Adopción domiciliación sueldo:</span> <strong className="text-white">&gt; 30%</strong></li>
+                          <li className="flex justify-between"><span>Pagan servicios in-app:</span> <strong className="text-ueno-text">&gt; 60%</strong></li>
+                          <li className="flex justify-between"><span>Tasa adopción NFC:</span> <strong className="text-ueno-text">&gt; 45%</strong></li>
+                          <li className="flex justify-between"><span>Adopción domiciliación sueldo:</span> <strong className="text-ueno-text">&gt; 30%</strong></li>
                         </ul>
                         <ul className="space-y-3">
-                          <li className="flex justify-between"><span>Índice productos / cliente:</span> <strong className="text-white">&gt; 3.5</strong></li>
-                          <li className="flex justify-between"><span>Tasa cross-sell ecosistema:</span> <strong className="text-white">&gt; 30%</strong></li>
-                          <li className="flex justify-between"><span>Activación ueno+:</span> <strong className="text-white">&gt; 70%</strong></li>
+                          <li className="flex justify-between"><span>Índice productos / cliente:</span> <strong className="text-ueno-text">&gt; 3.5</strong></li>
+                          <li className="flex justify-between"><span>Tasa cross-sell ecosistema:</span> <strong className="text-ueno-text">&gt; 30%</strong></li>
+                          <li className="flex justify-between"><span>Activación ueno+:</span> <strong className="text-ueno-text">&gt; 70%</strong></li>
                         </ul>
                       </div>
                     </div>
@@ -1431,34 +1509,34 @@
 
               {activeTab === 6 && (
                 <div className="animate-fade-in text-center py-8 max-w-3xl mx-auto">
-                  <div className="inline-flex items-center justify-center p-4 bg-indigo-500/10 rounded-full mb-6">
+                  <div className="inline-flex items-center justify-center p-4 bg-ueno-purple/10 rounded-full mb-6">
                     <Icons.TrendingUp />
                   </div>
-                  <h3 className="text-3xl font-extrabold text-white mb-6">El Camino hacia 2027</h3>
-                  <p className="text-gray-300 text-lg mb-8 leading-relaxed">
+                  <h3 className="text-3xl font-extrabold text-ueno-text mb-6">El Camino hacia 2027</h3>
+                  <p className="text-ueno-muted text-lg mb-8 leading-relaxed">
                     Si 2026 es el año de las <b>Fundaciones y la Integración Visible</b>, 2027 marca la madurez de la <b>Transformación e Inteligencia Total</b>.
                   </p>
                   
-                  <div className="bg-[#0F172A] p-6 rounded-xl border border-indigo-500/30 text-left space-y-5">
+                  <div className="bg-ueno-surface p-6 rounded-ueno-lg border border-ueno-purple/30 text-left space-y-5">
                     <div className="flex items-start gap-4">
-                      <div className="p-2 bg-indigo-500/20 text-indigo-400 rounded flex-shrink-0"><Icons.Target /></div>
+                      <div className="p-2 bg-ueno-purple/15 text-ueno-purple rounded flex-shrink-0"><Icons.Target /></div>
                       <div>
-                        <h4 className="font-bold text-white">Consolidación del Rol "Director"</h4>
-                        <p className="text-sm text-gray-400 mt-1">El usuario ya no iniciará consultas transaccionales de forma manual. La plataforma ejecutará límites y objetivos predefinidos. El paso definitivo de un cliente Autogestionado a uno Director.</p>
+                        <h4 className="font-bold text-ueno-text">Consolidación del Rol "Director"</h4>
+                        <p className="text-sm text-ueno-muted mt-1">El usuario ya no iniciará consultas transaccionales de forma manual. La plataforma ejecutará límites y objetivos predefinidos. El paso definitivo de un cliente Autogestionado a uno Director.</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-4">
-                      <div className="p-2 bg-emerald-500/20 text-emerald-400 rounded flex-shrink-0"><Icons.Cpu /></div>
+                      <div className="p-2 bg-ueno-brand/20 text-ueno-brand rounded flex-shrink-0"><Icons.Cpu /></div>
                       <div>
-                        <h4 className="font-bold text-white">Maduración Agentic AI</h4>
-                        <p className="text-sm text-gray-400 mt-1">Uendi pasará de ser un copiloto conversacional a un agente autónomo de ejecución (Agentic AI) basado en procesamiento NLP y Open Banking, realizando simulaciones complejas (como créditos vehiculares o hipotecarios).</p>
+                        <h4 className="font-bold text-ueno-text">Maduración Agentic AI</h4>
+                        <p className="text-sm text-ueno-muted mt-1">Uendi pasará de ser un copiloto conversacional a un agente autónomo de ejecución (Agentic AI) basado en procesamiento NLP y Open Banking, realizando simulaciones complejas (como créditos vehiculares o hipotecarios).</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-4">
                       <div className="p-2 bg-rose-500/20 text-rose-400 rounded flex-shrink-0"><Icons.Globe /></div>
                       <div>
-                        <h4 className="font-bold text-white">Expansión Cross-Border</h4>
-                        <p className="text-sm text-gray-400 mt-1">Lanzamiento del primer cliente internacional y escalado de Upay Hub (Switch Propio) consolidando a ueno como un jugador sistémico a nivel regional.</p>
+                        <h4 className="font-bold text-ueno-text">Expansión Cross-Border</h4>
+                        <p className="text-sm text-ueno-muted mt-1">Lanzamiento del primer cliente internacional y escalado de Upay Hub (Switch Propio) consolidando a ueno como un jugador sistémico a nivel regional.</p>
                       </div>
                     </div>
                   </div>
@@ -1487,30 +1565,30 @@
       ];
 
       return (
-         <div className="flex-1 overflow-y-auto p-4 md:p-8 pb-20 bg-[#0B0F19]">
+         <div className="flex-1 overflow-y-auto p-4 md:p-8 pb-20 bg-ueno-canvas">
           <div className="mb-8 max-w-5xl mx-auto">
-            <span className="px-3 py-1 bg-indigo-500/20 text-indigo-400 text-xs font-bold rounded-full mb-3 border border-indigo-500/30 uppercase tracking-widest inline-block">
+            <span className="px-3 py-1 bg-ueno-purple/15 text-ueno-purple text-xs font-bold rounded-full mb-3 border border-ueno-purple/30 uppercase tracking-widest inline-block">
               Estrategia de Producto Transversal
             </span>
-            <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-4">
-              La Promesa que lo <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">Define Todo</span>
+            <h2 className="text-3xl md:text-5xl font-extrabold text-ueno-text mb-4">
+              La Promesa que lo <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-ueno-brand to-ueno-purple">Define Todo</span>
             </h2>
-            <p className="text-gray-400 text-lg border-l-4 border-indigo-500 pl-4 italic">
+            <p className="text-ueno-muted text-lg border-l-4 border-ueno-brand pl-4 italic">
               "{STRATEGY_MASTER.promise}"
             </p>
-            <p className="text-xs text-gray-500 mt-3">Documento Maestro SuperApp · {STRATEGY_MASTER.version}</p>
+            <p className="text-xs text-ueno-muted/80 mt-3">Documento Maestro SuperApp · {STRATEGY_MASTER.version}</p>
           </div>
 
           <div className="max-w-5xl mx-auto">
-            <div className="flex overflow-x-auto custom-scroll border-b border-gray-800 mb-6 pb-2">
+            <div className="flex overflow-x-auto custom-scroll border-b border-ueno-border mb-6 pb-2">
               {tabs.map((tab, idx) => (
                 <button
                   key={idx}
                   onClick={() => setActiveTab(idx)}
                   className={`px-4 py-3 text-sm font-semibold whitespace-nowrap transition-colors border-b-2 rounded-t-lg ${
                     activeTab === idx 
-                      ? 'border-indigo-500 text-indigo-400 bg-indigo-500/5' 
-                      : 'border-transparent text-gray-500 hover:text-gray-300 hover:bg-gray-800/30'
+                      ? 'border-ueno-brand text-ueno-purple bg-ueno-brand/10' 
+                      : 'border-transparent text-ueno-muted/80 hover:text-ueno-muted hover:bg-ueno-canvas'
                   }`}
                 >
                   {tab}
@@ -1518,13 +1596,13 @@
               ))}
             </div>
 
-            <div className="bg-[#1E293B]/40 border border-gray-800 rounded-2xl p-6 md:p-8 shadow-lg min-h-[500px]">
+            <div className="bg-ueno-surface border border-ueno-border rounded-ueno-xl p-6 md:p-8 shadow-ueno-2 min-h-[500px]">
               
               {activeTab === 0 && (
                 <div className="animate-fade-in">
-                  <h3 className="text-2xl font-bold text-white mb-6">El punto de partida real ({STRATEGY_MASTER.version})</h3>
+                  <h3 className="text-2xl font-bold text-ueno-text mb-6">El punto de partida real ({STRATEGY_MASTER.version})</h3>
                   
-                  <h4 className="text-lg font-bold text-indigo-400 mb-4">Lo que ya tenemos (y es extraordinario)</h4>
+                  <h4 className="text-lg font-bold text-ueno-purple mb-4">Lo que ya tenemos (y es extraordinario)</h4>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
                     {[
                       { val: "2.8M", label: "Clientes (1.7 de cada 3 paraguayos)" },
@@ -1536,19 +1614,19 @@
                       { val: "2.8M", label: "Enrolados en ueno+" },
                       { val: "190k+", label: "Conversaciones Uendi/mes" }
                     ].map((stat, i) => (
-                      <div key={i} className="bg-[#0F172A] p-4 rounded-xl border border-gray-800 flex flex-col justify-center items-center text-center">
-                        <span className="text-2xl font-bold text-white">{stat.val}</span>
-                        <span className="text-xs text-gray-400 mt-1">{stat.label}</span>
+                      <div key={i} className="bg-ueno-surface p-4 rounded-ueno-lg border border-ueno-border flex flex-col justify-center items-center text-center">
+                        <span className="text-2xl font-bold text-ueno-text">{stat.val}</span>
+                        <span className="text-xs text-ueno-muted mt-1">{stat.label}</span>
                       </div>
                     ))}
                   </div>
 
-                  <h4 className="text-lg font-bold text-orange-400 mb-4">Lo que aún nos falta (y es lo que importa)</h4>
+                  <h4 className="text-lg font-bold text-ueno-orange mb-4">Lo que aún nos falta (y es lo que importa)</h4>
                   <div className="space-y-4">
                     {STRATEGY_MASTER.gaps.map((gap, i) => (
-                      <div key={gap.title} className="p-4 bg-orange-500/10 border border-orange-500/20 rounded-xl">
-                        <h5 className="font-bold text-orange-400 mb-1">{i + 1}. {gap.title}</h5>
-                        <p className="text-sm text-gray-300">{gap.text}</p>
+                      <div key={gap.title} className="p-4 bg-ueno-cream border border-ueno-peach rounded-ueno-lg">
+                        <h5 className="font-bold text-ueno-orange mb-1">{i + 1}. {gap.title}</h5>
+                        <p className="text-sm text-ueno-muted">{gap.text}</p>
                       </div>
                     ))}
                   </div>
@@ -1557,29 +1635,29 @@
 
               {activeTab === 1 && (
                 <div className="animate-fade-in">
-                  <h3 className="text-2xl font-bold text-white mb-6">Qué es la SuperApp desde adentro</h3>
-                  <p className="text-gray-400 mb-8">No es una app con más funciones. Es un sistema con 4 capas sincronizadas:</p>
+                  <h3 className="text-2xl font-bold text-ueno-text mb-6">Qué es la SuperApp desde adentro</h3>
+                  <p className="text-ueno-muted mb-8">No es una app con más funciones. Es un sistema con 4 capas sincronizadas:</p>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="bg-[#0F172A] p-6 rounded-xl border border-indigo-500/30 relative overflow-hidden group">
+                    <div className="bg-ueno-surface p-6 rounded-ueno-lg border border-ueno-purple/30 relative overflow-hidden group">
                       <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-110 transition-transform"><Icons.Database /></div>
-                      <h5 className="font-bold text-indigo-400 mb-2">Capa 1: Data Layer (El Cerebro)</h5>
-                      <p className="text-sm text-gray-300">Todo comportamiento del usuario alimenta un modelo unificado. Sin este cerebro, el resto no funciona.</p>
+                      <h5 className="font-bold text-ueno-purple mb-2">Capa 1: Data Layer (El Cerebro)</h5>
+                      <p className="text-sm text-ueno-muted">Todo comportamiento del usuario alimenta un modelo unificado. Sin este cerebro, el resto no funciona.</p>
                     </div>
-                    <div className="bg-[#0F172A] p-6 rounded-xl border border-emerald-500/30 relative overflow-hidden group">
+                    <div className="bg-ueno-surface p-6 rounded-ueno-lg border border-ueno-brand/40 relative overflow-hidden group">
                       <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-110 transition-transform"><Icons.Cpu /></div>
-                      <h5 className="font-bold text-emerald-400 mb-2">Capa 2: Decision Engine (La IA)</h5>
-                      <p className="text-sm text-gray-300">Predice, recomienda y automatiza. Anticipa lo que el usuario necesita y actúa (ej. <i>"En 5 días te quedas corto..."</i>).</p>
+                      <h5 className="font-bold text-ueno-brand mb-2">Capa 2: Decision Engine (La IA)</h5>
+                      <p className="text-sm text-ueno-muted">Predice, recomienda y automatiza. Anticipa lo que el usuario necesita y actúa (ej. <i>"En 5 días te quedas corto..."</i>).</p>
                     </div>
-                    <div className="bg-[#0F172A] p-6 rounded-xl border border-blue-500/30 relative overflow-hidden group">
+                    <div className="bg-ueno-surface p-6 rounded-ueno-lg border border-ueno-purple/30 relative overflow-hidden group">
                       <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-110 transition-transform"><Icons.Activity /></div>
-                      <h5 className="font-bold text-blue-400 mb-2">Capa 3: Execution Layer</h5>
-                      <p className="text-sm text-gray-300">Pagos, créditos, inversiones ejecutables desde la misma plataforma sin salir de la experiencia. Habilitado por UNID y Upay.</p>
+                      <h5 className="font-bold text-ueno-purple mb-2">Capa 3: Execution Layer</h5>
+                      <p className="text-sm text-ueno-muted">Pagos, créditos, inversiones ejecutables desde la misma plataforma sin salir de la experiencia. Habilitado por UNID y Upay.</p>
                     </div>
-                    <div className="bg-[#0F172A] p-6 rounded-xl border border-purple-500/30 relative overflow-hidden group">
+                    <div className="bg-ueno-surface p-6 rounded-ueno-lg border border-purple-500/30 relative overflow-hidden group">
                       <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-110 transition-transform"><Icons.Smartphone /></div>
                       <h5 className="font-bold text-purple-400 mb-2">Capa 4: Experience Layer</h5>
-                      <p className="text-sm text-gray-300">Lo único que ve el usuario. Simple, emocional y adictiva. Uendi como interfaz conversacional (le habla a la app).</p>
+                      <p className="text-sm text-ueno-muted">Lo único que ve el usuario. Simple, emocional y adictiva. Uendi como interfaz conversacional (le habla a la app).</p>
                     </div>
                   </div>
                 </div>
@@ -1587,47 +1665,47 @@
 
               {activeTab === 2 && (
                 <div className="animate-fade-in">
-                  <h3 className="text-2xl font-bold text-white mb-2">Los 5 Pilares Estratégicos</h3>
-                  <p className="text-gray-400 text-sm mb-6">Fuente: Documento Maestro SuperApp · {STRATEGY_MASTER.version}</p>
+                  <h3 className="text-2xl font-bold text-ueno-text mb-2">Los 5 Pilares Estratégicos</h3>
+                  <p className="text-ueno-muted text-sm mb-6">Fuente: Documento Maestro SuperApp · {STRATEGY_MASTER.version}</p>
                   
                   <div className="space-y-4 mb-10">
                     {STRATEGY_MASTER.pillars.map((pilar) => (
-                      <div key={pilar.id} className="p-5 bg-[#0F172A] border border-gray-800 rounded-xl">
-                        <h4 className="font-bold text-white text-lg mb-1">
-                          <span className="text-indigo-500 mr-2">{pilar.id}.</span>{pilar.title}
+                      <div key={pilar.id} className="p-5 bg-ueno-surface border border-ueno-border rounded-ueno-lg">
+                        <h4 className="font-bold text-ueno-text text-lg mb-1">
+                          <span className="text-ueno-purple mr-2">{pilar.id}.</span>{pilar.title}
                         </h4>
-                        <p className="text-sm text-gray-400 mb-3">Objetivo: {pilar.objective}</p>
+                        <p className="text-sm text-ueno-muted mb-3">Objetivo: {pilar.objective}</p>
                         <ul className="space-y-1.5 mb-3">
                           {pilar.items.map((item, i) => (
-                            <li key={i} className="flex items-start text-sm text-gray-300">
-                              <span className="text-indigo-400 mr-2 mt-0.5">•</span>
+                            <li key={i} className="flex items-start text-sm text-ueno-muted">
+                              <span className="text-ueno-purple mr-2 mt-0.5">•</span>
                               <span>{item}</span>
                             </li>
                           ))}
                         </ul>
-                        <p className="text-xs text-yellow-400/90 border-t border-gray-800 pt-3 mt-2">
+                        <p className="text-xs text-yellow-400/90 border-t border-ueno-border pt-3 mt-2">
                           Madurez: {pilar.maturity}
                         </p>
                       </div>
                     ))}
                   </div>
 
-                  <h3 className="text-xl font-bold text-white mb-4">Evolución del rol del cliente</h3>
-                  <div className="overflow-x-auto rounded-xl border border-gray-800 mb-2">
-                    <table className="w-full text-left text-sm text-gray-300">
-                      <thead className="bg-[#0F172A] text-gray-400">
+                  <h3 className="text-xl font-bold text-ueno-text mb-4">Evolución del rol del cliente</h3>
+                  <div className="overflow-x-auto rounded-ueno-lg border border-ueno-border mb-2">
+                    <table className="w-full text-left text-sm text-ueno-muted">
+                      <thead className="bg-ueno-canvas text-ueno-muted">
                         <tr>
                           <th className="px-4 py-3">Estadio</th>
                           <th className="px-4 py-3">Comportamiento</th>
                           <th className="px-4 py-3">Dónde estamos</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-gray-800">
+                      <tbody className="divide-y divide-ueno-border">
                         {STRATEGY_MASTER.clientStages.map((row) => (
-                          <tr key={row.stage} className={row.highlight ? 'bg-indigo-500/10' : 'hover:bg-gray-800/30'}>
-                            <td className={`px-4 py-3 font-bold ${row.highlight ? 'text-indigo-400' : 'text-white'}`}>{row.stage}</td>
-                            <td className={`px-4 py-3 ${row.highlight ? 'text-indigo-200' : ''}`}>{row.behavior}</td>
-                            <td className={`px-4 py-3 ${row.highlight ? 'text-indigo-400 font-bold' : ''}`}>{row.where}</td>
+                          <tr key={row.stage} className={row.highlight ? 'bg-ueno-purple/10' : 'hover:bg-ueno-canvas'}>
+                            <td className={`px-4 py-3 font-bold ${row.highlight ? 'text-ueno-purple' : 'text-ueno-text'}`}>{row.stage}</td>
+                            <td className={`px-4 py-3 ${row.highlight ? 'text-ueno-purple' : ''}`}>{row.behavior}</td>
+                            <td className={`px-4 py-3 ${row.highlight ? 'text-ueno-purple font-bold' : ''}`}>{row.where}</td>
                           </tr>
                         ))}
                       </tbody>
@@ -1638,28 +1716,28 @@
 
               {activeTab === 3 && (
                 <div className="animate-fade-in">
-                  <h3 className="text-2xl font-bold text-white mb-2">El Mapa del Ecosistema</h3>
-                  <p className="text-gray-400 mb-6">Más de 30 empresas en 3 verticales — alineado al Documento Maestro.</p>
+                  <h3 className="text-2xl font-bold text-ueno-text mb-2">El Mapa del Ecosistema</h3>
+                  <p className="text-ueno-muted mb-6">Más de 30 empresas en 3 verticales — alineado al Documento Maestro.</p>
                   
                   <div className="space-y-8">
                     {STRATEGY_MASTER.ecosystem.map((vertical) => (
                       <div key={vertical.id}>
-                        <h4 className={`text-lg font-bold ${accentText[vertical.accent] || 'text-indigo-400'} mb-3 border-b border-gray-800 pb-2`}>
+                        <h4 className={`text-lg font-bold ${accentText[vertical.accent] || 'text-ueno-purple'} mb-3 border-b border-ueno-border pb-2`}>
                           {vertical.name}
                         </h4>
-                        <div className="overflow-x-auto rounded-xl border border-gray-800">
-                          <table className="w-full text-left text-sm text-gray-300">
-                            <thead className="bg-[#0F172A] text-gray-400">
+                        <div className="overflow-x-auto rounded-ueno-lg border border-ueno-border">
+                          <table className="w-full text-left text-sm text-ueno-muted">
+                            <thead className="bg-ueno-canvas text-ueno-muted">
                               <tr>
                                 <th className="px-4 py-3">Empresa</th>
                                 <th className="px-4 py-3">Rol en la SuperApp</th>
                                 <th className="px-4 py-3">Estado</th>
                               </tr>
                             </thead>
-                            <tbody className="divide-y divide-gray-800">
+                            <tbody className="divide-y divide-ueno-border">
                               {vertical.companies.map((c) => (
-                                <tr key={c.name} className="hover:bg-gray-800/30">
-                                  <td className="px-4 py-3 font-bold text-white whitespace-nowrap">{c.name}</td>
+                                <tr key={c.name} className="hover:bg-ueno-canvas">
+                                  <td className="px-4 py-3 font-bold text-ueno-text whitespace-nowrap">{c.name}</td>
                                   <td className="px-4 py-3">{c.role}</td>
                                   <td className={`px-4 py-3 whitespace-nowrap ${statusToneClass(c.statusTone)}`}>{c.status}</td>
                                 </tr>
@@ -1675,16 +1753,16 @@
 
               {activeTab === 4 && (
                 <div className="animate-fade-in">
-                  <h3 className="text-2xl font-bold text-white mb-6">Arquitectura Tecnológica que lo hace posible</h3>
-                  <p className="text-gray-400 mb-8">Infraestructura propia que genera ventajas competitivas difíciles de replicar.</p>
+                  <h3 className="text-2xl font-bold text-ueno-text mb-6">Arquitectura Tecnológica que lo hace posible</h3>
+                  <p className="text-ueno-muted mb-8">Infraestructura propia que genera ventajas competitivas difíciles de replicar.</p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {STRATEGY_MASTER.architecture.map((block, i) => (
                       <div
                         key={block.title}
-                        className={`bg-[#0F172A] p-5 rounded-xl border-l-4 ${accentBorder[block.tone] || 'border-indigo-500'} ${i === STRATEGY_MASTER.architecture.length - 1 ? 'md:col-span-2' : ''}`}
+                        className={`bg-ueno-surface p-5 rounded-ueno-lg border-l-4 ${accentBorder[block.tone] || 'border-ueno-brand'} ${i === STRATEGY_MASTER.architecture.length - 1 ? 'md:col-span-2' : ''}`}
                       >
-                        <h4 className="font-bold text-white mb-2">{block.title}</h4>
-                        <p className="text-sm text-gray-400">{block.text}</p>
+                        <h4 className="font-bold text-ueno-text mb-2">{block.title}</h4>
+                        <p className="text-sm text-ueno-muted">{block.text}</p>
                       </div>
                     ))}
                   </div>
@@ -1693,15 +1771,15 @@
 
               {activeTab === 5 && (
                 <div className="animate-fade-in">
-                  <h3 className="text-2xl font-bold text-white mb-2">Tracker de Roadmap</h3>
-                  <p className="text-gray-400 text-sm mb-6">
-                    Estados iniciales sugeridos según el PDF (editables en <code className="text-indigo-300">STRATEGY_MASTER.waves</code>). Actualizar con el equipo de Producto.
+                  <h3 className="text-2xl font-bold text-ueno-text mb-2">Tracker de Roadmap</h3>
+                  <p className="text-ueno-muted text-sm mb-6">
+                    Estados iniciales sugeridos según el PDF (editables en <code className="text-ueno-purple">STRATEGY_MASTER.waves</code>). Actualizar con el equipo de Producto.
                   </p>
 
                   <div className="flex flex-wrap gap-3 mb-8 text-xs">
-                    <span className="px-2 py-1 rounded-full border bg-yellow-500/20 text-yellow-400 border-yellow-500/30">En curso</span>
-                    <span className="px-2 py-1 rounded-full border bg-gray-500/20 text-gray-400 border-gray-500/30">Pendiente</span>
-                    <span className="px-2 py-1 rounded-full border bg-emerald-500/20 text-emerald-400 border-emerald-500/30">Hecho</span>
+                    <span className="px-2 py-1 rounded-full border bg-ueno-gold/20 text-ueno-orange border-ueno-gold/40">En curso</span>
+                    <span className="px-2 py-1 rounded-full border bg-ueno-canvas text-ueno-muted border-ueno-border">Pendiente</span>
+                    <span className="px-2 py-1 rounded-full border bg-ueno-brand/20 text-ueno-brand border-ueno-brand/40">Hecho</span>
                   </div>
                   
                   <div className="space-y-10">
@@ -1711,27 +1789,27 @@
                       const wip = all.filter(i => i.status === 'in_progress').length;
                       const pct = all.length ? Math.round(((done + wip * 0.5) / all.length) * 100) : 0;
                       return (
-                        <div key={wave.id} className={`relative pl-8 border-l ${wave.tone === 'emerald' ? 'border-emerald-500' : 'border-indigo-500'}`}>
-                          <div className={`absolute w-4 h-4 rounded-full -left-[8.5px] top-1 ${wave.tone === 'emerald' ? 'bg-emerald-500' : 'bg-indigo-500'}`}></div>
+                        <div key={wave.id} className={`relative pl-8 border-l ${wave.tone === 'emerald' ? 'border-ueno-brand' : 'border-ueno-brand'}`}>
+                          <div className={`absolute w-4 h-4 rounded-full -left-[8.5px] top-1 ${wave.tone === 'emerald' ? 'bg-ueno-brand' : 'bg-ueno-brand'}`}></div>
                           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-4">
-                            <h4 className="text-xl font-bold text-white">{wave.name}</h4>
-                            <div className="text-xs text-gray-400">
-                              Avance estimado: <span className="text-white font-bold">{pct}%</span>
+                            <h4 className="text-xl font-bold text-ueno-text">{wave.name}</h4>
+                            <div className="text-xs text-ueno-muted">
+                              Avance estimado: <span className="text-ueno-text font-bold">{pct}%</span>
                               <span className="mx-2">·</span>{wip} en curso · {done} hechos · {all.length - done - wip} pendientes
                             </div>
                           </div>
-                          <div className="w-full h-2 bg-gray-800 rounded-full mb-6 overflow-hidden">
-                            <div className={`h-full rounded-full ${wave.tone === 'emerald' ? 'bg-emerald-500' : 'bg-indigo-500'}`} style={{ width: `${pct}%` }}></div>
+                          <div className="w-full h-2 bg-ueno-canvas rounded-full mb-6 overflow-hidden">
+                            <div className={`h-full rounded-full ${wave.tone === 'emerald' ? 'bg-ueno-brand' : 'bg-ueno-brand'}`} style={{ width: `${pct}%` }}></div>
                           </div>
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             {wave.buckets.map((bucket) => (
-                              <div key={bucket.name} className="bg-[#0F172A] p-4 rounded-xl border border-gray-800">
-                                <strong className={`block mb-3 ${accentText[wave.tone] || 'text-indigo-400'}`}>{bucket.name}</strong>
+                              <div key={bucket.name} className="bg-ueno-surface p-4 rounded-ueno-lg border border-ueno-border">
+                                <strong className={`block mb-3 ${accentText[wave.tone] || 'text-ueno-purple'}`}>{bucket.name}</strong>
                                 <ul className="space-y-2">
                                   {bucket.items.map((item) => {
                                     const st = waveItemStatus(item.status);
                                     return (
-                                      <li key={item.label} className="flex items-start justify-between gap-3 text-sm text-gray-300">
+                                      <li key={item.label} className="flex items-start justify-between gap-3 text-sm text-ueno-muted">
                                         <span className="flex-1">{item.label}</span>
                                         <span className={`flex-shrink-0 text-[10px] uppercase font-bold px-2 py-0.5 rounded-full border ${st.cls}`}>{st.label}</span>
                                       </li>
@@ -1750,28 +1828,28 @@
 
               {activeTab === 6 && (
                 <div className="animate-fade-in">
-                  <h3 className="text-2xl font-bold text-white mb-2">Métricas de Producto a Seguir</h3>
-                  <p className="text-gray-400 text-sm mb-6">Definición + meta 2026 según Documento Maestro. Valores actuales: conectar con data real en una próxima iteración.</p>
+                  <h3 className="text-2xl font-bold text-ueno-text mb-2">Métricas de Producto a Seguir</h3>
+                  <p className="text-ueno-muted text-sm mb-6">Definición + meta 2026 según Documento Maestro. Valores actuales: conectar con data real en una próxima iteración.</p>
                   
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     {STRATEGY_MASTER.metrics.map((group) => (
                       <div key={group.name} className={group.name === 'Everyday Banking' || group.name === 'Experiencia y Calidad' ? '' : ''}>
-                        <h4 className={`font-bold ${accentText[group.tone] || 'text-indigo-400'} mb-2`}>{group.name}</h4>
-                        <div className="overflow-x-auto rounded-lg border border-gray-800">
-                          <table className="w-full text-left text-xs text-gray-300">
-                            <thead className="bg-[#0F172A]">
+                        <h4 className={`font-bold ${accentText[group.tone] || 'text-ueno-purple'} mb-2`}>{group.name}</h4>
+                        <div className="overflow-x-auto rounded-lg border border-ueno-border">
+                          <table className="w-full text-left text-xs text-ueno-muted">
+                            <thead className="bg-ueno-canvas">
                               <tr>
-                                <th className="p-2 border-b border-gray-800">Métrica</th>
-                                <th className="p-2 border-b border-gray-800">Definición</th>
-                                <th className="p-2 border-b border-gray-800">Meta 2026</th>
+                                <th className="p-2 border-b border-ueno-border">Métrica</th>
+                                <th className="p-2 border-b border-ueno-border">Definición</th>
+                                <th className="p-2 border-b border-ueno-border">Meta 2026</th>
                               </tr>
                             </thead>
-                            <tbody className="divide-y divide-gray-800">
+                            <tbody className="divide-y divide-ueno-border">
                               {group.rows.map((row) => (
                                 <tr key={row.metric}>
-                                  <td className="p-2 font-medium text-white">{row.metric}</td>
-                                  <td className="p-2 text-gray-400">{row.definition}</td>
-                                  <td className="p-2 font-bold text-white whitespace-nowrap">{row.target}</td>
+                                  <td className="p-2 font-medium text-ueno-text">{row.metric}</td>
+                                  <td className="p-2 text-ueno-muted">{row.definition}</td>
+                                  <td className="p-2 font-bold text-ueno-text whitespace-nowrap">{row.target}</td>
                                 </tr>
                               ))}
                             </tbody>
@@ -1785,19 +1863,19 @@
 
               {activeTab === 7 && (
                 <div className="animate-fade-in text-center py-8">
-                  <h3 className="text-3xl font-extrabold text-white mb-6">Cómo se conecta todo</h3>
-                  <p className="text-gray-300 text-lg mb-10 max-w-3xl mx-auto">
+                  <h3 className="text-3xl font-extrabold text-ueno-text mb-6">Cómo se conecta todo</h3>
+                  <p className="text-ueno-muted text-lg mb-10 max-w-3xl mx-auto">
                     La SuperApp no es un proyecto de tecnología. Es un cambio de paradigma en la relación entre el Grupo Vázquez y el paraguayo. <b>No ser el banco que usan. Ser la plataforma donde viven.</b>
                   </p>
                   
                   <div className="flex flex-col items-center justify-center space-y-4">
                     {STRATEGY_MASTER.priorities.map((p, idx) => (
                       <React.Fragment key={p.n}>
-                        {idx > 0 && <div className="w-0.5 h-6 bg-gray-700"></div>}
-                        <div className={`w-full max-w-2xl bg-[#0F172A] p-4 rounded-xl border ${accentBorder[p.tone] || 'border-indigo-500'} flex items-center justify-between text-left`}>
-                          <span className={`font-bold text-xl ${accentText[p.tone] || 'text-indigo-400'} px-4`}>{p.n}</span>
-                          <p className="flex-1 text-gray-300">
-                            <strong className="text-white">{p.title}:</strong> {p.text}
+                        {idx > 0 && <div className="w-0.5 h-6 bg-ueno-border"></div>}
+                        <div className={`w-full max-w-2xl bg-ueno-surface p-4 rounded-ueno-lg border ${accentBorder[p.tone] || 'border-ueno-brand'} flex items-center justify-between text-left`}>
+                          <span className={`font-bold text-xl ${accentText[p.tone] || 'text-ueno-purple'} px-4`}>{p.n}</span>
+                          <p className="flex-1 text-ueno-muted">
+                            <strong className="text-ueno-text">{p.title}:</strong> {p.text}
                           </p>
                         </div>
                       </React.Fragment>
@@ -1825,77 +1903,77 @@
       };
 
       return (
-        <div className="flex-1 overflow-y-auto p-4 md:p-8 pb-20 bg-[#0B0F19]">
+        <div className="flex-1 overflow-y-auto p-4 md:p-8 pb-20 bg-ueno-canvas">
           
           <div className="mb-12 text-center max-w-4xl mx-auto">
-            <div className="inline-flex items-center justify-center p-4 bg-[#00E58F]/10 rounded-2xl mb-6">
+            <div className="inline-flex items-center justify-center p-4 bg-ueno-brand/15 rounded-ueno-xl mb-6">
               <ProductLogo logoUrl="https://www.google.com/s2/favicons?domain=ueno.com.py&sz=128" alt="ueno" className="w-8 h-8" />
-              <span className="ml-3 text-2xl font-bold text-[#00E58F] tracking-wide">Super App ueno bank</span>
+              <span className="ml-3 text-2xl font-bold text-ueno-brand tracking-wide">Super App ueno bank</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight">
-              De una App Bancaria a un <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00E58F] to-emerald-400">Life Partner</span>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-ueno-text mb-6 leading-tight">
+              De una App Bancaria a un <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-ueno-brand to-ueno-brand-hover">Life Partner</span>
             </h2>
-            <p className="text-lg text-gray-400 leading-relaxed">
+            <p className="text-lg text-ueno-muted leading-relaxed">
               El nodo principal del ecosistema del Grupo Vázquez. Una plataforma unificada que transforma la interacción diaria de individuos, comercios y empresas mediante hiper-personalización impulsada por IA, Identidad Digital Única (UNID) y experiencias sin fricciones.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-16">
-            <div className="bg-[#1E293B]/60 border border-gray-800 rounded-2xl p-6 hover:border-purple-500/50 transition-all group relative overflow-hidden">
+            <div className="bg-ueno-surface border border-ueno-border rounded-ueno-xl p-6 hover:border-purple-500/50 transition-all group relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-purple-400 opacity-75"></div>
               <div className="flex items-center space-x-3 mb-4">
-                <div className="p-2.5 bg-purple-500/20 text-purple-400 rounded-xl">
+                <div className="p-2.5 bg-purple-500/20 text-purple-400 rounded-ueno-lg">
                   <Icons.Zap />
                 </div>
-                <h3 className="font-bold text-white text-lg">1. Hábito Diario</h3>
+                <h3 className="font-bold text-ueno-text text-lg">1. Hábito Diario</h3>
               </div>
               <p className="text-xs font-semibold text-purple-400 uppercase tracking-widest mb-3">Atracción</p>
-              <ul className="space-y-3 text-sm text-gray-400">
+              <ul className="space-y-3 text-sm text-ueno-muted">
                 <li className="flex items-start"><span className="text-purple-500 mr-2 mt-0.5">•</span> Integración nativa de La Tribuna.</li>
                 <li className="flex items-start"><span className="text-purple-500 mr-2 mt-0.5">•</span> Ecosistema de servicios integrados.</li>
                 <li className="flex items-start"><span className="text-purple-500 mr-2 mt-0.5">•</span> Activación de líneas uCel in-app.</li>
               </ul>
             </div>
-            <div className="bg-[#1E293B]/60 border border-gray-800 rounded-2xl p-6 hover:border-emerald-500/50 transition-all group relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 to-emerald-400 opacity-75"></div>
+            <div className="bg-ueno-surface border border-ueno-border rounded-ueno-xl p-6 hover:border-ueno-brand/50 transition-all group relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-ueno-brand to-ueno-brand-hover opacity-75"></div>
               <div className="flex items-center space-x-3 mb-4">
-                <div className="p-2.5 bg-emerald-500/20 text-emerald-400 rounded-xl">
+                <div className="p-2.5 bg-ueno-brand/20 text-ueno-brand rounded-ueno-lg">
                   <Icons.TrendingUp />
                 </div>
-                <h3 className="font-bold text-white text-lg">2. Crecimiento</h3>
+                <h3 className="font-bold text-ueno-text text-lg">2. Crecimiento</h3>
               </div>
-              <p className="text-xs font-semibold text-emerald-400 uppercase tracking-widest mb-3">Retención</p>
-              <ul className="space-y-3 text-sm text-gray-400">
-                <li className="flex items-start"><span className="text-emerald-500 mr-2 mt-0.5">•</span> Ticker de Rentabilidad diaria.</li>
-                <li className="flex items-start"><span className="text-emerald-500 mr-2 mt-0.5">•</span> uendi IA: Coaching predictivo.</li>
-                <li className="flex items-start"><span className="text-emerald-500 mr-2 mt-0.5">•</span> Segmentación por ADN Financiero.</li>
+              <p className="text-xs font-semibold text-ueno-brand uppercase tracking-widest mb-3">Retención</p>
+              <ul className="space-y-3 text-sm text-ueno-muted">
+                <li className="flex items-start"><span className="text-ueno-brand mr-2 mt-0.5">•</span> Ticker de Rentabilidad diaria.</li>
+                <li className="flex items-start"><span className="text-ueno-brand mr-2 mt-0.5">•</span> uendi IA: Coaching predictivo.</li>
+                <li className="flex items-start"><span className="text-ueno-brand mr-2 mt-0.5">•</span> Segmentación por ADN Financiero.</li>
               </ul>
             </div>
-            <div className="bg-[#1E293B]/60 border border-gray-800 rounded-2xl p-6 hover:border-blue-500/50 transition-all group relative overflow-hidden">
+            <div className="bg-ueno-surface border border-ueno-border rounded-ueno-xl p-6 hover:border-ueno-purple/50 transition-all group relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-blue-400 opacity-75"></div>
               <div className="flex items-center space-x-3 mb-4">
-                <div className="p-2.5 bg-blue-500/20 text-blue-400 rounded-xl">
+                <div className="p-2.5 bg-ueno-purple/15 text-ueno-purple rounded-ueno-lg">
                   <Icons.DollarSign />
                 </div>
-                <h3 className="font-bold text-white text-lg">3. Monetización</h3>
+                <h3 className="font-bold text-ueno-text text-lg">3. Monetización</h3>
               </div>
-              <p className="text-xs font-semibold text-blue-400 uppercase tracking-widest mb-3">Rentabilidad</p>
-              <ul className="space-y-3 text-sm text-gray-400">
+              <p className="text-xs font-semibold text-ueno-purple uppercase tracking-widest mb-3">Rentabilidad</p>
+              <ul className="space-y-3 text-sm text-ueno-muted">
                 <li className="flex items-start"><span className="text-blue-500 mr-2 mt-0.5">•</span> ueno Ads: Retail Media.</li>
                 <li className="flex items-start"><span className="text-blue-500 mr-2 mt-0.5">•</span> Umarket: Checkout Express.</li>
                 <li className="flex items-start"><span className="text-blue-500 mr-2 mt-0.5">•</span> Panel Mi Comercio con IA.</li>
               </ul>
             </div>
-            <div className="bg-[#1E293B]/60 border border-gray-800 rounded-2xl p-6 hover:border-orange-500/50 transition-all group relative overflow-hidden">
+            <div className="bg-ueno-surface border border-ueno-border rounded-ueno-xl p-6 hover:border-orange-500/50 transition-all group relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500 to-orange-400 opacity-75"></div>
               <div className="flex items-center space-x-3 mb-4">
-                <div className="p-2.5 bg-orange-500/20 text-orange-400 rounded-xl">
+                <div className="p-2.5 bg-orange-500/20 text-ueno-orange rounded-ueno-lg">
                   <Icons.ShieldCheck />
                 </div>
-                <h3 className="font-bold text-white text-lg">4. Confianza</h3>
+                <h3 className="font-bold text-ueno-text text-lg">4. Confianza</h3>
               </div>
-              <p className="text-xs font-semibold text-orange-400 uppercase tracking-widest mb-3">Seguridad</p>
-              <ul className="space-y-3 text-sm text-gray-400">
+              <p className="text-xs font-semibold text-ueno-orange uppercase tracking-widest mb-3">Seguridad</p>
+              <ul className="space-y-3 text-sm text-ueno-muted">
                 <li className="flex items-start"><span className="text-orange-500 mr-2 mt-0.5">•</span> Identidad UNID biométrica E2E.</li>
                 <li className="flex items-start"><span className="text-orange-500 mr-2 mt-0.5">•</span> Seguridad 2.0 en redes WiFi.</li>
                 <li className="flex items-start"><span className="text-orange-500 mr-2 mt-0.5">•</span> Pagaré Digital legal.</li>
@@ -1904,13 +1982,13 @@
           </div>
 
           <div className="mb-6 flex flex-col items-center">
-            <span className="px-3 py-1 bg-[#00E58F]/20 text-[#00E58F] text-xs font-bold rounded-full mb-3 border border-[#00E58F]/30 uppercase tracking-widest">
+            <span className="px-3 py-1 bg-ueno-brand/20 text-ueno-brand text-xs font-bold rounded-full mb-3 border border-ueno-brand/40 uppercase tracking-widest">
               Explorar
             </span>
-            <h2 className="text-3xl font-extrabold text-white mb-2 text-center">
+            <h2 className="text-3xl font-extrabold text-ueno-text mb-2 text-center">
               Mapa del Ecosistema
             </h2>
-            <p className="text-gray-400 text-sm text-center max-w-xl">
+            <p className="text-ueno-muted text-sm text-center max-w-xl">
               Utiliza los controles de zoom o haz click y arrastra el mapa para explorar. Haz clic en las cajas coloreadas para expandir/colapsar ramas.
             </p>
           </div>
@@ -1923,22 +2001,22 @@
     // 8. VISTA DOCUMENTO / BLOG
     const BlogView = () => {
       return (
-        <div className="flex-1 overflow-y-auto p-4 md:p-8 bg-[#0B0F19] flex flex-col">
+        <div className="flex-1 overflow-y-auto p-4 md:p-8 bg-ueno-canvas flex flex-col">
           <div className="mb-6 flex flex-col items-center flex-shrink-0 max-w-3xl mx-auto text-center">
-            <span className="px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-bold rounded-full mb-3 border border-blue-500/30 uppercase tracking-widest">
+            <span className="px-3 py-1 bg-ueno-purple/15 text-ueno-purple text-xs font-bold rounded-full mb-3 border border-ueno-purple/30 uppercase tracking-widest">
               Documento Maestro · {STRATEGY_MASTER.version}
             </span>
-            <h2 className="text-3xl font-extrabold text-white mb-2">
+            <h2 className="text-3xl font-extrabold text-ueno-text mb-2">
               Estrategia de Producto SuperApp
             </h2>
-            <p className="text-gray-400 text-sm italic mb-4">"{STRATEGY_MASTER.promise}"</p>
-            <p className="text-gray-500 text-xs mb-4">
-              El contenido estructurado vive en la sección <strong className="text-gray-300">Estrategia Transversal</strong> (pilares, olas, métricas).
+            <p className="text-ueno-muted text-sm italic mb-4">"{STRATEGY_MASTER.promise}"</p>
+            <p className="text-ueno-muted/80 text-xs mb-4">
+              El contenido estructurado vive en la sección <strong className="text-ueno-muted">Estrategia Transversal</strong> (pilares, olas, métricas).
               Aquí se mantiene el material de apoyo embebido desde Drive.
             </p>
           </div>
           
-          <div className="flex-1 w-full min-h-[70vh] border border-gray-800 rounded-2xl overflow-hidden bg-white shadow-lg">
+          <div className="flex-1 w-full min-h-[70vh] border border-ueno-border rounded-ueno-xl overflow-hidden bg-white shadow-lg">
             <iframe 
               src="https://drive.google.com/file/d/1VJuLLnRS45nRAgL9CYCbQtgkOb8uaNev/preview" 
               width="100%" 
@@ -1989,20 +2067,20 @@
       const StatusBadge = ({ status }) => {
         if (status === 'projected') {
           return (
-            <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30 whitespace-nowrap">
+            <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-ueno-purple/15 text-ueno-purple border border-ueno-purple/30 whitespace-nowrap">
               Proyectado
             </span>
           );
         }
         return (
-          <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 whitespace-nowrap">
+          <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-ueno-brand/20 text-ueno-brand border border-ueno-brand/40 whitespace-nowrap">
             Actual
           </span>
         );
       };
 
       return (
-        <div className="flex h-screen bg-[#0F172A] text-gray-100 font-sans overflow-hidden">
+        <div className="flex h-screen bg-ueno-canvas text-ueno-text font-sans overflow-hidden">
           
           {isMobileMenuOpen && (
             <div 
@@ -2013,33 +2091,34 @@
 
           <aside className={`
             fixed md:relative inset-y-0 left-0 z-50
-            bg-[#1E293B] border-r border-gray-800 flex flex-col transition-all duration-300
+            bg-ueno-inverse text-white border-r border-white/10 flex flex-col transition-all duration-300
             ${isMobileMenuOpen ? 'translate-x-0 w-72' : '-translate-x-full md:translate-x-0'}
             ${!isMobileMenuOpen && isSidebarCollapsed ? 'md:w-20' : 'md:w-72'}
           `}>
-            <div className={`p-4 md:p-6 border-b border-gray-800 flex items-center ${isSidebarCollapsed ? 'justify-center' : 'justify-between'}`}>
+            <div className={`p-4 md:p-6 border-b border-white/10 flex items-center ${isSidebarCollapsed ? 'justify-center' : 'justify-between'}`}>
               {!isSidebarCollapsed && (
                 <div className="hidden md:block overflow-hidden whitespace-nowrap">
-                  <h1 className="text-2xl font-bold tracking-tight text-white">Grupo Vázquez</h1>
-                  <p className="text-sm text-[#00E58F] font-medium tracking-wide mt-1">ESTRATEGIA 2026</p>
-                  <p className="text-[10px] text-indigo-300 mt-2 font-semibold tracking-wide uppercase border border-indigo-500/40 bg-indigo-500/10 rounded px-2 py-0.5 inline-block">
+                  <p className="text-lg font-extrabold tracking-tight text-white lowercase">ueno<span className="text-ueno-brand">.</span></p>
+                  <h1 className="text-sm font-semibold tracking-tight text-white/80 mt-1">Grupo Vázquez</h1>
+                  <p className="text-xs text-ueno-brand font-medium tracking-wide mt-1">ESTRATEGIA 2026</p>
+                  <p className="text-[10px] text-ueno-brand mt-2 font-semibold tracking-wide uppercase border border-ueno-brand/40 bg-ueno-brand/10 rounded-full px-2 py-0.5 inline-block">
                     PDF · {STRATEGY_MASTER.version}
                   </p>
                 </div>
               )}
               {isSidebarCollapsed && (
                  <div className="hidden md:flex flex-col items-center gap-1">
-                   <div className="text-2xl font-bold text-[#00E58F]">GV</div>
-                   <span className="text-[8px] text-indigo-300 font-bold">PDF</span>
+                   <div className="text-2xl font-bold text-ueno-brand">GV</div>
+                   <span className="text-[8px] text-ueno-purple font-bold">PDF</span>
                  </div>
               )}
               
               <div className="flex items-center">
-                <button className="md:hidden text-gray-400 hover:text-white" onClick={() => setIsMobileMenuOpen(false)}>
+                <button className="md:hidden text-white/70 hover:text-white" onClick={() => setIsMobileMenuOpen(false)}>
                   <Icons.X />
                 </button>
                 <button 
-                  className="hidden md:flex items-center justify-center text-gray-400 hover:text-white w-8 h-8 rounded hover:bg-gray-800 transition-colors" 
+                  className="hidden md:flex items-center justify-center text-white/60 hover:text-white w-8 h-8 rounded hover:bg-white/10 transition-colors" 
                   onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
                   title={isSidebarCollapsed ? "Expandir menú" : "Colapsar menú"}
                 >
@@ -2058,11 +2137,11 @@
                     w-full flex items-center py-3 rounded-lg text-sm font-medium transition-colors mb-2
                     ${isSidebarCollapsed ? 'justify-center px-0' : 'px-3'}
                     ${activeSection === 'global' 
-                      ? 'bg-gradient-to-r from-blue-500/20 to-transparent border-l-2 border-blue-500 text-white' 
-                      : 'text-gray-400 hover:bg-gray-800/50 hover:text-gray-200'}
+                      ? 'bg-gradient-to-r from-ueno-brand/20 to-transparent border-l-2 border-ueno-brand text-white' 
+                      : 'text-white/55 hover:bg-white/10 hover:text-white'}
                   `}
                 >
-                  <span className={`text-lg ${isSidebarCollapsed ? 'mr-0' : 'mr-3'} ${activeSection === 'global' ? 'text-blue-400' : 'opacity-70'}`}>
+                  <span className={`text-lg ${isSidebarCollapsed ? 'mr-0' : 'mr-3'} ${activeSection === 'global' ? 'text-ueno-brand' : 'opacity-70'}`}>
                     <Icons.Target />
                   </span>
                   <span className={`${isSidebarCollapsed ? 'hidden' : 'block'} whitespace-nowrap font-bold`}>
@@ -2075,22 +2154,22 @@
                   <div className="space-y-1 mb-6">
                     <button 
                       onClick={() => setIsSuperAppSectionOpen(!isSuperAppSectionOpen)}
-                      className="w-full flex items-center justify-between px-3 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider hover:text-gray-300 transition-colors group"
+                      className="w-full flex items-center justify-between px-3 py-2 text-xs font-semibold text-white/40 uppercase tracking-wider hover:text-white/70 transition-colors group"
                     >
                       <span>Ecosistema ueno</span>
-                      <span className={`transform transition-transform duration-200 text-gray-500 group-hover:text-gray-300 ${isSuperAppSectionOpen ? 'rotate-180' : ''}`}>
+                      <span className={`transform transition-transform duration-200 text-white/40 group-hover:text-white/70 ${isSuperAppSectionOpen ? 'rotate-180' : ''}`}>
                         <Icons.ChevronDown />
                       </span>
                     </button>
                     
                     {isSuperAppSectionOpen && (
-                      <div className="mt-1 space-y-1 pl-2 border-l border-gray-800 transition-all">
+                      <div className="mt-1 space-y-1 pl-2 border-l border-white/10 transition-all">
                         
                         <button
                           onClick={() => { setActiveSection('transversal'); setIsMobileMenuOpen(false); }}
                           className={`
                             w-full flex items-center px-3 py-2.5 rounded-lg text-sm font-medium transition-colors
-                            ${activeSection === 'transversal' ? 'bg-[#00E58F]/10 text-[#00E58F]' : 'text-gray-400 hover:bg-gray-800/50 hover:text-gray-200'}
+                            ${activeSection === 'transversal' ? 'bg-ueno-brand/15 text-ueno-brand' : 'text-white/55 hover:bg-white/10 hover:text-white'}
                           `}
                         >
                           <span className="mr-3 text-lg"><Icons.BookOpen /></span>
@@ -2101,7 +2180,7 @@
                           onClick={() => { setActiveSection('superapp'); setIsMobileMenuOpen(false); }}
                           className={`
                             w-full flex items-center px-3 py-2.5 rounded-lg text-sm font-medium transition-colors
-                            ${activeSection === 'superapp' ? 'bg-[#00E58F]/10 text-[#00E58F]' : 'text-gray-400 hover:bg-gray-800/50 hover:text-gray-200'}
+                            ${activeSection === 'superapp' ? 'bg-ueno-brand/15 text-ueno-brand' : 'text-white/55 hover:bg-white/10 hover:text-white'}
                           `}
                         >
                           <span className="mr-3 text-lg"><Icons.Map /></span>
@@ -2112,7 +2191,7 @@
                           onClick={() => { setActiveSection('blog'); setIsMobileMenuOpen(false); }}
                           className={`
                             w-full flex items-center px-3 py-2.5 rounded-lg text-sm font-medium transition-colors
-                            ${activeSection === 'blog' ? 'bg-[#00E58F]/10 text-[#00E58F]' : 'text-gray-400 hover:bg-gray-800/50 hover:text-gray-200'}
+                            ${activeSection === 'blog' ? 'bg-ueno-brand/15 text-ueno-brand' : 'text-white/55 hover:bg-white/10 hover:text-white'}
                           `}
                         >
                           <span className="mr-3 text-lg"><Icons.FileText /></span>
@@ -2122,25 +2201,25 @@
                     )}
                   </div>
                 ) : (
-                  <div className="space-y-2 flex flex-col items-center border-b border-gray-800 pb-4 mb-4">
+                  <div className="space-y-2 flex flex-col items-center border-b border-ueno-border pb-4 mb-4">
                     <button
                       onClick={() => { setActiveSection('transversal'); setIsSuperAppSectionOpen(true); }}
                       title="Estrategia Transversal"
-                      className={`w-12 h-12 flex items-center justify-center rounded-lg text-lg transition-colors ${activeSection === 'transversal' ? 'bg-[#00E58F]/10 text-[#00E58F]' : 'text-gray-400 hover:bg-gray-800/50 hover:text-gray-200'}`}
+                      className={`w-12 h-12 flex items-center justify-center rounded-lg text-lg transition-colors ${activeSection === 'transversal' ? 'bg-ueno-brand/15 text-ueno-brand' : 'text-white/55 hover:bg-white/10 hover:text-white'}`}
                     >
                       <span className={activeSection !== 'transversal' ? 'opacity-70' : ''}><Icons.BookOpen /></span>
                     </button>
                     <button
                       onClick={() => { setActiveSection('superapp'); setIsSuperAppSectionOpen(true); }}
                       title="Super App & Mapa"
-                      className={`w-12 h-12 flex items-center justify-center rounded-lg text-lg transition-colors ${activeSection === 'superapp' ? 'bg-[#00E58F]/10 text-[#00E58F]' : 'text-gray-400 hover:bg-gray-800/50 hover:text-gray-200'}`}
+                      className={`w-12 h-12 flex items-center justify-center rounded-lg text-lg transition-colors ${activeSection === 'superapp' ? 'bg-ueno-brand/15 text-ueno-brand' : 'text-white/55 hover:bg-white/10 hover:text-white'}`}
                     >
                       <span className={activeSection !== 'superapp' ? 'opacity-70' : ''}><Icons.Map /></span>
                     </button>
                     <button
                       onClick={() => { setActiveSection('blog'); setIsSuperAppSectionOpen(true); }}
                       title="Documento"
-                      className={`w-12 h-12 flex items-center justify-center rounded-lg text-lg transition-colors ${activeSection === 'blog' ? 'bg-[#00E58F]/10 text-[#00E58F]' : 'text-gray-400 hover:bg-gray-800/50 hover:text-gray-200'}`}
+                      className={`w-12 h-12 flex items-center justify-center rounded-lg text-lg transition-colors ${activeSection === 'blog' ? 'bg-ueno-brand/15 text-ueno-brand' : 'text-white/55 hover:bg-white/10 hover:text-white'}`}
                     >
                       <span className={activeSection !== 'blog' ? 'opacity-70' : ''}><Icons.FileText /></span>
                     </button>
@@ -2152,16 +2231,16 @@
                   <div className="space-y-1">
                     <button 
                       onClick={() => setIsMetricsSectionOpen(!isMetricsSectionOpen)}
-                      className="w-full flex items-center justify-between px-3 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider hover:text-gray-300 transition-colors group"
+                      className="w-full flex items-center justify-between px-3 py-2 text-xs font-semibold text-white/40 uppercase tracking-wider hover:text-white/70 transition-colors group"
                     >
                       <span>Métricas por producto</span>
-                      <span className={`transform transition-transform duration-200 text-gray-500 group-hover:text-gray-300 ${isMetricsSectionOpen ? 'rotate-180' : ''}`}>
+                      <span className={`transform transition-transform duration-200 text-white/40 group-hover:text-white/70 ${isMetricsSectionOpen ? 'rotate-180' : ''}`}>
                         <Icons.ChevronDown />
                       </span>
                     </button>
                     
                     {isMetricsSectionOpen && (
-                      <div className="mt-1 space-y-1 pl-2 border-l border-gray-800 transition-all">
+                      <div className="mt-1 space-y-1 pl-2 border-l border-white/10 transition-all">
                         {PRODUCTS_DATA.map((product) => {
                           const isActive = activeSection === 'product' && activeProduct?.id === product.id;
                           return (
@@ -2171,8 +2250,8 @@
                               className={`
                                 w-full flex items-center px-3 py-2.5 rounded-lg text-sm font-medium transition-colors
                                 ${isActive 
-                                  ? 'bg-[#00E58F]/10 text-[#00E58F]' 
-                                  : 'text-gray-400 hover:bg-gray-800/50 hover:text-gray-200'}
+                                  ? 'bg-ueno-brand/15 text-ueno-brand' 
+                                  : 'text-white/55 hover:bg-white/10 hover:text-white'}
                               `}
                             >
                               <ProductLogo logoUrl={product.logoUrl} alt={product.name} className="w-5 h-5 mr-3" />
@@ -2198,8 +2277,8 @@
                           className={`
                             w-12 h-12 flex items-center justify-center rounded-lg text-lg transition-colors
                             ${isActive 
-                              ? 'bg-[#00E58F]/10 text-[#00E58F]' 
-                              : 'text-gray-400 hover:bg-gray-800/50 hover:text-gray-200'}
+                              ? 'bg-ueno-brand/15 text-ueno-brand' 
+                              : 'text-white/55 hover:bg-white/10 hover:text-white'}
                           `}
                         >
                           <ProductLogo logoUrl={product.logoUrl} alt={product.name} className={`w-6 h-6 ${!isActive ? 'opacity-70' : ''}`} />
@@ -2214,7 +2293,7 @@
           </aside>
 
           <main className="flex-1 flex flex-col h-full overflow-hidden relative">
-            <header className="md:hidden flex items-center justify-between p-4 bg-[#1E293B] border-b border-gray-800">
+            <header className="md:hidden flex items-center justify-between p-4 bg-ueno-inverse text-white border-b border-white/10">
               <div className="flex items-center space-x-3">
                 <span className="text-xl flex items-center justify-center w-6 h-6">
                    {activeSection === 'global' ? '🎯' : activeSection === 'transversal' ? '📖' : activeSection === 'superapp' ? '🗺️' : activeSection === 'blog' ? '📄' : <ProductLogo logoUrl={activeProduct?.logoUrl} alt={activeProduct?.name} className="w-6 h-6" />}
@@ -2223,7 +2302,7 @@
                   {activeSection === 'global' ? 'Estrategia Ecosistema' : activeSection === 'transversal' ? 'Estr. Transversal' : activeSection === 'superapp' ? 'Super App' : activeSection === 'blog' ? 'Documento' : activeProduct?.name}
                 </h2>
               </div>
-              <button onClick={() => setIsMobileMenuOpen(true)} className="text-gray-400">
+              <button onClick={() => setIsMobileMenuOpen(true)} className="text-ueno-muted">
                 <Icons.Menu />
               </button>
             </header>
@@ -2242,12 +2321,12 @@
                 <div className="mb-10">
                   <div className="hidden md:flex items-center justify-between mb-4">
                     <div className="flex items-center space-x-4">
-                      <div className="p-3 bg-[#00E58F]/10 rounded-xl w-14 h-14 flex items-center justify-center">
+                      <div className="p-3 bg-ueno-brand/15 rounded-ueno-lg w-14 h-14 flex items-center justify-center">
                         <ProductLogo logoUrl={activeProduct?.logoUrl} alt={activeProduct?.name} className="w-8 h-8" />
                       </div>
                       <div>
-                        <h2 className="text-3xl font-bold text-white">{activeProduct?.name}</h2>
-                        <p className="text-gray-400 mt-1">Dashboard de Control Estratégico 2026</p>
+                        <h2 className="text-3xl font-bold text-ueno-text">{activeProduct?.name}</h2>
+                        <p className="text-ueno-muted mt-1">Dashboard de Control Estratégico 2026</p>
                       </div>
                     </div>
                     
@@ -2256,7 +2335,7 @@
                         href={activeProduct.boardUrl} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="flex items-center space-x-2 px-4 py-2.5 bg-[#00E58F]/10 text-[#00E58F] hover:bg-[#00E58F]/20 rounded-lg text-sm font-semibold transition-colors"
+                        className="flex items-center space-x-2 px-4 py-2.5 bg-ueno-brand/15 text-ueno-brand hover:bg-ueno-brand/20 rounded-lg text-sm font-semibold transition-colors"
                       >
                         <span>Tablero del equipo</span>
                         <Icons.ExternalLink />
@@ -2270,7 +2349,7 @@
                         href={activeProduct.boardUrl} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="flex items-center justify-center space-x-2 w-full px-4 py-3 bg-[#00E58F]/10 text-[#00E58F] hover:bg-[#00E58F]/20 rounded-lg text-sm font-semibold transition-colors"
+                        className="flex items-center justify-center space-x-2 w-full px-4 py-3 bg-ueno-brand/15 text-ueno-brand hover:bg-ueno-brand/20 rounded-lg text-sm font-semibold transition-colors"
                       >
                         <span>Tablero del equipo</span>
                         <Icons.ExternalLink />
@@ -2278,21 +2357,21 @@
                     )}
                   </div>
                   
-                  <div className="bg-[#1E293B]/50 border border-gray-800 rounded-2xl p-6 mt-6 md:mt-0">
-                    <p className="text-gray-300 text-base leading-relaxed mb-6">
+                  <div className="bg-ueno-surface border border-ueno-border rounded-ueno-xl p-6 mt-6 md:mt-0">
+                    <p className="text-ueno-muted text-base leading-relaxed mb-6">
                       {activeProduct?.description}
                     </p>
                     
                     <div>
                       <div className="flex items-center space-x-2 mb-3">
-                        <div className="text-[#00E58F]"><Icons.Target /></div>
-                        <h4 className="text-lg font-semibold text-white">Objetivos Clave 2026</h4>
+                        <div className="text-ueno-brand"><Icons.Target /></div>
+                        <h4 className="text-lg font-semibold text-ueno-text">Objetivos Clave 2026</h4>
                       </div>
                       <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2">
                         {activeProduct?.objectives?.map((obj, i) => (
                           <li key={i} className="flex items-start">
-                            <span className="text-[#00E58F] mr-2 mt-1">•</span>
-                            <span className="text-sm text-gray-400">{obj}</span>
+                            <span className="text-ueno-brand mr-2 mt-1">•</span>
+                            <span className="text-sm text-ueno-muted">{obj}</span>
                           </li>
                         ))}
                       </ul>
@@ -2303,21 +2382,21 @@
                 <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
                   <section>
                     <div className="flex items-center mb-6">
-                      <div className="text-[#00E58F] mr-2"><Icons.Activity /></div>
-                      <h3 className="text-xl font-semibold text-white">Métricas Transversales</h3>
+                      <div className="text-ueno-brand mr-2"><Icons.Activity /></div>
+                      <h3 className="text-xl font-semibold text-ueno-text">Métricas Transversales</h3>
                     </div>
                     
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {activeProduct?.transversal?.map((metric, idx) => (
-                        <div key={idx} className="bg-[#1E293B] border border-gray-800 rounded-2xl p-5 hover:border-[#00E58F]/50 transition-colors flex flex-col justify-between h-full">
+                        <div key={idx} className="bg-ueno-surface border border-ueno-border rounded-ueno-xl p-5 shadow-ueno-1 hover:border-ueno-brand/50 hover:shadow-ueno-2 transition-all flex flex-col justify-between h-full">
                           <div className="flex items-start justify-between mb-4">
-                            <p className="text-sm font-medium text-gray-400 uppercase tracking-wider">{metric.label}</p>
-                            <div className="p-2 bg-[#0F172A] rounded-lg">
+                            <p className="text-sm font-medium text-ueno-muted uppercase tracking-wider">{metric.label}</p>
+                            <div className="p-2 bg-ueno-surface rounded-lg">
                               {getCategoryIcon(metric.category)}
                             </div>
                           </div>
                           <div className="flex flex-col gap-2 mt-auto">
-                            <p className="text-2xl font-bold text-white tracking-tight leading-tight">{metric.value}</p>
+                            <p className="text-2xl font-bold text-ueno-text tracking-tight leading-tight">{metric.value}</p>
                             <div className="self-start mt-1">
                               <StatusBadge status={metric.status} />
                             </div>
@@ -2329,16 +2408,16 @@
 
                   <section>
                     <div className="flex items-center mb-6">
-                      <div className="text-[#00E58F] mr-2"><Icons.Cpu /></div>
-                      <h3 className="text-xl font-semibold text-white">Métricas Específicas</h3>
+                      <div className="text-ueno-brand mr-2"><Icons.Cpu /></div>
+                      <h3 className="text-xl font-semibold text-ueno-text">Métricas Específicas</h3>
                     </div>
                     
                     <div className="space-y-4">
                       {activeProduct?.specific?.map((metric, idx) => (
-                        <div key={idx} className="bg-[#1E293B] border border-gray-800 rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between hover:border-[#00E58F]/50 transition-colors">
+                        <div key={idx} className="bg-ueno-surface border border-ueno-border rounded-ueno-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between hover:border-ueno-brand/50 transition-colors">
                           <div className="mb-3 sm:mb-0 sm:mr-4">
-                            <p className="text-sm font-medium text-[#00E58F] uppercase tracking-wider mb-1">{metric.label}</p>
-                            <p className="text-lg font-medium text-gray-200">{metric.value}</p>
+                            <p className="text-sm font-medium text-ueno-brand uppercase tracking-wider mb-1">{metric.label}</p>
+                            <p className="text-lg font-medium text-ueno-text">{metric.value}</p>
                           </div>
                           <div className="flex-shrink-0 self-start sm:self-auto">
                             <StatusBadge status={metric.status} />

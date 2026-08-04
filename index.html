@@ -397,7 +397,17 @@
             children: [
               { label: "uPay (Adquirencia, POS, QR)", productId: "upay" },
               { label: "QR LATAM (PIX, Argentina, etc.)" },
-              { label: "Wepa (Red de cobranzas)" }
+              { label: "Wepa (Red de cobranzas)" },
+              { label: "Tap to Phone (POS en smartphone)" }
+            ]
+          },
+          {
+            label: "Protección e Inversión",
+            children: [
+              { label: "ueno Seguros" },
+              { label: "Casa de Bolsa (FFMM)" },
+              { label: "Vinanzas" },
+              { label: "ueno+ Loyalty" }
             ]
           }
         ]
@@ -489,12 +499,378 @@
         lineColor: "bg-rose-500/50",
         children: [
           { label: "UNID (Identidad Digital Única)" },
+          { label: "Uendi (Coach / Hunter / Service)" },
+          { label: "Upay Hub (Switch propio)" },
+          { label: "Data Lake & Scoring Ecosistémico" },
           { label: "uCel (Activación línea 5G)" },
           { label: "ueno Academy (Formación Financiera)" },
-          { label: "La Tribu (Medios y Noticias)" }
+          { label: "La Tribu (Medios y Noticias)" },
+          { label: "MasMoney (Educación financiera)" }
+        ]
+      },
+      {
+        label: "Deportes y Entretenimiento",
+        logoUrl: "https://www.google.com/s2/favicons?domain=tuti.com.py&sz=128",
+        color: "text-amber-400 border-amber-500/50 bg-amber-500/10",
+        lineColor: "bg-amber-500/50",
+        children: [
+          {
+            label: "Ticketera y Viajes",
+            children: [
+              { label: "TUTI (Entradas + UNID)", productId: "tuti" },
+              { label: "Uela (Vuelos y Hoteles)", productId: "uela" },
+              { label: "G5 (Entretenimiento)", productId: "g5" }
+            ]
+          },
+          {
+            label: "Fans y Deportes",
+            children: [
+              { label: "ueno Sports" },
+              { label: "Fan Apps (Olimpia, Cerro, APF)" }
+            ]
+          }
         ]
       }
     ];
+
+
+    // 4b. DOCUMENTO MAESTRO SUPERAPP (PDF Mayo 2026) — fuente única para Estrategia Transversal
+    const STRATEGY_MASTER = {
+      promise: "No es una app. Es donde pasa mi vida financiera.",
+      version: "Mayo 2026",
+      gaps: [
+        { title: "Brecha de integración", text: "Las empresas del grupo operan como silos con apps separadas. Monchis, TUTI, Uela y ueno se sienten como productos distintos, no como un ecosistema." },
+        { title: "Brecha de anticipación", text: "La app reacciona cuando el usuario la abre. Hay que pasar de REACCIONAR a PROPONER y EJECUTAR ante intenciones — antes de que las exprese." },
+        { title: "Brecha de rol del cliente", text: "Hoy el cliente es activo-autogestionado. El destino es Director: define límites y objetivos; la plataforma ejecuta. De 5 pasos del journey a 1 intención." }
+      ],
+      pillars: [
+        {
+          id: 1,
+          title: "Control & Claridad",
+          objective: "Que el usuario sienta control inmediato de su dinero",
+          maturity: "Parcialmente implementado — Sprint 1-4 en curso. Meta Ola 1: CU Claridad Mental en producción.",
+          items: [
+            "Home Inteligente: saldo + estado financiero del día + insights",
+            "Control total de tarjetas (límites, on/off, bloqueo por categoría, virtuales)",
+            "Pagos sin fricción: 1-click, Pagar todo, historial categorizado",
+            "Clasificación automática de gastos con insights humanos",
+            "Liquidez inmediata contextual (línea preaprobada 1-click)"
+          ]
+        },
+        {
+          id: 2,
+          title: "Anticipación & Automatización",
+          objective: "Que la app piense por el usuario",
+          maturity: "Bloqueante: CAP-DATA-Batch (clasificarTransacciones, calcularCapacidadAhorro, calcularFlujoCaja).",
+          items: [
+            "Motor predictivo de saldo a fin de mes (alerta a 5 días)",
+            "Auto-pago, auto-ahorro y reglas definidas por el usuario",
+            "Metas simples con tracking emocional",
+            "Bundles por contexto: Modo viaje / fin de semana / ahorro"
+          ]
+        },
+        {
+          id: 3,
+          title: "Ecosistema y Vida Diaria",
+          objective: "Convertir la app en hábito diario",
+          maturity: "UNID ~80% en ueno bank y uMarket. Meta 2026: 100% del grupo.",
+          items: [
+            "uMarket integrado (BNPL, ueno+, checkout unificado)",
+            "Flujos cortos: Monchis, MUV, TUTI, Uela, G5 (sin redirect)",
+            "Finanzas para negocios dentro de la app persona (Upay, Conto, crédito PyME)",
+            "Loyalty gamificado ueno+ (misiones, niveles, rewards en tiempo real)",
+            "Familia & Kids (21k usuarios ueno kids) + educación financiera"
+          ]
+        },
+        {
+          id: 4,
+          title: "SuperApp Inteligente",
+          objective: "Que la app sea un agente que actúa",
+          maturity: "Uendi +190k conversaciones/mes; coach+hunter+service hacia producción Ola 1.",
+          items: [
+            "Uendi Copilot: chat en lenguaje natural para consultar y ejecutar",
+            "Agentes: coaching, hunter, service (≥80% resolución sin escalado)",
+            "Grandes decisiones con simulación + ejecución (vivienda, vehículo, educación)",
+            "Personalización extrema / home por segmento",
+            "Visión 2027: hub financiero total (cuentas externas / open banking)"
+          ]
+        },
+        {
+          id: 5,
+          title: "Control & Empoderamiento del Cliente",
+          objective: "Que el cliente sea el Director",
+          maturity: "Meta 2026-2027. Hoy mayoría masiva en Pasivo/Autogestión.",
+          items: [
+            "Evolución: Pasivo → Autogestión → Informado → Dialogante → Director",
+            "El usuario define límites; la plataforma gestiona el resto",
+            "UNID como reputación financiera interna del grupo"
+          ]
+        }
+      ],
+      clientStages: [
+        { stage: "Pasivo", behavior: "Inicia todas las acciones", where: "Mayoría usuarios masivos" },
+        { stage: "Autogestión", behavior: "Altas y reclamos 100% remotos", where: "Clientes digitalizados" },
+        { stage: "Informado", behavior: "Asesoramiento y ofertas personalizadas", where: "Usuarios con Uendi" },
+        { stage: "Dialogante", behavior: "Interactúa manteniendo control total", where: "Usuarios avanzados" },
+        { stage: "Director", behavior: "Define límites y objetivos (no hace clics)", where: "Meta 2026-2027", highlight: true }
+      ],
+      ecosystem: [
+        {
+          id: "financiero",
+          name: "Ecosistema Financiero",
+          accent: "indigo",
+          companies: [
+            { name: "ueno bank", role: "Núcleo financiero. Cuenta, crédito, pagos, inversiones, seguros", status: "Habilitado", statusTone: "ok", productId: "ueno-bank" },
+            { name: "Upay / PagoPar", role: "Adquirencia. POS, QR, e-commerce, link de pago, Tap to Phone", status: "Habilitado / En desarrollo", statusTone: "wip", productId: "upay" },
+            { name: "Wepa", role: "Corresponsalía bancaria. TED, CNB, remesas, cobro de servicios", status: "Habilitado", statusTone: "ok" },
+            { name: "UNID", role: "Identidad digital unificada. KYC, SSO, onboarding", status: "En implementación (80%)", statusTone: "wip" },
+            { name: "ueno Seguros", role: "Seguros de vida, auto, celular, hogar en flujo bancario", status: "Habilitado", statusTone: "ok" },
+            { name: "Casa de Bolsa", role: "Inversiones (fondos PYG/USD, bonos, acciones)", status: "Habilitado", statusTone: "ok" },
+            { name: "Vinanzas", role: "Gestión de cartera propia y de terceros", status: "Habilitado", statusTone: "ok" },
+            { name: "ueno+", role: "Programa de loyalty transversal al grupo (2.8M usuarios)", status: "Habilitado", statusTone: "ok" }
+          ]
+        },
+        {
+          id: "plataformas",
+          name: "Plataformas y E-commerce",
+          accent: "emerald",
+          companies: [
+            { name: "Conto", role: "Tributación, facturación electrónica, Mis Finanzas en app ueno", status: "Habilitado + en desarrollo", statusTone: "ok", productId: "conto" },
+            { name: "BIMS", role: "ERP para PyMEs. Nómina, proveedores, conciliación bancaria", status: "En implementación", statusTone: "wip", productId: "bims" },
+            { name: "uMarket", role: "Marketplace integrado. Primera categoría: camisetas y electrónica", status: "En implementación", statusTone: "wip", productId: "umarket" },
+            { name: "Monchis", role: "Delivery de comida. Integración como flujo corto en app", status: "Habilitado", statusTone: "ok", productId: "monchis" },
+            { name: "MUV / Ubox", role: "Movilidad y logística internacional. Tracking en app", status: "Habilitado", statusTone: "ok", productId: "muv" },
+            { name: "YUDA", role: "Marketplace de servicios del hogar", status: "Habilitado", statusTone: "ok" },
+            { name: "Itti Prop", role: "Avalúos inmobiliarios. Datos de activos para scoring", status: "Habilitado", statusTone: "ok" },
+            { name: "Ueno Ads", role: "Publicidad hiperesegmentada basada en comportamiento de gasto", status: "Planeado H1 2026", statusTone: "plan" },
+            { name: "ueno Academy", role: "Educación financiera y empresarial para PyMEs", status: "Planeado H1 2026", statusTone: "plan" },
+            { name: "La Tribu", role: "Medios digitales, streaming, La Tribuna", status: "Planeado H1 2026", statusTone: "plan" },
+            { name: "MasMoney", role: "Educación financiera — proveedor interno del ecosistema", status: "Habilitado", statusTone: "ok" },
+            { name: "Ucel", role: "Telecomunicaciones 5G. Recarga y planes vía Wepa", status: "Planeado H1 2026", statusTone: "plan" }
+          ]
+        },
+        {
+          id: "entretenimiento",
+          name: "Deportes, Entretenimiento y Viajes",
+          accent: "rose",
+          companies: [
+            { name: "TUTI", role: "Ticketera digital. Compra integrada en app ueno (login UNID)", status: "Habilitado — UNID en proceso", statusTone: "wip", productId: "tuti" },
+            { name: "Uela", role: "Agencia de viajes digital. Vuelos, hoteles, seguros de viaje", status: "Habilitado web — App en desarrollo", statusTone: "wip", productId: "uela" },
+            { name: "ueno Sports", role: "Patrocinio, eventos deportivos, transformación digital estadios", status: "Habilitado", statusTone: "ok" },
+            { name: "Fan Apps", role: "Olimpia, Cerro, APF — acceso fans, boletas, captura de datos", status: "Habilitado", statusTone: "ok" },
+            { name: "G5", role: "Entretenimiento nocturno", status: "En planeación", statusTone: "plan", productId: "g5" },
+            { name: "HUMANITTI", role: "RRHH y nómina. Integración bancaria para pago de salarios", status: "En implementación", statusTone: "wip", productId: "humanitti" },
+            { name: "ITTI", role: "Tecnología transversal. Documental, firma electrónica, fan apps", status: "Habilitado", statusTone: "ok", productId: "itti" }
+          ]
+        }
+      ],
+      architecture: [
+        { title: "UNID — Identidad que unifica", text: "Un usuario, una identidad. Biometría, KYC reutilizable, SSO. Estado: ~80% en ueno bank y uMarket. Meta 2026: 100% del grupo.", tone: "indigo" },
+        { title: "Uendi — Sistema nervioso conversacional", text: "Orquestador de agentes (coaching, hunter, service). +190k conversaciones/mes. Meta: canal principal de interacción en 2027.", tone: "emerald" },
+        { title: "Motor de Scoring Ecosistémico", text: "Usa data del ecosistema (Monchis, Conto, Upay, uMarket) para expandir frontera crediticia más allá del historial bancario tradicional.", tone: "blue" },
+        { title: "Data Lake del Grupo", text: "Activo más valioso a largo plazo. Gobernanza y privacidad no negociables.", tone: "purple" },
+        { title: "Upay Hub — Switch transaccional propio", text: "Procesar pagos directo con Visa/Mastercard. Independencia de intermediarios y mejor margen. En desarrollo activo.", tone: "orange" }
+      ],
+      waves: [
+        {
+          id: "ola1",
+          name: "Ola 1 — 2026: Fundaciones e Integración Visible",
+          tone: "indigo",
+          buckets: [
+            {
+              name: "Producto — Personas",
+              items: [
+                { label: "Home inteligente (estado del día + liquidez contextual)", status: "in_progress" },
+                { label: "Clasificación automática de gastos", status: "in_progress" },
+                { label: "Metas y presupuestos con tracking visual", status: "todo" },
+                { label: "CU Claridad Mental (Uendi + metas + presupuestos)", status: "todo" },
+                { label: "Domiciliación de sueldo sin fricción", status: "todo" },
+                { label: "Gamificación in-app y referidos", status: "todo" }
+              ]
+            },
+            {
+              name: "Producto — Empresas",
+              items: [
+                { label: "Web empresas cash management (reportería, ERP, tarjetas)", status: "todo" },
+                { label: "Bundles por cluster PyME", status: "todo" },
+                { label: "Motor PyME en scoring automático", status: "todo" },
+                { label: "Plan QR P2P en 4 grandes mercados", status: "todo" }
+              ]
+            },
+            {
+              name: "Integraciones del Ecosistema",
+              items: [
+                { label: "uMarket: flujos cortos de compra in-app", status: "in_progress" },
+                { label: "Conto: Mis Finanzas + carga automatizada de comprobantes", status: "in_progress" },
+                { label: "Ubox: tracking de paquetes in-app", status: "todo" },
+                { label: "TUTI: login UNID + compra preferente afluentes", status: "in_progress" },
+                { label: "Checkout integrado TUTI / Uela / Pagopar", status: "todo" }
+              ]
+            },
+            {
+              name: "Infraestructura",
+              items: [
+                { label: "UNID al 100% del grupo", status: "in_progress" },
+                { label: "Uendi coach + hunter + service en producción", status: "in_progress" },
+                { label: "Motor predictivo saldo (CAP-DATA-Batch) — bloqueante", status: "todo" },
+                { label: "Hiperpersonalización predictiva en tarjetas", status: "todo" },
+                { label: "QR Interoperable (normativa BCP)", status: "todo" },
+                { label: "Tap to Phone (POS digital en smartphone)", status: "todo" }
+              ]
+            },
+            {
+              name: "Afluente & Otros negocios",
+              items: [
+                { label: "Lounge ueno en producción", status: "todo" },
+                { label: "Salesforce 360 hot leads + SLAs", status: "todo" },
+                { label: "Pricing diferenciado / preaprobado hasta Gs 100M", status: "todo" },
+                { label: "ueno Ads POC marca blanca", status: "todo" },
+                { label: "Estabilidad operacional ueno Seguros", status: "todo" },
+                { label: "Casa de Bolsa en canales digitales (FFMM)", status: "todo" }
+              ]
+            }
+          ]
+        },
+        {
+          id: "ola2",
+          name: "Ola 2 — 2026/2027: Transformación e Inteligencia Total",
+          tone: "emerald",
+          buckets: [
+            {
+              name: "Inteligencia",
+              items: [
+                { label: "Uendi Agentic (ejecución autónoma NLP)", status: "todo" },
+                { label: "NBC — Next Best Conversation", status: "todo" },
+                { label: "Access-based credit (activos ecosistema como colateral)", status: "todo" },
+                { label: "Data alternativa (psicometría, metadata)", status: "todo" },
+                { label: "Grandes decisiones: simulación + ejecución", status: "todo" }
+              ]
+            },
+            {
+              name: "Experiencia & Ecosistema",
+              items: [
+                { label: "Home dinámico por segmento", status: "todo" },
+                { label: "Bundles Modo viaje / ahorro / fin de semana", status: "todo" },
+                { label: "Familia: subcuentas avanzadas + educación gamificada", status: "todo" },
+                { label: "Monchis y MUV como flujos nativos (sin redirect)", status: "todo" },
+                { label: "La Tribu + Ucel integrados en home", status: "todo" },
+                { label: "ueno Ads escala con CLO", status: "todo" }
+              ]
+            },
+            {
+              name: "Infraestructura",
+              items: [
+                { label: "Upay Hub en producción", status: "todo" },
+                { label: "Integración financiera total (hub open banking)", status: "todo" },
+                { label: "Scoring 100% automatizado con data ecosistémica", status: "todo" }
+              ]
+            }
+          ]
+        }
+      ],
+      metrics: [
+        {
+          name: "Adopción y Frecuencia",
+          tone: "indigo",
+          rows: [
+            { metric: "DAU / MAU ratio", definition: "Proxy de hábito diario", target: ">60%" },
+            { metric: "Sesiones por usuario activo/día", definition: "Aperturas promedio por día", target: ">2.5" },
+            { metric: "Time in app por sesión", definition: "Duración promedio de sesión", target: ">3 min" },
+            { metric: "% usuarios con interacción diaria", definition: "Abren al menos 1 vez/día / MAUs", target: ">50%" },
+            { metric: "Retención D30 / D90", definition: "Nuevos activos a 30 / 90 días", target: ">65% / >50%" }
+          ]
+        },
+        {
+          name: "Cross-sell y Ecosistema",
+          tone: "emerald",
+          rows: [
+            { metric: "Índice productos por cliente", definition: "Productos activos promedio en el grupo", target: ">3.5" },
+            { metric: "Tasa cross-sell ecosistema", definition: "% clientes ueno con ≥1 empresa fuera del banco", target: ">30%" },
+            { metric: "Transacciones inter-empresa", definition: "Tx que involucran 2+ empresas del grupo", target: "Línea base +40%" },
+            { metric: "Activación ueno+", definition: "Enrolados con ≥1 tx de beneficio", target: ">70%" },
+            { metric: "Adopción uMarket", definition: "≥1 compra uMarket in-app", target: ">15% Q4" }
+          ]
+        },
+        {
+          name: "Inteligencia y Automatización",
+          tone: "blue",
+          rows: [
+            { metric: "% interacciones con IA perceptible", definition: "Sesiones con propuesta/acción proactiva", target: ">40%" },
+            { metric: "Resolución Uendi sin escalado", definition: "Conversaciones sin humano", target: ">80%" },
+            { metric: "Aceptación propuestas proactivas", definition: "% propuestas del motor aceptadas", target: ">25%" },
+            { metric: "Tiempo de respuesta Uendi", definition: "Latencia conversacional", target: "<3 seg" },
+            { metric: "NPS Uendi", definition: "NPS del asistente", target: ">50" },
+            { metric: "Madurez IA (OKR)", definition: "Score compuesto 0-100", target: "Baseline Q2 2026" }
+          ]
+        },
+        {
+          name: "Onboarding y Activación",
+          tone: "orange",
+          rows: [
+            { metric: "Onboarding personas", definition: "Minutos hasta cuenta activa", target: "<5 min" },
+            { metric: "Onboarding empresas", definition: "Días hasta cuenta operativa digital", target: "<24 h" },
+            { metric: "Completación onboarding", definition: "% sin abandono", target: ">75%" },
+            { metric: "Time to first transaction", definition: "Onboarding → 1ª tx", target: "<48 h" },
+            { metric: "Activación primeros 7 días", definition: "≥3 tx en 7 días", target: ">55%" },
+            { metric: "Adopción UNID en nuevas apps", definition: "Login UNID vs registro nuevo", target: ">80%" }
+          ]
+        },
+        {
+          name: "Experiencia y Calidad",
+          tone: "purple",
+          rows: [
+            { metric: "App store rating", definition: "Promedio App Store + Play", target: ">4.6" },
+            { metric: "Crash rate", definition: "% sesiones con error", target: "<0.5%" },
+            { metric: "NPS por segmento", definition: "Masivo, MiPyME, Afluente", target: ">50 todos" },
+            { metric: "CSAT post Uendi", definition: "Satisfacción post conversación", target: ">4.2/5" },
+            { metric: "Churn mensual", definition: "% activos que dejan de serlo", target: "<2%" },
+            { metric: "Disponibilidad plataforma", definition: "Uptime", target: ">99.9%" }
+          ]
+        },
+        {
+          name: "Everyday Banking",
+          tone: "rose",
+          rows: [
+            { metric: "% pagan servicios in-app", definition: "≥1 pago de servicio/mes", target: ">60%" },
+            { metric: "Frecuencia pagos de servicios", definition: "Pagos/usuario activo/mes", target: ">5" },
+            { metric: "Adopción NFC", definition: "% con tarjeta que usa NFC (hoy 34%)", target: ">45%" },
+            { metric: "QR ueno activo", definition: "≥1 pago QR últimos 30 días", target: ">40%" },
+            { metric: "Domiciliación de sueldo", definition: "Sueldo en ueno / formales", target: ">30%" },
+            { metric: "Usuarios con metas activas", definition: "% MAUs con ≥1 meta", target: ">20%" }
+          ]
+        }
+      ],
+      priorities: [
+        { n: 1, title: "Control + pagos → Retención", text: "Si siente control y puede pagar todo desde la app, no tiene razón para ir a otro banco.", tone: "indigo" },
+        { n: 2, title: "Insights simples → Engagement", text: "Claridad en lenguaje humano convierte la app en hábito diario.", tone: "emerald" },
+        { n: 3, title: "Liquidez contextual → Monetización", text: "Crédito en el momento y monto correctos.", tone: "blue" },
+        { n: 4, title: "Ecosistema → Frecuencia", text: "Vida diaria en el grupo genera el volumen de datos que perfecciona todo.", tone: "purple" },
+        { n: 5, title: "IA → Diferenciación real", text: "Anticipar y ejecutar antes de que el usuario pida. Inigualable.", tone: "orange" }
+      ]
+    };
+
+    const statusToneClass = (tone) => {
+      if (tone === 'ok') return 'text-emerald-400';
+      if (tone === 'wip') return 'text-yellow-400';
+      if (tone === 'plan') return 'text-blue-400';
+      return 'text-gray-400';
+    };
+
+    const waveItemStatus = (status) => {
+      if (status === 'done') return { label: 'Hecho', cls: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' };
+      if (status === 'in_progress') return { label: 'En curso', cls: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30' };
+      return { label: 'Pendiente', cls: 'bg-gray-500/20 text-gray-400 border-gray-500/30' };
+    };
+
+    const accentBorder = {
+      indigo: 'border-indigo-500', emerald: 'border-emerald-500', blue: 'border-blue-500',
+      orange: 'border-orange-500', purple: 'border-purple-500', rose: 'border-rose-500'
+    };
+    const accentText = {
+      indigo: 'text-indigo-400', emerald: 'text-emerald-400', blue: 'text-blue-400',
+      orange: 'text-orange-400', purple: 'text-purple-400', rose: 'text-rose-400'
+    };
+
 
     // 5. COMPONENTES DEL MAPA MENTAL
     const MindMapBranch = ({ node, onNavigate, parentLineColor = "bg-gray-700", isFirst = true, isLast = true, onToggle, level = 1 }) => {
@@ -1105,9 +1481,9 @@
         '3. 5 Pilares', 
         '4. Ecosistema', 
         '5. Arquitectura', 
-        '6. Roadmap', 
+        '6. Tracker Olas', 
         '7. Métricas', 
-        '8. Conexión Total'
+        '8. Prioridades'
       ];
 
       return (
@@ -1120,8 +1496,9 @@
               La Promesa que lo <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">Define Todo</span>
             </h2>
             <p className="text-gray-400 text-lg border-l-4 border-indigo-500 pl-4 italic">
-              "No es una app. Es donde pasa mi vida financiera."
+              "{STRATEGY_MASTER.promise}"
             </p>
+            <p className="text-xs text-gray-500 mt-3">Documento Maestro SuperApp · {STRATEGY_MASTER.version}</p>
           </div>
 
           <div className="max-w-5xl mx-auto">
@@ -1145,7 +1522,7 @@
               
               {activeTab === 0 && (
                 <div className="animate-fade-in">
-                  <h3 className="text-2xl font-bold text-white mb-6">El punto de partida real (Mayo 2026)</h3>
+                  <h3 className="text-2xl font-bold text-white mb-6">El punto de partida real ({STRATEGY_MASTER.version})</h3>
                   
                   <h4 className="text-lg font-bold text-indigo-400 mb-4">Lo que ya tenemos (y es extraordinario)</h4>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
@@ -1153,7 +1530,7 @@
                       { val: "2.8M", label: "Clientes (1.7 de cada 3 paraguayos)" },
                       { val: "1.5M", label: "DAUs (>2 aperturas/día)" },
                       { val: "+100M", label: "Interacciones digitales/mes" },
-                      { val: "28%", label: "Market share" },
+                      { val: "28%", label: "Market share transferencias" },
                       { val: "73%", label: "Adopción digital (+33pp vs 2024)" },
                       { val: "34%", label: "Adopción NFC (#1 región)" },
                       { val: "2.8M", label: "Enrolados en ueno+" },
@@ -1168,18 +1545,12 @@
 
                   <h4 className="text-lg font-bold text-orange-400 mb-4">Lo que aún nos falta (y es lo que importa)</h4>
                   <div className="space-y-4">
-                    <div className="p-4 bg-orange-500/10 border border-orange-500/20 rounded-xl">
-                      <h5 className="font-bold text-orange-400 mb-1">1. Brecha de Integración</h5>
-                      <p className="text-sm text-gray-300">Las empresas operan como silos. El usuario no siente el "ecosistema" al usar MUV, ueno, TUTI, etc.</p>
-                    </div>
-                    <div className="p-4 bg-orange-500/10 border border-orange-500/20 rounded-xl">
-                      <h5 className="font-bold text-orange-400 mb-1">2. Brecha de Anticipación</h5>
-                      <p className="text-sm text-gray-300">La app reacciona, no propone. Debemos pasar de reaccionar a <b>proponer y ejecutar</b> en línea antes de que exprese la intención.</p>
-                    </div>
-                    <div className="p-4 bg-orange-500/10 border border-orange-500/20 rounded-xl">
-                      <h5 className="font-bold text-orange-400 mb-1">3. Brecha de Rol del Cliente</h5>
-                      <p className="text-sm text-gray-300">Hoy el cliente es activo-autogestionado. El destino es que sea <b>Director</b>: define límites/objetivos y la plataforma los ejecuta.</p>
-                    </div>
+                    {STRATEGY_MASTER.gaps.map((gap, i) => (
+                      <div key={gap.title} className="p-4 bg-orange-500/10 border border-orange-500/20 rounded-xl">
+                        <h5 className="font-bold text-orange-400 mb-1">{i + 1}. {gap.title}</h5>
+                        <p className="text-sm text-gray-300">{gap.text}</p>
+                      </div>
+                    ))}
                   </div>
                 </div>
               )}
@@ -1216,48 +1587,49 @@
 
               {activeTab === 2 && (
                 <div className="animate-fade-in">
-                  <h3 className="text-2xl font-bold text-white mb-6">Los 5 Pilares Estratégicos</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">Los 5 Pilares Estratégicos</h3>
+                  <p className="text-gray-400 text-sm mb-6">Fuente: Documento Maestro SuperApp · {STRATEGY_MASTER.version}</p>
                   
-                  <div className="space-y-4 mb-8">
-                    <div className="p-5 bg-[#0F172A] border border-gray-800 rounded-xl">
-                      <h4 className="font-bold text-white text-lg mb-1"><span className="text-indigo-500 mr-2">1.</span>Control & Claridad</h4>
-                      <p className="text-sm text-gray-400 mb-2">Objetivo: Que el usuario sienta control inmediato de su dinero.</p>
-                      <p className="text-sm text-gray-300">Home Inteligente, Control total de tarjetas, Pagos sin fricción (1-click, pagar todo), Clasificación automática y Liquidez inmediata contextual.</p>
-                    </div>
-                    <div className="p-5 bg-[#0F172A] border border-gray-800 rounded-xl">
-                      <h4 className="font-bold text-white text-lg mb-1"><span className="text-indigo-500 mr-2">2.</span>Anticipación & Automatización</h4>
-                      <p className="text-sm text-gray-400 mb-2">Objetivo: Que la app piense por el usuario.</p>
-                      <p className="text-sm text-gray-300">Motor predictivo de saldo, automatización financiera (auto-pago, auto-ahorro), metas simples con tracking emocional y bundles financieros por contexto (Modo Viaje, Modo Ahorro).</p>
-                    </div>
-                    <div className="p-5 bg-[#0F172A] border border-gray-800 rounded-xl">
-                      <h4 className="font-bold text-white text-lg mb-1"><span className="text-indigo-500 mr-2">3.</span>Ecosistema y Vida Diaria</h4>
-                      <p className="text-sm text-gray-400 mb-2">Objetivo: Convertir la app en hábito diario.</p>
-                      <p className="text-sm text-gray-300">Marketplace integrado, flujos cortos para servicios del grupo, finanzas para negocios en la app persona, loyalty gamificado, Familia & Kids y UNID como columna vertebral.</p>
-                    </div>
-                    <div className="p-5 bg-[#0F172A] border border-gray-800 rounded-xl">
-                      <h4 className="font-bold text-white text-lg mb-1"><span className="text-indigo-500 mr-2">4.</span>SuperApp Inteligente</h4>
-                      <p className="text-sm text-gray-400 mb-2">Objetivo: Que la app sea un agente que actúa.</p>
-                      <p className="text-sm text-gray-300">Uendi como Copilot (Coaching, Hunter, Service), toma de grandes decisiones con simulación (vivienda, vehículo), personalización extrema e integración financiera total (Open Banking).</p>
-                    </div>
-                    <div className="p-5 bg-[#0F172A] border border-gray-800 rounded-xl">
-                      <h4 className="font-bold text-white text-lg mb-1"><span className="text-indigo-500 mr-2">5.</span>Control & Empoderamiento del Cliente</h4>
-                      <p className="text-sm text-gray-400 mb-2">Objetivo: Que el cliente sea el Director.</p>
-                      <p className="text-sm text-gray-300">Evolución de Pasivo → Autogestión → Informado → Dialogante → Director. Identidad financiera única basada en el comportamiento dentro de todo el ecosistema.</p>
-                    </div>
+                  <div className="space-y-4 mb-10">
+                    {STRATEGY_MASTER.pillars.map((pilar) => (
+                      <div key={pilar.id} className="p-5 bg-[#0F172A] border border-gray-800 rounded-xl">
+                        <h4 className="font-bold text-white text-lg mb-1">
+                          <span className="text-indigo-500 mr-2">{pilar.id}.</span>{pilar.title}
+                        </h4>
+                        <p className="text-sm text-gray-400 mb-3">Objetivo: {pilar.objective}</p>
+                        <ul className="space-y-1.5 mb-3">
+                          {pilar.items.map((item, i) => (
+                            <li key={i} className="flex items-start text-sm text-gray-300">
+                              <span className="text-indigo-400 mr-2 mt-0.5">•</span>
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        <p className="text-xs text-yellow-400/90 border-t border-gray-800 pt-3 mt-2">
+                          Madurez: {pilar.maturity}
+                        </p>
+                      </div>
+                    ))}
                   </div>
 
-                  <h4 className="text-lg font-bold text-indigo-400 mb-4">La Evolución del Rol del Cliente</h4>
-                  <div className="overflow-x-auto rounded-xl border border-gray-800">
+                  <h3 className="text-xl font-bold text-white mb-4">Evolución del rol del cliente</h3>
+                  <div className="overflow-x-auto rounded-xl border border-gray-800 mb-2">
                     <table className="w-full text-left text-sm text-gray-300">
                       <thead className="bg-[#0F172A] text-gray-400">
-                        <tr><th className="px-4 py-3">Estadio</th><th className="px-4 py-3">Comportamiento</th><th className="px-4 py-3">Dónde estamos hoy</th></tr>
+                        <tr>
+                          <th className="px-4 py-3">Estadio</th>
+                          <th className="px-4 py-3">Comportamiento</th>
+                          <th className="px-4 py-3">Dónde estamos</th>
+                        </tr>
                       </thead>
                       <tbody className="divide-y divide-gray-800">
-                        <tr className="hover:bg-gray-800/30"><td className="px-4 py-3 font-bold text-white">Pasivo</td><td className="px-4 py-3">El cliente inicia todas las acciones (consultas, transferencias)</td><td className="px-4 py-3">Mayoría de usuarios masivos</td></tr>
-                        <tr className="hover:bg-gray-800/30"><td className="px-4 py-3 font-bold text-white">Autogestión</td><td className="px-4 py-3">Realiza altas y reclamos 100% remotos</td><td className="px-4 py-3">Clientes digitalizados</td></tr>
-                        <tr className="hover:bg-gray-800/30"><td className="px-4 py-3 font-bold text-white">Informado</td><td className="px-4 py-3">Recibe asesoramiento y ofertas personalizadas</td><td className="px-4 py-3">Usuarios con uendi activado</td></tr>
-                        <tr className="hover:bg-gray-800/30"><td className="px-4 py-3 font-bold text-white">Dialogante</td><td className="px-4 py-3">Interactúa manteniendo el control total</td><td className="px-4 py-3">Usuarios avanzados</td></tr>
-                        <tr className="hover:bg-gray-800/30"><td className="px-4 py-3 font-bold text-indigo-400">Director</td><td className="px-4 py-3 text-indigo-200">Define límites y objetivos en lugar de hacer clics</td><td className="px-4 py-3 text-indigo-400 font-bold">Meta 2026-2027</td></tr>
+                        {STRATEGY_MASTER.clientStages.map((row) => (
+                          <tr key={row.stage} className={row.highlight ? 'bg-indigo-500/10' : 'hover:bg-gray-800/30'}>
+                            <td className={`px-4 py-3 font-bold ${row.highlight ? 'text-indigo-400' : 'text-white'}`}>{row.stage}</td>
+                            <td className={`px-4 py-3 ${row.highlight ? 'text-indigo-200' : ''}`}>{row.behavior}</td>
+                            <td className={`px-4 py-3 ${row.highlight ? 'text-indigo-400 font-bold' : ''}`}>{row.where}</td>
+                          </tr>
+                        ))}
                       </tbody>
                     </table>
                   </div>
@@ -1266,67 +1638,37 @@
 
               {activeTab === 3 && (
                 <div className="animate-fade-in">
-                  <h3 className="text-2xl font-bold text-white mb-6">El Mapa del Ecosistema</h3>
-                  <p className="text-gray-400 mb-6">Más de 30 empresas estructuradas en 3 grandes verticales de negocio.</p>
+                  <h3 className="text-2xl font-bold text-white mb-2">El Mapa del Ecosistema</h3>
+                  <p className="text-gray-400 mb-6">Más de 30 empresas en 3 verticales — alineado al Documento Maestro.</p>
                   
                   <div className="space-y-8">
-                    <div>
-                      <h4 className="text-lg font-bold text-indigo-400 mb-3 border-b border-gray-800 pb-2">1. Ecosistema Financiero</h4>
-                      <div className="overflow-x-auto rounded-xl border border-gray-800">
-                        <table className="w-full text-left text-sm text-gray-300">
-                          <thead className="bg-[#0F172A] text-gray-400">
-                            <tr><th className="px-4 py-3">Empresa</th><th className="px-4 py-3">Rol en la SuperApp</th><th className="px-4 py-3">Estado</th></tr>
-                          </thead>
-                          <tbody className="divide-y divide-gray-800">
-                            <tr className="hover:bg-gray-800/30"><td className="px-4 py-3 font-bold text-white">ueno bank</td><td className="px-4 py-3">Núcleo financiero. Cuenta, crédito, pagos...</td><td className="px-4 py-3 text-emerald-400">Habilitado</td></tr>
-                            <tr className="hover:bg-gray-800/30"><td className="px-4 py-3 font-bold text-white">Upay / PagoPar</td><td className="px-4 py-3">Adquirencia. POS, QR, e-commerce, Link...</td><td className="px-4 py-3 text-yellow-400">En desarrollo</td></tr>
-                            <tr className="hover:bg-gray-800/30"><td className="px-4 py-3 font-bold text-white">Wepa</td><td className="px-4 py-3">Corresponsalía. TED, CNB, remesas...</td><td className="px-4 py-3 text-emerald-400">Habilitado</td></tr>
-                            <tr className="hover:bg-gray-800/30"><td className="px-4 py-3 font-bold text-white">UNID</td><td className="px-4 py-3">Identidad unificada, KYC, SSO</td><td className="px-4 py-3 text-yellow-400">80% Imp.</td></tr>
-                            <tr className="hover:bg-gray-800/30"><td className="px-4 py-3 font-bold text-white">ueno Seguros</td><td className="px-4 py-3">Seguros integrados al flujo bancario</td><td className="px-4 py-3 text-emerald-400">Habilitado</td></tr>
-                            <tr className="hover:bg-gray-800/30"><td className="px-4 py-3 font-bold text-white">Casa de Bolsa</td><td className="px-4 py-3">Inversiones (fondos, bonos, acciones)</td><td className="px-4 py-3 text-emerald-400">Habilitado</td></tr>
-                            <tr className="hover:bg-gray-800/30"><td className="px-4 py-3 font-bold text-white">Vinanzas</td><td className="px-4 py-3">Gestión de cartera propia y terceros</td><td className="px-4 py-3 text-emerald-400">Habilitado</td></tr>
-                            <tr className="hover:bg-gray-800/30"><td className="px-4 py-3 font-bold text-white">ueno+</td><td className="px-4 py-3">Programa Loyalty Transversal (2.8M usr)</td><td className="px-4 py-3 text-emerald-400">Habilitado</td></tr>
-                          </tbody>
-                        </table>
+                    {STRATEGY_MASTER.ecosystem.map((vertical) => (
+                      <div key={vertical.id}>
+                        <h4 className={`text-lg font-bold ${accentText[vertical.accent] || 'text-indigo-400'} mb-3 border-b border-gray-800 pb-2`}>
+                          {vertical.name}
+                        </h4>
+                        <div className="overflow-x-auto rounded-xl border border-gray-800">
+                          <table className="w-full text-left text-sm text-gray-300">
+                            <thead className="bg-[#0F172A] text-gray-400">
+                              <tr>
+                                <th className="px-4 py-3">Empresa</th>
+                                <th className="px-4 py-3">Rol en la SuperApp</th>
+                                <th className="px-4 py-3">Estado</th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-gray-800">
+                              {vertical.companies.map((c) => (
+                                <tr key={c.name} className="hover:bg-gray-800/30">
+                                  <td className="px-4 py-3 font-bold text-white whitespace-nowrap">{c.name}</td>
+                                  <td className="px-4 py-3">{c.role}</td>
+                                  <td className={`px-4 py-3 whitespace-nowrap ${statusToneClass(c.statusTone)}`}>{c.status}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
-                    </div>
-                    
-                    <div>
-                      <h4 className="text-lg font-bold text-emerald-400 mb-3 border-b border-gray-800 pb-2">2. Plataformas y E-Commerce</h4>
-                      <div className="overflow-x-auto rounded-xl border border-gray-800">
-                        <table className="w-full text-left text-sm text-gray-300">
-                          <thead className="bg-[#0F172A] text-gray-400">
-                            <tr><th className="px-4 py-3">Empresa</th><th className="px-4 py-3">Rol en la SuperApp</th><th className="px-4 py-3">Estado</th></tr>
-                          </thead>
-                          <tbody className="divide-y divide-gray-800">
-                            <tr className="hover:bg-gray-800/30"><td className="px-4 py-3 font-bold text-white">Conto</td><td className="px-4 py-3">Tributación, facturación electrónica, "Mis Finanzas"</td><td className="px-4 py-3 text-emerald-400">Habilitado</td></tr>
-                            <tr className="hover:bg-gray-800/30"><td className="px-4 py-3 font-bold text-white">BIMS</td><td className="px-4 py-3">ERP para PyMEs. Nómina, proveedores, conciliación</td><td className="px-4 py-3 text-yellow-400">En implementación</td></tr>
-                            <tr className="hover:bg-gray-800/30"><td className="px-4 py-3 font-bold text-white">uMarket</td><td className="px-4 py-3">Marketplace integrado en app.</td><td className="px-4 py-3 text-yellow-400">En implementación</td></tr>
-                            <tr className="hover:bg-gray-800/30"><td className="px-4 py-3 font-bold text-white">Monchis</td><td className="px-4 py-3">Delivery de comida (flujo nativo).</td><td className="px-4 py-3 text-emerald-400">Habilitado</td></tr>
-                            <tr className="hover:bg-gray-800/30"><td className="px-4 py-3 font-bold text-white">MUV/Ubox</td><td className="px-4 py-3">Movilidad y logística internacional.</td><td className="px-4 py-3 text-emerald-400">Habilitado</td></tr>
-                            <tr className="hover:bg-gray-800/30"><td className="px-4 py-3 font-bold text-white">Itti Prop / YUDA</td><td className="px-4 py-3">Avalúos inmobiliarios / Servicios del hogar</td><td className="px-4 py-3 text-emerald-400">Habilitado</td></tr>
-                            <tr className="hover:bg-gray-800/30"><td className="px-4 py-3 font-bold text-white">ueno Ads / La Tribu</td><td className="px-4 py-3">Publicidad hipersegmentada y Medios Digitales</td><td className="px-4 py-3 text-blue-400">Planeado H1 2026</td></tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-
-                    <div>
-                      <h4 className="text-lg font-bold text-rose-400 mb-3 border-b border-gray-800 pb-2">3. Deportes y Entretenimiento</h4>
-                      <div className="overflow-x-auto rounded-xl border border-gray-800">
-                        <table className="w-full text-left text-sm text-gray-300">
-                          <thead className="bg-[#0F172A] text-gray-400">
-                            <tr><th className="px-4 py-3">Empresa</th><th className="px-4 py-3">Rol en la SuperApp</th><th className="px-4 py-3">Estado</th></tr>
-                          </thead>
-                          <tbody className="divide-y divide-gray-800">
-                            <tr className="hover:bg-gray-800/30"><td className="px-4 py-3 font-bold text-white">TUTI</td><td className="px-4 py-3">Ticketera digital integrada en app ueno</td><td className="px-4 py-3 text-yellow-400">Habilitado/UNID en proc.</td></tr>
-                            <tr className="hover:bg-gray-800/30"><td className="px-4 py-3 font-bold text-white">Uela</td><td className="px-4 py-3">Agencia de viajes digital (Vuelos, hoteles)</td><td className="px-4 py-3 text-emerald-400">Hab. web / App en des.</td></tr>
-                            <tr className="hover:bg-gray-800/30"><td className="px-4 py-3 font-bold text-white">Fan Apps</td><td className="px-4 py-3">Olimpia, Cerro, APF</td><td className="px-4 py-3 text-emerald-400">Habilitado</td></tr>
-                            <tr className="hover:bg-gray-800/30"><td className="px-4 py-3 font-bold text-white">ueno Sports / G5</td><td className="px-4 py-3">Patrocinios estadios / Entretenimiento nocturno</td><td className="px-4 py-3 text-emerald-400">Habilitado / Planeado</td></tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
+                    ))}
                   </div>
                 </div>
               )}
@@ -1335,163 +1677,108 @@
                 <div className="animate-fade-in">
                   <h3 className="text-2xl font-bold text-white mb-6">Arquitectura Tecnológica que lo hace posible</h3>
                   <p className="text-gray-400 mb-8">Infraestructura propia que genera ventajas competitivas difíciles de replicar.</p>
-
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="bg-[#0F172A] p-5 rounded-xl border-l-4 border-indigo-500">
-                      <h4 className="font-bold text-white mb-2">UNID - Identidad que unifica</h4>
-                      <p className="text-sm text-gray-400">Un usuario, una identidad. Biometría centralizada, KYC reutilizable, SSO para todo el ecosistema. Onboarding en segundos en todas las apps.</p>
-                    </div>
-                    <div className="bg-[#0F172A] p-5 rounded-xl border-l-4 border-emerald-500">
-                      <h4 className="font-bold text-white mb-2">Uendi - Sistema Nervioso Conversacional</h4>
-                      <p className="text-sm text-gray-400">Orquestador de agentes (coaching, hunter, service). Con +190k conversaciones, tiene acceso total a info financiera para ejecutar acciones directamente.</p>
-                    </div>
-                    <div className="bg-[#0F172A] p-5 rounded-xl border-l-4 border-blue-500">
-                      <h4 className="font-bold text-white mb-2">Motor de Scoring Ecosistémico</h4>
-                      <p className="text-sm text-gray-400">Analiza todo: frecuencia transaccional, pagos, Monchis, Conto, Upay. Permite otorgar créditos excelentes a informales sin historial bancario.</p>
-                    </div>
-                    <div className="bg-[#0F172A] p-5 rounded-xl border-l-4 border-purple-500">
-                      <h4 className="font-bold text-white mb-2">Data Lake del Grupo</h4>
-                      <p className="text-sm text-gray-400">El activo más valioso. Cada transacción de cualquier empresa alimenta el repositorio compartido, haciendo cada nuevo producto más preciso y rentable.</p>
-                    </div>
-                    <div className="bg-[#0F172A] p-5 rounded-xl border-l-4 border-orange-500 md:col-span-2">
-                      <h4 className="font-bold text-white mb-2">Upay Hub - Switch Transaccional</h4>
-                      <p className="text-sm text-gray-400">Infraestructura propia para procesar pagos directamente con marcas como Visa y Mastercard, eliminando dependencias de terceros y aumentando margen.</p>
-                    </div>
+                    {STRATEGY_MASTER.architecture.map((block, i) => (
+                      <div
+                        key={block.title}
+                        className={`bg-[#0F172A] p-5 rounded-xl border-l-4 ${accentBorder[block.tone] || 'border-indigo-500'} ${i === STRATEGY_MASTER.architecture.length - 1 ? 'md:col-span-2' : ''}`}
+                      >
+                        <h4 className="font-bold text-white mb-2">{block.title}</h4>
+                        <p className="text-sm text-gray-400">{block.text}</p>
+                      </div>
+                    ))}
                   </div>
                 </div>
               )}
 
               {activeTab === 5 && (
                 <div className="animate-fade-in">
-                  <h3 className="text-2xl font-bold text-white mb-6">Roadmap de Ejecución</h3>
-                  
-                  <div className="space-y-8">
-                    <div className="relative pl-8 border-l border-indigo-500">
-                      <div className="absolute w-4 h-4 bg-indigo-500 rounded-full -left-[8.5px] top-1"></div>
-                      <h4 className="text-xl font-bold text-white mb-2">Parte 1 - 2026: Fundaciones e Integración Visible</h4>
-                      <p className="text-sm text-gray-400 mb-4">Hacer visible la integración al usuario, consolidar infraestructura crítica y activar motores IA.</p>
-                      
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-300">
-                        <div className="bg-[#0F172A] p-4 rounded-xl border border-gray-800">
-                          <strong className="text-indigo-400 block mb-2">Personas y Empresas:</strong>
-                          <ul className="list-disc pl-4 space-y-1">
-                            <li>Home Inteligente (estado financiero, liquidez)</li>
-                            <li>Claridad Mental (Metas + presupuestos)</li>
-                            <li>Web Empresas con cash management y ERP</li>
-                            <li>QR P2P expansivo en mercados principales</li>
-                          </ul>
-                        </div>
-                        <div className="bg-[#0F172A] p-4 rounded-xl border border-gray-800">
-                          <strong className="text-indigo-400 block mb-2">Ecosistema & Infraestructura:</strong>
-                          <ul className="list-disc pl-4 space-y-1">
-                            <li>uMarket, Conto, TUTI flujos cortos nativos in-app</li>
-                            <li>UNID al 100% del grupo</li>
-                            <li>Uendi (coach+hunter+service) en prod</li>
-                            <li>Motor predictivo de saldo a fin de mes</li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
+                  <h3 className="text-2xl font-bold text-white mb-2">Tracker de Roadmap</h3>
+                  <p className="text-gray-400 text-sm mb-6">
+                    Estados iniciales sugeridos según el PDF (editables en <code className="text-indigo-300">STRATEGY_MASTER.waves</code>). Actualizar con el equipo de Producto.
+                  </p>
 
-                    <div className="relative pl-8 border-l border-emerald-500">
-                      <div className="absolute w-4 h-4 bg-emerald-500 rounded-full -left-[8.5px] top-1"></div>
-                      <h4 className="text-xl font-bold text-white mb-2">Parte 2 - 2026/2027: Transformación e Inteligencia Total</h4>
-                      <p className="text-sm text-gray-400 mb-4">La plataforma pasa a entender la vida del usuario como un sistema unificado y autónomo.</p>
-                      
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-300">
-                        <div className="bg-[#0F172A] p-4 rounded-xl border border-gray-800">
-                          <strong className="text-emerald-400 block mb-2">Inteligencia & Experiencia:</strong>
-                          <ul className="list-disc pl-4 space-y-1">
-                            <li>Uendi Agentic (ejecución autónoma NLP)</li>
-                            <li>Home 100% dinámico por segmento</li>
-                            <li>Access-based credit (entradas TUTI como colateral)</li>
-                            <li>Simulación y ejecución de grandes decisiones</li>
-                          </ul>
+                  <div className="flex flex-wrap gap-3 mb-8 text-xs">
+                    <span className="px-2 py-1 rounded-full border bg-yellow-500/20 text-yellow-400 border-yellow-500/30">En curso</span>
+                    <span className="px-2 py-1 rounded-full border bg-gray-500/20 text-gray-400 border-gray-500/30">Pendiente</span>
+                    <span className="px-2 py-1 rounded-full border bg-emerald-500/20 text-emerald-400 border-emerald-500/30">Hecho</span>
+                  </div>
+                  
+                  <div className="space-y-10">
+                    {STRATEGY_MASTER.waves.map((wave) => {
+                      const all = wave.buckets.flatMap(b => b.items);
+                      const done = all.filter(i => i.status === 'done').length;
+                      const wip = all.filter(i => i.status === 'in_progress').length;
+                      const pct = all.length ? Math.round(((done + wip * 0.5) / all.length) * 100) : 0;
+                      return (
+                        <div key={wave.id} className={`relative pl-8 border-l ${wave.tone === 'emerald' ? 'border-emerald-500' : 'border-indigo-500'}`}>
+                          <div className={`absolute w-4 h-4 rounded-full -left-[8.5px] top-1 ${wave.tone === 'emerald' ? 'bg-emerald-500' : 'bg-indigo-500'}`}></div>
+                          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-4">
+                            <h4 className="text-xl font-bold text-white">{wave.name}</h4>
+                            <div className="text-xs text-gray-400">
+                              Avance estimado: <span className="text-white font-bold">{pct}%</span>
+                              <span className="mx-2">·</span>{wip} en curso · {done} hechos · {all.length - done - wip} pendientes
+                            </div>
+                          </div>
+                          <div className="w-full h-2 bg-gray-800 rounded-full mb-6 overflow-hidden">
+                            <div className={`h-full rounded-full ${wave.tone === 'emerald' ? 'bg-emerald-500' : 'bg-indigo-500'}`} style={{ width: `${pct}%` }}></div>
+                          </div>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {wave.buckets.map((bucket) => (
+                              <div key={bucket.name} className="bg-[#0F172A] p-4 rounded-xl border border-gray-800">
+                                <strong className={`block mb-3 ${accentText[wave.tone] || 'text-indigo-400'}`}>{bucket.name}</strong>
+                                <ul className="space-y-2">
+                                  {bucket.items.map((item) => {
+                                    const st = waveItemStatus(item.status);
+                                    return (
+                                      <li key={item.label} className="flex items-start justify-between gap-3 text-sm text-gray-300">
+                                        <span className="flex-1">{item.label}</span>
+                                        <span className={`flex-shrink-0 text-[10px] uppercase font-bold px-2 py-0.5 rounded-full border ${st.cls}`}>{st.label}</span>
+                                      </li>
+                                    );
+                                  })}
+                                </ul>
+                              </div>
+                            ))}
+                          </div>
                         </div>
-                        <div className="bg-[#0F172A] p-4 rounded-xl border border-gray-800">
-                          <strong className="text-emerald-400 block mb-2">Ecosistema & Infraestructura:</strong>
-                          <ul className="list-disc pl-4 space-y-1">
-                            <li>Monchis y MUV 100% nativos (sin redirect)</li>
-                            <li>Upay Hub (Switch Propio) en producción</li>
-                            <li>Integración Open Banking (hub financiero total)</li>
-                            <li>Scoring 100% automatizado con data ecosistema</li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
+                      );
+                    })}
                   </div>
                 </div>
               )}
 
               {activeTab === 6 && (
                 <div className="animate-fade-in">
-                  <h3 className="text-2xl font-bold text-white mb-6">Métricas de Producto a Seguir</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">Métricas de Producto a Seguir</h3>
+                  <p className="text-gray-400 text-sm mb-6">Definición + meta 2026 según Documento Maestro. Valores actuales: conectar con data real en una próxima iteración.</p>
                   
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div>
-                      <h4 className="font-bold text-indigo-400 mb-2">Adopción y Frecuencia</h4>
-                      <table className="w-full text-left text-xs text-gray-300 border border-gray-800 rounded-lg overflow-hidden">
-                        <thead className="bg-[#0F172A]"><tr><th className="p-2 border-b border-gray-800">Métrica</th><th className="p-2 border-b border-gray-800">Meta 2026</th></tr></thead>
-                        <tbody className="divide-y divide-gray-800">
-                          <tr><td className="p-2">DAU/MAU ratio</td><td className="p-2 font-bold text-white">&gt; 60%</td></tr>
-                          <tr><td className="p-2">Sesiones por usuario/día</td><td className="p-2 font-bold text-white">&gt; 2.5</td></tr>
-                          <tr><td className="p-2">Time in app por sesión</td><td className="p-2 font-bold text-white">&gt; 3 min</td></tr>
-                          <tr><td className="p-2">Tasa retención D30 / D90</td><td className="p-2 font-bold text-white">&gt; 65% / &gt; 50%</td></tr>
-                        </tbody>
-                      </table>
-                    </div>
-                    
-                    <div>
-                      <h4 className="font-bold text-emerald-400 mb-2">Cross-sell y Ecosistema</h4>
-                      <table className="w-full text-left text-xs text-gray-300 border border-gray-800 rounded-lg overflow-hidden">
-                        <thead className="bg-[#0F172A]"><tr><th className="p-2 border-b border-gray-800">Métrica</th><th className="p-2 border-b border-gray-800">Meta 2026</th></tr></thead>
-                        <tbody className="divide-y divide-gray-800">
-                          <tr><td className="p-2">Índice productos por cliente</td><td className="p-2 font-bold text-white">&gt; 3.5 prod.</td></tr>
-                          <tr><td className="p-2">Tasa cross-sell ecosistema</td><td className="p-2 font-bold text-white">&gt; 30%</td></tr>
-                          <tr><td className="p-2">Tasa activación ueno+</td><td className="p-2 font-bold text-white">&gt; 70%</td></tr>
-                          <tr><td className="p-2">Tasa adopción uMarket</td><td className="p-2 font-bold text-white">15% en Q4</td></tr>
-                        </tbody>
-                      </table>
-                    </div>
-
-                    <div>
-                      <h4 className="font-bold text-blue-400 mb-2">Inteligencia y Automatización</h4>
-                      <table className="w-full text-left text-xs text-gray-300 border border-gray-800 rounded-lg overflow-hidden">
-                        <thead className="bg-[#0F172A]"><tr><th className="p-2 border-b border-gray-800">Métrica</th><th className="p-2 border-b border-gray-800">Meta 2026</th></tr></thead>
-                        <tbody className="divide-y divide-gray-800">
-                          <tr><td className="p-2">% Interacciones con IA perceptible</td><td className="p-2 font-bold text-white">&gt; 40%</td></tr>
-                          <tr><td className="p-2">Resolución Uendi sin escalado</td><td className="p-2 font-bold text-white">&gt; 80%</td></tr>
-                          <tr><td className="p-2">Aceptación propuestas IA</td><td className="p-2 font-bold text-white">&gt; 25%</td></tr>
-                          <tr><td className="p-2">NPS Uendi</td><td className="p-2 font-bold text-white">&gt; 50</td></tr>
-                        </tbody>
-                      </table>
-                    </div>
-
-                    <div>
-                      <h4 className="font-bold text-orange-400 mb-2">Onboarding y Experiencia</h4>
-                      <table className="w-full text-left text-xs text-gray-300 border border-gray-800 rounded-lg overflow-hidden">
-                        <thead className="bg-[#0F172A]"><tr><th className="p-2 border-b border-gray-800">Métrica</th><th className="p-2 border-b border-gray-800">Meta 2026</th></tr></thead>
-                        <tbody className="divide-y divide-gray-800">
-                          <tr><td className="p-2">Tiempo onboarding Personas</td><td className="p-2 font-bold text-white">&lt; 5 min</td></tr>
-                          <tr><td className="p-2">Tasa completación onboarding</td><td className="p-2 font-bold text-white">&gt; 75%</td></tr>
-                          <tr><td className="p-2">Activación primeros 7 días</td><td className="p-2 font-bold text-white">&gt; 55%</td></tr>
-                          <tr><td className="p-2">Adopción UNID apps grupo</td><td className="p-2 font-bold text-white">&gt; 80%</td></tr>
-                        </tbody>
-                      </table>
-                    </div>
-
-                    <div className="lg:col-span-2 mt-2">
-                      <h4 className="font-bold text-rose-400 mb-2">Everyday Banking (Flujo Vida Diaria)</h4>
-                      <table className="w-full text-left text-xs text-gray-300 border border-gray-800 rounded-lg overflow-hidden">
-                        <thead className="bg-[#0F172A]"><tr><th className="p-2 border-b border-gray-800">Métrica</th><th className="p-2 border-b border-gray-800">Definición</th><th className="p-2 border-b border-gray-800">Meta 2026</th></tr></thead>
-                        <tbody className="divide-y divide-gray-800">
-                          <tr><td className="p-2">% pagan servicios in-app</td><td className="p-2">Clientes que pagan al menos 1 servicio/mes</td><td className="p-2 font-bold text-white">&gt; 60%</td></tr>
-                          <tr><td className="p-2">Tasa adopción NFC</td><td className="p-2">% usuarios con tarjeta que usan NFC</td><td className="p-2 font-bold text-white">&gt; 45%</td></tr>
-                          <tr><td className="p-2">Adopción domiciliación sueldo</td><td className="p-2">Sueldo en ueno / total formales</td><td className="p-2 font-bold text-white">&gt; 30%</td></tr>
-                          <tr><td className="p-2">Usuarios con metas activas</td><td className="p-2">% MAUs con al menos 1 meta ahorro</td><td className="p-2 font-bold text-white">&gt; 20%</td></tr>
-                        </tbody>
-                      </table>
-                    </div>
+                    {STRATEGY_MASTER.metrics.map((group) => (
+                      <div key={group.name} className={group.name === 'Everyday Banking' || group.name === 'Experiencia y Calidad' ? '' : ''}>
+                        <h4 className={`font-bold ${accentText[group.tone] || 'text-indigo-400'} mb-2`}>{group.name}</h4>
+                        <div className="overflow-x-auto rounded-lg border border-gray-800">
+                          <table className="w-full text-left text-xs text-gray-300">
+                            <thead className="bg-[#0F172A]">
+                              <tr>
+                                <th className="p-2 border-b border-gray-800">Métrica</th>
+                                <th className="p-2 border-b border-gray-800">Definición</th>
+                                <th className="p-2 border-b border-gray-800">Meta 2026</th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-gray-800">
+                              {group.rows.map((row) => (
+                                <tr key={row.metric}>
+                                  <td className="p-2 font-medium text-white">{row.metric}</td>
+                                  <td className="p-2 text-gray-400">{row.definition}</td>
+                                  <td className="p-2 font-bold text-white whitespace-nowrap">{row.target}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               )}
@@ -1504,32 +1791,20 @@
                   </p>
                   
                   <div className="flex flex-col items-center justify-center space-y-4">
-                    <div className="w-full max-w-2xl bg-[#0F172A] p-4 rounded-xl border border-indigo-500 flex items-center justify-between text-left">
-                      <span className="font-bold text-xl text-indigo-400 px-4">1</span>
-                      <p className="flex-1 text-gray-300"><strong className="text-white">Control + pagos → Retención:</strong> Si siente control y puede pagar todo, no tiene razón para ir a otro banco.</p>
-                    </div>
-                    <div className="w-0.5 h-6 bg-gray-700"></div>
-                    <div className="w-full max-w-2xl bg-[#0F172A] p-4 rounded-xl border border-emerald-500 flex items-center justify-between text-left">
-                      <span className="font-bold text-xl text-emerald-400 px-4">2</span>
-                      <p className="flex-1 text-gray-300"><strong className="text-white">Insights simples → Engagement:</strong> Claridad en lugar de datos duros lo convierte en hábito diario.</p>
-                    </div>
-                    <div className="w-0.5 h-6 bg-gray-700"></div>
-                    <div className="w-full max-w-2xl bg-[#0F172A] p-4 rounded-xl border border-blue-500 flex items-center justify-between text-left">
-                      <span className="font-bold text-xl text-blue-400 px-4">3</span>
-                      <p className="flex-1 text-gray-300"><strong className="text-white">Liquidez contextual → Monetización:</strong> El crédito aparece en el momento correcto con el monto correcto.</p>
-                    </div>
-                    <div className="w-0.5 h-6 bg-gray-700"></div>
-                    <div className="w-full max-w-2xl bg-[#0F172A] p-4 rounded-xl border border-purple-500 flex items-center justify-between text-left">
-                      <span className="font-bold text-xl text-purple-400 px-4">4</span>
-                      <p className="flex-1 text-gray-300"><strong className="text-white">Ecosistema → Frecuencia:</strong> Vida diaria en el grupo (comida, viajes) = volumen de datos que perfecciona todo.</p>
-                    </div>
-                    <div className="w-0.5 h-6 bg-gray-700"></div>
-                    <div className="w-full max-w-2xl bg-[#0F172A] p-4 rounded-xl border border-orange-500 flex items-center justify-between text-left">
-                      <span className="font-bold text-xl text-orange-400 px-4">5</span>
-                      <p className="flex-1 text-gray-300"><strong className="text-white">IA → Diferenciación real:</strong> La app anticipa y ejecuta antes de que el usuario lo pida. Inigualable.</p>
-                    </div>
+                    {STRATEGY_MASTER.priorities.map((p, idx) => (
+                      <React.Fragment key={p.n}>
+                        {idx > 0 && <div className="w-0.5 h-6 bg-gray-700"></div>}
+                        <div className={`w-full max-w-2xl bg-[#0F172A] p-4 rounded-xl border ${accentBorder[p.tone] || 'border-indigo-500'} flex items-center justify-between text-left`}>
+                          <span className={`font-bold text-xl ${accentText[p.tone] || 'text-indigo-400'} px-4`}>{p.n}</span>
+                          <p className="flex-1 text-gray-300">
+                            <strong className="text-white">{p.title}:</strong> {p.text}
+                          </p>
+                        </div>
+                      </React.Fragment>
+                    ))}
                   </div>
                 </div>
+              )}
               )}
 
             </div>
@@ -1646,27 +1921,32 @@
       );
     };
 
-    // 8. VISTA BLOG (iframe)
+    // 8. VISTA DOCUMENTO / BLOG
     const BlogView = () => {
       return (
-        <div className="flex-1 overflow-hidden p-4 md:p-8 bg-[#0B0F19] flex flex-col">
-          <div className="mb-6 flex flex-col items-center flex-shrink-0">
+        <div className="flex-1 overflow-y-auto p-4 md:p-8 bg-[#0B0F19] flex flex-col">
+          <div className="mb-6 flex flex-col items-center flex-shrink-0 max-w-3xl mx-auto text-center">
             <span className="px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-bold rounded-full mb-3 border border-blue-500/30 uppercase tracking-widest">
-              Novedades y Artículos
+              Documento Maestro · {STRATEGY_MASTER.version}
             </span>
-            <h2 className="text-3xl font-extrabold text-white mb-2 text-center">
-              Blog Super App
+            <h2 className="text-3xl font-extrabold text-white mb-2">
+              Estrategia de Producto SuperApp
             </h2>
+            <p className="text-gray-400 text-sm italic mb-4">"{STRATEGY_MASTER.promise}"</p>
+            <p className="text-gray-500 text-xs mb-4">
+              El contenido estructurado vive en la sección <strong className="text-gray-300">Estrategia Transversal</strong> (pilares, olas, métricas).
+              Aquí se mantiene el material de apoyo embebido desde Drive.
+            </p>
           </div>
           
-          <div className="flex-1 w-full border border-gray-800 rounded-2xl overflow-hidden bg-white shadow-lg">
+          <div className="flex-1 w-full min-h-[70vh] border border-gray-800 rounded-2xl overflow-hidden bg-white shadow-lg">
             <iframe 
               src="https://drive.google.com/file/d/1VJuLLnRS45nRAgL9CYCbQtgkOb8uaNev/preview" 
               width="100%" 
               height="100%" 
               allow="autoplay"
-              className="w-full h-full border-0"
-              title="Blog Super App"
+              className="w-full h-full border-0 min-h-[70vh]"
+              title="Documento / Blog Super App"
             ></iframe>
           </div>
         </div>
@@ -1831,7 +2111,7 @@
                           `}
                         >
                           <span className="mr-3 text-lg"><Icons.FileText /></span>
-                          <span className="whitespace-nowrap overflow-hidden text-ellipsis">Blog</span>
+                          <span className="whitespace-nowrap overflow-hidden text-ellipsis">Documento</span>
                         </button>
                       </div>
                     )}
@@ -1854,7 +2134,7 @@
                     </button>
                     <button
                       onClick={() => { setActiveSection('blog'); setIsSuperAppSectionOpen(true); }}
-                      title="Blog"
+                      title="Documento"
                       className={`w-12 h-12 flex items-center justify-center rounded-lg text-lg transition-colors ${activeSection === 'blog' ? 'bg-[#00E58F]/10 text-[#00E58F]' : 'text-gray-400 hover:bg-gray-800/50 hover:text-gray-200'}`}
                     >
                       <span className={activeSection !== 'blog' ? 'opacity-70' : ''}><Icons.FileText /></span>
@@ -1935,7 +2215,7 @@
                    {activeSection === 'global' ? '🎯' : activeSection === 'transversal' ? '📖' : activeSection === 'superapp' ? '🗺️' : activeSection === 'blog' ? '📄' : <ProductLogo logoUrl={activeProduct?.logoUrl} alt={activeProduct?.name} className="w-6 h-6" />}
                 </span>
                 <h2 className="text-lg font-bold">
-                  {activeSection === 'global' ? 'Estrategia Ecosistema' : activeSection === 'transversal' ? 'Estr. Transversal' : activeSection === 'superapp' ? 'Super App' : activeSection === 'blog' ? 'Blog' : activeProduct?.name}
+                  {activeSection === 'global' ? 'Estrategia Ecosistema' : activeSection === 'transversal' ? 'Estr. Transversal' : activeSection === 'superapp' ? 'Super App' : activeSection === 'blog' ? 'Documento' : activeProduct?.name}
                 </h2>
               </div>
               <button onClick={() => setIsMobileMenuOpen(true)} className="text-gray-400">
